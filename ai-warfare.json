@@ -1,0 +1,112 @@
+{
+  "title": "AI 如何主导'史诗愤怒行动'斩首哈梅内伊 — 全技术解析",
+  "updated_at": "2026-03-01",
+  "source_page": "./ai-warfare.html",
+  "summary": "人类历史上首次由 AI 完全主导杀伤链的高层斩首行动技术全解析，覆盖 Palantir Gotham/AIP、Anthropic Claude Gov、SpaceX Starshield、Anduril Lattice、Shield AI Hivemind、以色列 IDF AI 暗杀系统及硅谷新军工资本布局。",
+  "key_entities": [
+    {"name": "Palantir", "ticker": "PLTR", "role": "战场大脑 — Gotham 情报整合 + AIP 大模型部署 + MetaConstellation 卫星调度"},
+    {"name": "Anthropic (Claude)", "ticker": null, "role": "Claude Gov 版本处理 PB 级波斯语情报，生成打击场景模拟，后因拒绝移除安全护栏被部分替换"},
+    {"name": "SpaceX", "ticker": null, "role": "Starshield 480 颗加固卫星提供 200Gbps 激光星间链路战场宽带"},
+    {"name": "Anduril", "ticker": null, "role": "Lattice 软件平台 + YFQ-44A 无人机实现'空中换脑' + EagleEye 混合现实头显"},
+    {"name": "Shield AI", "ticker": null, "role": "Hivemind 自主飞行系统，无 GPS/卫星通信情况下执行任务"},
+    {"name": "Meta", "ticker": "META", "role": "与 Anduril 共同开发 EagleEye 混合现实头显"},
+    {"name": "a16z", "ticker": null, "role": "'美国活力'策略领投新军工，2026 年 150 亿美元融资"}
+  ],
+  "sections": [
+    {
+      "id": "overview",
+      "title": "行动概述：史诗愤怒行动与 AI 杀伤链",
+      "summary": "代号 Operation Epic Fury，人类首次 AI 主导杀伤链的斩首行动。由 Palantir + Anduril + Claude 构成全球监控打击网络，AI 成为决策者、追踪者和执行者。"
+    },
+    {
+      "id": "palantir",
+      "title": "Palantir：硅谷的战争操作系统",
+      "summary": "Gotham 通过本体论技术整合异构数据为战场双胞胎。AIP 在机密网络部署 LLM。MetaConstellation 调度数百颗卫星。FDE 工程师嵌入前线将更新缩短至小时级。",
+      "platforms": [
+        {"name": "Gotham", "function": "核心情报整合", "tech": "语义网、知识图谱、关联分析"},
+        {"name": "AIP for Defense", "function": "机密网络 LLM 部署", "tech": "LLM 集成、RLHF、受控逻辑代理"},
+        {"name": "MetaConstellation", "function": "自动卫星调度监控", "tech": "边缘 AI、轨道管理"},
+        {"name": "TITAN", "function": "陆军战术智能节点", "tech": "传感器融合、多域同步"}
+      ]
+    },
+    {
+      "id": "starshield",
+      "title": "SpaceX 星盾：突破电磁封锁",
+      "summary": "480 颗加固卫星 + NSA 级加密 + 200Gbps 激光星间链路。UAT-222 紧凑终端可单兵背负，秒级传输 PB 级数据穿透干扰。"
+    },
+    {
+      "id": "claude",
+      "title": "Claude：AI 伦理博弈",
+      "summary": "Claude Gov 处理波斯语截获通话和非结构化情报，生成打击场景模拟。Anthropic 拒绝移除安全护栏，被部分替换为 OpenAI 和 xAI，但情报合成仍发挥关键作用。"
+    },
+    {
+      "id": "idf_ai",
+      "title": "以色列 IDF AI 暗杀工厂",
+      "summary": "三套系统：哈布索拉（每天 100 个打击目标）、薰衣草（标记 3.7 万目标）、爸爸在哪儿（追踪家庭住所）。人类审查仅 20 秒。",
+      "systems": [
+        {"name": "The Gospel (哈布索拉)", "function": "建筑目标推荐", "capacity": "每天 100 个打击名单"},
+        {"name": "Lavender (薰衣草)", "function": "人口打分标记武装分子", "capacity": "标记 3.7 万目标"},
+        {"name": "Where's Daddy (爸爸在哪儿)", "function": "追踪目标家庭住所关联", "tactic": "目标回家时攻击"}
+      ]
+    },
+    {
+      "id": "anduril_shieldai",
+      "title": "Anduril 与 Shield AI：软件定义空中优势",
+      "summary": "YFQ-44A 实现'空中换脑'（A-GRA 架构），飞行中切换 Hivemind 和 Lattice。Shield AI Hivemind 无 GPS 自主飞行。EagleEye 头显提供单兵上帝视角。",
+      "tech_components": [
+        {"name": "Hivemind Pilot", "function": "核心飞行控制", "value": "自主战术规避"},
+        {"name": "EdgeOS", "function": "低延迟运行环境", "value": "毫秒级通信延迟"},
+        {"name": "Hivemind Commander", "function": "集群指挥", "value": "多智能体协同"},
+        {"name": "EagleEye", "function": "混合现实头显", "value": "单兵全息态势感知"}
+      ]
+    },
+    {
+      "id": "vc_funding",
+      "title": "硅谷风投重塑军火库",
+      "summary": "a16z 领投'美国活力'策略。2025 年国防科技风投 491 亿美元，Anduril 估值 305 亿，DoD 初创支出增长 2.3 倍。新逻辑：速度、可消耗性、软件先行。",
+      "data_points": [
+        {"metric": "2025 总风投额", "value": "491 亿美元"},
+        {"metric": "Anduril 估值", "value": "305 亿美元"},
+        {"metric": "a16z 融资", "value": "150 亿美元"},
+        {"metric": "DoD 初创支出增长", "value": "2.3 倍"}
+      ]
+    },
+    {
+      "id": "three_clocks",
+      "title": "三只时钟：AI 战争战略局限",
+      "summary": "军事钟（秒级执行最快）、经济钟（供应链指数压力中速）、政治钟（无法自动赢得民心最慢）。AI 压缩军事时间但降低了发动战争的政治门槛。"
+    }
+  ],
+  "qas": [
+    {
+      "id": "faq-1",
+      "question": "Palantir 在斩首行动中扮演了什么角色？",
+      "answer": "扮演'战场大脑'。AIP 平台和 Gotham 通过本体论技术整合异构数据为实时战场双胞胎。MetaConstellation 自动调度卫星交叉验证，FDE 工程师嵌入前线将系统更新缩短至小时级。"
+    },
+    {
+      "id": "faq-2",
+      "question": "Claude 模型具体做了什么？为什么后来被替换？",
+      "answer": "Claude Gov 处理 PB 级波斯语截获通话和非结构化情报，生成打击场景模拟和拦截概率图。后因 Anthropic 拒绝移除安全护栏以集成全自动致命系统，被部分替换为 OpenAI 和 xAI，但情报合成层面仍发挥关键辅助作用。"
+    },
+    {
+      "id": "faq-3",
+      "question": "星盾如何突破伊朗电磁封锁？",
+      "answer": "480 颗加固卫星通过 200Gbps 激光星间链路搭建空中网格。紧凑型 UAT-222 终端可由单兵背负，秒级穿透干扰传输 PB 级数据至 Palantir 引擎。"
+    },
+    {
+      "id": "faq-4",
+      "question": "什么是'空中换脑'和 A-GRA 架构？",
+      "answer": "Anduril 的 YFQ-44A 无人机在飞行中于 Hivemind 和 Lattice 两套 AI 间无缝切换。A-GRA（政府参考自主架构）为模块化标准，允许无人机像更新 APP 一样下载新算法应对干扰。"
+    },
+    {
+      "id": "faq-5",
+      "question": "AI 战争的'三只时钟'理论是什么？",
+      "answer": "军事钟（秒级执行）、经济钟（供应链指数压力）、政治钟（无法自动赢得民心）。AI 压缩了军事时间但无法加速政治共识，战争门槛被危险降低。"
+    },
+    {
+      "id": "faq-6",
+      "question": "硅谷新军工的投资规模有多大？",
+      "answer": "2025 年国防科技总风投 491 亿美元，Anduril 估值 305 亿美元，a16z 完成 150 亿美元融资，DoD 初创企业支出增长 2.3 倍。"
+    }
+  ]
+}
