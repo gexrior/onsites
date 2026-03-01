@@ -1,0 +1,25 @@
+{
+  "title": "DeepSeek 相关 FAQ",
+  "updated_at": "2026-02-12",
+  "source_page": "./faq.html",
+  "qas": [
+    {
+      "id": "q1",
+      "question": "DeepSeek 展现出的高效能，是否意味着美股硬件板块“大力出奇迹”的投入（Capex）逻辑被打破了？",
+      "answer": "确实受到了冲击。DeepSeek 证明了通过软件优化可以大幅提升算力效率，这让市场开始担忧巨头们是否还需要像以前那样无底洞般地购买顶级显卡，或者采购周期会因此拉长。首当其冲的标的：Nvidia (NVDA) 和 AMD (AMD)。如果推理变得极其高效，对 H100/B200 等高端训练卡的需求增速可能会放缓。这也连带影响了 Super Micro Computer (SMCI) 和 Dell (DELL) 等服务器组装商的营收预期。潜在的避风港：Micron (MU) 和 SK Hynix。虽然计算需求可能分化，但高效模型对显存带宽（HBM）的需求依然巨大。如果推理需求爆发，HBM 概念股可能比纯 GPU 股更抗跌。",
+      "tickers": ["NVDA", "AMD", "SMCI", "DELL", "MU"]
+    },
+    {
+      "id": "q2",
+      "question": "开源模型（如 DeepSeek）的崛起，对 Microsoft 和 Google 这样的闭源巨头意味着什么？",
+      "answer": "这是一个“去魅”时刻。DeepSeek 证明了开源、低成本模型可以媲美 GPT-4/5 级别，这直接打破了闭源模型的定价权，迫使巨头们打价格战。面临挑战的标的：Microsoft (MSFT)，因为 OpenAI 的统治力下降，其 Copilot 的护城河被削弱；以及 Alphabet (GOOGL)，因为搜索和 AI 问答成本下降，会有更多像 Perplexity 这样的初创公司利用开源模型挑战其搜索霸主地位。相对受益者：Meta Platforms (META)。Meta 一直走开源路线（Llama 系列），DeepSeek 的成功反而验证了扎克伯格“开源是未来”的策略，减轻了它在模型变现上的直接压力。",
+      "tickers": ["MSFT", "GOOGL", "META"]
+    },
+    {
+      "id": "q3",
+      "question": "模型变得更便宜、更高效，哪些板块会因此受益？",
+      "answer": "应用层（SaaS）和边缘侧设备将迎来爆发。模型成本的暴跌意味着应用开发商的利润率提升，同时高效模型更容易在手机和电脑等本地设备上运行。B2B 软件受益者：Palantir (PLTR) 和 Salesforce (CRM)。它们可以直接集成廉价的高性能模型，以更低的成本向企业客户销售 AI Agent 服务。端侧设备受益者：Apple (AAPL) 和 Tesla (TSLA)。DeepSeek 这种高效率模型非常适合在本地设备（如 Mac、iPhone）上运行，利好“Apple Intelligence”的本地化叙事；同时也利好 Tesla 的 FSD 和 Optimus 机器人，意味着硬件成本下降，智能化迭代加速。",
+      "tickers": ["PLTR", "CRM", "AAPL", "TSLA"]
+    }
+  ]
+}
