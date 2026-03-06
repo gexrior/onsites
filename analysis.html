@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Competitive Intelligence Engine | Day1Global × 7 Powers × Anti-Fragile</title>
+<meta name="description" content="融合 Day1Global 16模块、7 Powers 竞争壁垒、Anti-Fragile 韧性分析的科技股深度分析平台"/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>📊</text></svg>"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0B0F1A;color:#E8ECF4;font-family:"SF Pro Display",-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+::-webkit-scrollbar{width:6px;height:6px}::-webkit-scrollbar-track{background:#131825}::-webkit-scrollbar-thumb{background:#2A3350;border-radius:3px}
+input[type=range]{-webkit-appearance:none;appearance:none;height:4px;background:#2A3350;border-radius:99px;outline:none;flex:1}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#4A9EFF;cursor:pointer;box-shadow:0 0 8px rgba(74,158,255,.4)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.fade{animation:fadeIn .3s ease forwards}.pulse{animation:pulse 1.5s ease infinite}
+a{color:#4A9EFF;text-decoration:none}a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.26.9/babel.min.js"></script>
+<script type="text/babel">
+const {useState,useEffect,useMemo}=React;
+const e=React.createElement;
+
+const C={bg:"#0B0F1A",sf:"#131825",sh:"#1A2035",cd:"#161D2E",bd:"#2A3350",tx:"#E8ECF4",ts:"#8B95AD",tm:"#5A6580",ac:"#4A9EFF",ad:"rgba(74,158,255,.12)",ag:"rgba(74,158,255,.25)",gn:"#34D399",gd:"rgba(52,211,153,.12)",yw:"#FBBF24",yd:"rgba(251,191,36,.12)",rd:"#F87171",rdd:"rgba(248,113,113,.12)",og:"#FB923C",od:"rgba(251,146,60,.12)",pp:"#A78BFA",pd:"rgba(167,139,250,.12)",cy:"#22D3EE",cyd:"rgba(34,211,238,.12)"};
+
+const POWERS=[
+  {id:"scale",n:"规模经济",en:"Scale Economies",ic:"📐",d:"单位成本随规模下降的结构性优势"},
+  {id:"network",n:"网络效应",en:"Network Effects",ic:"🕸️",d:"用户增加提升产品价值的正反馈循环"},
+  {id:"counter",n:"反定位",en:"Counter-Positioning",ic:"♟️",d:"新模式让在位者因利益冲突无法模仿"},
+  {id:"switch",n:"转换成本",en:"Switching Costs",ic:"🔒",d:"用户迁移到竞品的实际与心理成本"},
+  {id:"brand",n:"品牌",en:"Branding",ic:"✦",d:"品牌认知带来的定价权和忠诚度"},
+  {id:"cornered",n:"垄断资源",en:"Cornered Resource",ic:"💎",d:"独占的稀缺资源（人才、版权、数据等）"},
+  {id:"process",n:"流程权力",en:"Process Power",ic:"⚙️",d:"组织内嵌的难以复制的运营能力"},
+];
+const AF=[
+  {id:"optionality",n:"选择权",en:"Optionality",ic:"🎯",d:"多元化的增长选择权和试错能力"},
+  {id:"convexity",n:"凸性收益",en:"Convexity",ic:"📈",d:"从波动中获得不对称收益的能力"},
+  {id:"redundancy",n:"冗余设计",en:"Redundancy",ic:"🛡️",d:"关键环节的备份和缓冲机制"},
+  {id:"stressor",n:"压力增益",en:"Stressor Gain",ic:"💪",d:"在外部冲击下反而变强的能力"},
+];
+const MODS=[
+  {id:"A",n:"收入质量",en:"Revenue Quality",c:"fin"},{id:"B",n:"盈利能力",en:"Profitability",c:"fin"},
+  {id:"C",n:"现金流",en:"Cash Flow",c:"fin"},{id:"D",n:"前瞻指引",en:"Forward Guidance",c:"fin"},
+  {id:"E",n:"竞争格局",en:"Competitive Landscape",c:"comp"},{id:"F",n:"核心 KPI",en:"Core KPIs",c:"ops"},
+  {id:"G",n:"产品与新业务",en:"Products & New Biz",c:"ops"},{id:"H",n:"合作伙伴生态",en:"Partner Ecosystem",c:"ops"},
+  {id:"I",n:"高管团队",en:"Executive Team",c:"gov"},{id:"J",n:"宏观政策",en:"Macro & Policy",c:"mac"},
+  {id:"K",n:"估值模型",en:"Valuation Models",c:"val"},{id:"L",n:"筹码分布",en:"Ownership",c:"mkt"},
+  {id:"M",n:"长期监控",en:"LT Monitoring",c:"mon"},{id:"N",n:"研发效率",en:"R&D Efficiency",c:"ops"},
+  {id:"O",n:"会计质量",en:"Accounting Quality",c:"gov"},{id:"P",n:"ESG 筛查",en:"ESG Screening",c:"gov"},
+];
+const CC={fin:C.ac,comp:C.gn,ops:C.pp,gov:C.yw,mac:C.og,val:C.cy,mkt:C.rd,mon:C.ts};
+const CL={fin:"💰 财务",comp:"⚔️ 竞争",ops:"🔧 运营",gov:"🏛️ 治理",mac:"🌍 宏观",val:"📐 估值",mkt:"📈 市场",mon:"👁️ 监控"};
+
+const PHILS=[
+  {id:"quality",n:"质量复利",en:"Quality Compounder",m:"巴菲特/芒格",cl:C.gn,txt:"Netflix 展现出强劲的复利特征：订阅收入高度可预测，ROIC 持续改善，自由现金流已转正。芒格会关注其内容库的'护城河宽度'。"},
+  {id:"growth",n:"想象力成长",en:"Imaginative Growth",m:"Baillie Gifford/ARK",cl:C.ac,txt:"聚焦 TAM 扩张：全球付费流媒体渗透率仍不足 30%，广告层、游戏、直播体育赛事打开新增长曲线。"},
+  {id:"longshort",n:"基本面多空",en:"Fundamental L/S",m:"Tiger Cubs",cl:C.pp,txt:"做多 Netflix 运营杠杆（收入增长 > 内容支出增长），同时做空价格战中处于劣势的二线平台。"},
+  {id:"deepvalue",n:"深度价值",en:"Deep Value",m:"Klarman/Marks",cl:C.yw,txt:"审视安全边际：当前 P/E 约 35x，按 Owner Earnings 计算隐含的增长预期是否合理？需关注内容摊销政策。"},
+  {id:"catalyst",n:"催化剂驱动",en:"Catalyst-Driven",m:"Tepper/Ackman",cl:C.og,txt:"寻找催化剂：广告 ARPU 提升路径、体育直播版权竞标结果、新兴市场定价调整。任一可驱动 15-20% 重估。"},
+  {id:"macro",n:"宏观战术",en:"Macro Tactical",m:"Druckenmiller",cl:C.cy,txt:"评估宏观背景：高利率下消费者钱包份额竞争加剧，但流媒体作为'廉价娱乐'具有逆周期韧性。"},
+];
+const TIERS=[
+  {s:5,l:"Tier 1",n:"SEC/财报原文",cl:C.gn,bg:C.gd,ex:"SEC 10-K/10-Q、年报、季报原始文件"},
+  {s:4,l:"Tier 2",n:"官方新闻稿/IR",cl:C.ac,bg:C.ad,ex:"公司新闻稿、投资者日材料、Earnings Call"},
+  {s:3,l:"Tier 3",n:"权威第三方报告",cl:C.pp,bg:C.pd,ex:"尼尔森 Gauge 报告、Parrot Analytics"},
+  {s:2,l:"Tier 4",n:"行业媒体引述",cl:C.yw,bg:C.yd,ex:"Variety/Deadline 等行业媒体引述数据"},
+  {s:1,l:"Tier 5",n:"分析师估算/社交",cl:C.rd,bg:C.rdd,ex:"分析师估算、Reddit/Twitter 来源"},
+];
+const COMPS=[
+  {tk:"NFLX",n:"Netflix",ni:8.5,rv:31.2,cl:"#E50914"},
+  {tk:"DIS",n:"Disney+",ni:3.8,rv:12.8,cl:"#113CCF"},
+  {tk:"AMZN",n:"Prime Video",ni:3.5,rv:10.5,cl:"#FF9900"},
+  {tk:"WBD",n:"Max",ni:2.9,rv:7.2,cl:"#002BE7"},
+  {tk:"CMCSA",n:"Peacock",ni:1.5,rv:4.1,cl:"#6EBF49"},
+];
+const NP={scale:8.5,network:6.0,counter:7.5,switch:5.5,brand:9.0,cornered:8.0,process:7.0};
+const NA={optionality:7.5,convexity:6.5,redundancy:5.0,stressor:7.0};
+
+// ── UI primitives ──
+const Badge=({children,color=C.ac,bg})=>e('span',{style:{display:"inline-flex",alignItems:"center",gap:4,padding:"2px 10px",borderRadius:999,fontSize:11,fontWeight:600,color,background:bg||color+"18",letterSpacing:".02em"}},children);
+
+const Bar=({v,max=10,color=C.ac,w=120})=>e('div',{style:{display:"flex",alignItems:"center",gap:8}},
+  e('div',{style:{width:w,height:6,borderRadius:99,background:color+"20",overflow:"hidden"}},
+    e('div',{style:{width:`${(v/max)*100}%`,height:"100%",borderRadius:99,background:`linear-gradient(90deg,${color}88,${color})`,transition:"width .6s ease"}})
+  ),
+  e('span',{style:{fontSize:12,fontWeight:700,color,fontVariantNumeric:"tabular-nums",minWidth:28}},v.toFixed(1))
+);
+
+const Tier=({t})=>{const d=TIERS.find(x=>x.s===t)||TIERS[4];return e('span',{style:{display:"inline-flex",alignItems:"center",gap:4,padding:"2px 8px",borderRadius:4,fontSize:10,fontWeight:600,color:d.cl,background:d.bg}},e('span',{style:{width:6,height:6,borderRadius:99,background:d.cl}}),d.l)};
+
+const Sec=({title,sub,icon,children,open:defOpen=true})=>{
+  const[open,setOpen]=useState(defOpen);
+  return e('div',{style:{background:C.cd,borderRadius:14,border:`1px solid ${C.bd}`,overflow:"hidden"}},
+    e('div',{onClick:()=>setOpen(!open),style:{padding:"16px 20px",display:"flex",alignItems:"center",gap:12,cursor:"pointer",userSelect:"none",borderBottom:open?`1px solid ${C.bd}`:"none"}},
+      e('span',{style:{fontSize:18}},icon),
+      e('div',{style:{flex:1}},
+        e('div',{style:{fontSize:14,fontWeight:700,color:C.tx}},title),
+        sub&&e('div',{style:{fontSize:11,color:C.tm,marginTop:1}},sub)
+      ),
+      e('div',{style:{width:24,height:24,borderRadius:6,background:C.sh,display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,color:C.ts,transition:"transform .2s",transform:open?"rotate(180deg)":"rotate(0)"}},"▼")
+    ),
+    open&&e('div',{style:{padding:20}},children)
+  );
+};
+
+// ── Radar ──
+const Radar=({scores={}})=>{
+  const r=85,cx=110,cy=110,items=POWERS;
+  const pt=(i,v)=>{const a=Math.PI*2*i/items.length-Math.PI/2;return{x:cx+Math.cos(a)*(v/10)*r,y:cy+Math.sin(a)*(v/10)*r}};
+  return e('svg',{viewBox:"0 0 220 220",style:{width:"100%",maxWidth:280}},
+    [2,4,6,8,10].map(lv=>e('polygon',{key:lv,points:items.map((_,i)=>{const p=pt(i,lv);return p.x+","+p.y}).join(" "),fill:"none",stroke:C.bd,strokeWidth:.5,opacity:.5})),
+    items.map((_,i)=>{const p=pt(i,10);return e('line',{key:"l"+i,x1:cx,y1:cy,x2:p.x,y2:p.y,stroke:C.bd,strokeWidth:.5,opacity:.3})}),
+    e('polygon',{points:items.map((it,i)=>{const p=pt(i,scores[it.id]||0);return p.x+","+p.y}).join(" "),fill:C.ag,stroke:C.ac,strokeWidth:1.5}),
+    items.map((it,i)=>{const p=pt(i,11.8);return e('text',{key:"t"+i,x:p.x,y:p.y,textAnchor:"middle",dominantBaseline:"middle",fill:C.ts,fontSize:9,fontWeight:600},it.ic+" "+it.n)})
+  );
+};
+
+// ── CompBar ──
+const CompBar=({comps,nw=.3,rw=.7})=>{
+  const scored=comps.map(c=>({...c,w:c.ni*nw+c.rv*rw})).sort((a,b)=>b.w-a.w);
+  const mx=Math.max(...scored.map(s=>s.w));
+  return e('div',{style:{display:"flex",flexDirection:"column",gap:10}},
+    scored.map((c,i)=>e('div',{key:c.tk,style:{display:"flex",alignItems:"center",gap:12}},
+      e('div',{style:{width:28,height:28,borderRadius:8,background:c.cl+"20",display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:800,color:c.cl}},i+1),
+      e('div',{style:{width:80}},
+        e('div',{style:{fontSize:12,fontWeight:700,color:C.tx}},c.n),
+        e('div',{style:{fontSize:10,color:C.tm}},c.tk)
+      ),
+      e('div',{style:{flex:1,position:"relative"}},
+        e('div',{style:{height:20,borderRadius:6,background:C.sh,overflow:"hidden"}},
+          e('div',{style:{height:"100%",borderRadius:6,transition:"width .8s ease",width:`${(c.w/mx)*100}%`,background:`linear-gradient(90deg,${c.cl}66,${c.cl})`}})
+        ),
+        e('div',{style:{position:"absolute",right:8,top:"50%",transform:"translateY(-50%)",fontSize:11,fontWeight:700,color:C.tx}},c.w.toFixed(1))
+      ),
+      e('div',{style:{width:100,display:"flex",gap:8,fontSize:10,color:C.ts}},
+        e('span',null,"N:"+c.ni+"%"),e('span',null,"R:"+c.rv+"%")
+      )
+    ))
+  );
+};
+
+// ── Main App ──
+function App(){
+  const[mode,setMode]=useState("compare");
+  const[input,setInput]=useState("NFLX vs DIS, AMZN, WBD, CMCSA");
+  const[nw,setNw]=useState(30);
+  const[tab,setTab]=useState("overview");
+  const[gen,setGen]=useState(false);
+  const[done,setDone]=useState(false);
+
+  useEffect(()=>{
+    if(/vs|对比|比较|竞争|,/.test(input)){setMode("compare")}
+    else if(/[A-Z]{2,5}/.test(input)){setMode("single")}
+  },[input]);
+
+  const doGen=()=>{setGen(true);setTimeout(()=>{setGen(false);setDone(true)},1800)};
+
+  const tabs=mode==="compare"
+    ?[{k:"overview",l:"竞争概览",i:"⚔️"},{k:"powers",l:"7 Powers",i:"🏰"},{k:"antifragile",l:"反脆弱",i:"💪"},{k:"modules",l:"16模块",i:"📋"},{k:"evidence",l:"数据审计",i:"🔍"},{k:"report",l:"报告结构",i:"📄"}]
+    :[{k:"overview",l:"深度概览",i:"📊"},{k:"powers",l:"7 Powers",i:"🏰"},{k:"antifragile",l:"反脆弱",i:"💪"},{k:"modules",l:"16模块",i:"📋"},{k:"philosophies",l:"6视角",i:"🧠"},{k:"report",l:"报告结构",i:"📄"}];
+
+  // ── Render ──
+  return e('div',{style:{minHeight:"100vh",background:C.bg}},
+    // Header
+    e('div',{style:{padding:"24px 28px 0",borderBottom:`1px solid ${C.bd}`,background:`linear-gradient(180deg,${C.sf} 0%,${C.bg} 100%)`}},
+      e('div',{style:{display:"flex",alignItems:"flex-start",justifyContent:"space-between",marginBottom:16}},
+        e('div',null,
+          e('div',{style:{display:"flex",alignItems:"center",gap:10,marginBottom:6}},
+            e('span',{style:{fontSize:22,fontWeight:900,letterSpacing:"-.03em",color:C.tx}},"Competitive Intelligence Engine"),
+            e(Badge,{color:C.gn,bg:C.gd},"v1.0")
+          ),
+          e('div',{style:{fontSize:12,color:C.ts}},"Day1Global × 7 Powers × Anti-Fragile 融合分析框架",
+            e('span',{style:{margin:"0 8px",color:C.tm}},"|"),"16 模块 · 6 投资哲学 · 5 级数据置信度 · 双维度加权模型")
+        ),
+        e(Badge,{color:C.yw},"⚠️ 不构成投资建议")
+      ),
+      // Input
+      e('div',{style:{display:"flex",gap:12,marginBottom:16}},
+        e('div',{style:{flex:1,position:"relative"}},
+          e('input',{value:input,onChange:ev=>setInput(ev.target.value),placeholder:"输入公司代码，如 NFLX 或 NFLX vs DIS, AMZN",style:{width:"100%",padding:"12px 16px",borderRadius:10,border:`1px solid ${C.bd}`,background:C.sf,color:C.tx,fontSize:14,outline:"none",boxSizing:"border-box"}}),
+          e('div',{style:{position:"absolute",right:12,top:"50%",transform:"translateY(-50%)",fontSize:10,color:C.tm,padding:"2px 8px",borderRadius:4,background:C.sh}},
+            mode==="compare"?"⚔️ 对比模式":"📊 深度模式"," · 自动识别")
+        ),
+        e('button',{onClick:doGen,disabled:gen,style:{padding:"0 24px",borderRadius:10,border:"none",background:gen?C.tm:"linear-gradient(135deg,#4A9EFF,#6366F1)",color:"#fff",fontWeight:700,fontSize:13,cursor:gen?"wait":"pointer",minWidth:140}},gen?"⏳ 分析中...":"🚀 生成报告")
+      ),
+      // Mode toggle
+      e('div',{style:{display:"flex",gap:2,padding:3,borderRadius:12,background:C.sf,border:`1px solid ${C.bd}`}},
+        [{k:"single",l:"📊 单公司深度分析",s:"Deep Dive"},{k:"compare",l:"⚔️ 多公司竞争对比",s:"Competitive"}].map(m=>
+          e('button',{key:m.k,onClick:()=>setMode(m.k),style:{flex:1,padding:"10px 16px",borderRadius:10,border:"none",cursor:"pointer",transition:"all .2s",background:mode===m.k?C.ac:"transparent",color:mode===m.k?"#fff":C.ts,fontWeight:mode===m.k?700:500,fontSize:13}},
+            m.l,e('div',{style:{fontSize:10,marginTop:2,opacity:.7,color:mode===m.k?"rgba(255,255,255,.8)":C.tm}},m.s))
+        )
+      ),
+      // Tabs
+      e('div',{style:{display:"flex",gap:2,marginTop:12,overflowX:"auto"}},
+        tabs.map(t=>e('button',{key:t.k,onClick:()=>setTab(t.k),style:{padding:"10px 16px",border:"none",background:"transparent",cursor:"pointer",fontSize:12,fontWeight:600,whiteSpace:"nowrap",color:tab===t.k?C.ac:C.ts,borderBottom:tab===t.k?`2px solid ${C.ac}`:"2px solid transparent"}},t.i+" "+t.l))
+      )
+    ),
+
+    // Content
+    e('div',{style:{padding:"20px 28px",maxWidth:1200,margin:"0 auto"}},
+
+      // ── Overview ──
+      tab==="overview"&&e('div',{style:{display:"flex",flexDirection:"column",gap:16},className:"fade"},
+        mode==="compare"&&e('div',{style:{padding:16,borderRadius:12,background:C.cd,border:`1px solid ${C.bd}`}},
+          e('div',{style:{fontSize:12,fontWeight:700,color:C.tx,marginBottom:10}},"⚖️ 双维度权重调节器"),
+          e('div',{style:{display:"flex",alignItems:"center",gap:16}},
+            e('span',{style:{fontSize:11,color:C.ts,whiteSpace:"nowrap"}},"尼尔森收视率 "+nw+"%"),
+            e('input',{type:"range",min:0,max:100,value:nw,onChange:ev=>setNw(+ev.target.value)}),
+            e('span',{style:{fontSize:11,color:C.ts,whiteSpace:"nowrap"}},"流媒体收入 "+(100-nw)+"%")
+          )
+        ),
+        mode==="compare"
+          ?e(Sec,{title:"加权竞争力排名",sub:"Weighted Competitive Ranking",icon:"🏆"},e(CompBar,{comps:COMPS,nw:nw/100,rw:(100-nw)/100}))
+          :e(Sec,{title:"Netflix 竞争力总览",sub:"Netflix Competitive Overview",icon:"📊"},
+            e('div',{style:{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:12}},
+              [{l:"7 Powers 综合",v:"7.3",cl:C.ac,u:"/10"},{l:"反脆弱指数",v:"6.5",cl:C.gn,u:"/10"},{l:"加权市场份额",v:"24.4",cl:C.pp,u:"%"}].map(s=>
+                e('div',{key:s.l,style:{padding:16,borderRadius:10,background:C.sh,textAlign:"center"}},
+                  e('div',{style:{fontSize:10,color:C.ts,marginBottom:6}},s.l),
+                  e('div',{style:{fontSize:28,fontWeight:900,color:s.cl,fontVariantNumeric:"tabular-nums"}},s.v,e('span',{style:{fontSize:12,fontWeight:400,color:C.tm}},s.u))
+                )
+              )
+            )
+          ),
+        e(Sec,{title:"数据源置信度分级",sub:"Data Source Reliability Tiers",icon:"🔬",open:false},
+          e('div',{style:{display:"flex",flexDirection:"column",gap:8}},
+            TIERS.map(t=>e('div',{key:t.s,style:{display:"flex",alignItems:"center",gap:12,padding:"8px 12px",borderRadius:8,background:t.bg}},
+              e('span',{style:{width:32,height:32,borderRadius:8,background:t.cl+"20",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,fontWeight:900,color:t.cl}},t.s),
+              e('div',null,
+                e('div',{style:{fontSize:12,fontWeight:700,color:t.cl}},t.l+": "+t.n),
+                e('div',{style:{fontSize:10,color:C.ts}},t.ex)
+              )
+            ))
+          )
+        )
+      ),
+
+      // ── 7 Powers ──
+      tab==="powers"&&e('div',{style:{display:"flex",flexDirection:"column",gap:16},className:"fade"},
+        mode==="single"
+          ?e('div',{style:{display:"grid",gridTemplateColumns:"280px 1fr",gap:20}},
+            e('div',{style:{padding:16,borderRadius:12,background:C.cd,border:`1px solid ${C.bd}`,display:"flex",alignItems:"center",justifyContent:"center"}},e(Radar,{scores:NP})),
+            e('div',{style:{display:"flex",flexDirection:"column",gap:8}},
+              POWERS.map(p=>e('div',{key:p.id,style:{display:"flex",alignItems:"center",gap:12,padding:"10px 14px",borderRadius:10,background:C.cd,border:`1px solid ${C.bd}`}},
+                e('span',{style:{fontSize:16}},p.ic),
+                e('div',{style:{flex:1}},
+                  e('div',{style:{fontSize:12,fontWeight:700,color:C.tx}},p.n," ",e('span',{style:{fontWeight:400,color:C.tm}},p.en)),
+                  e('div',{style:{fontSize:10,color:C.ts,marginTop:2}},p.d)
+                ),
+                e(Bar,{v:NP[p.id]||0,color:NP[p.id]>=8?C.gn:NP[p.id]>=5?C.yw:C.rd}),
+                e(Tier,{t:p.id==="brand"||p.id==="cornered"?5:p.id==="scale"?4:3})
+              ))
+            )
+          )
+          :e(Sec,{title:"7 Powers 竞争对比矩阵",sub:"7 Powers Competitive Matrix",icon:"🏰"},
+            e('div',{style:{overflowX:"auto"}},
+              e('table',{style:{width:"100%",borderCollapse:"collapse",fontSize:12}},
+                e('thead',null,e('tr',null,
+                  e('th',{style:{padding:"8px 12px",textAlign:"left",color:C.ts,borderBottom:`1px solid ${C.bd}`}},"Power"),
+                  COMPS.slice(0,4).map(c=>e('th',{key:c.tk,style:{padding:"8px 12px",textAlign:"center",color:c.cl,borderBottom:`1px solid ${C.bd}`,fontWeight:700}},c.n))
+                )),
+                e('tbody',null,POWERS.map(p=>{
+                  const scores=[8.5,6.0,7.0,4.5];
+                  return e('tr',{key:p.id},
+                    e('td',{style:{padding:"8px 12px",color:C.tx,fontWeight:600,borderBottom:`1px solid ${C.bd}22`}},p.ic+" "+p.n),
+                    scores.map((s,i)=>{const cl=s>=7?C.gn:s>=5?C.yw:C.rd;return e('td',{key:i,style:{padding:"8px 12px",textAlign:"center",borderBottom:`1px solid ${C.bd}22`}},e('span',{style:{padding:"2px 10px",borderRadius:6,fontSize:12,fontWeight:700,color:cl,background:cl+"15"}},s.toFixed(1)))})
+                  );
+                }))
+              )
+            )
+          )
+      ),
+
+      // ── Anti-Fragile ──
+      tab==="antifragile"&&e('div',{style:{display:"flex",flexDirection:"column",gap:16},className:"fade"},
+        e(Sec,{title:"Anti-Fragile 韧性评估",sub:"Anti-Fragility Assessment",icon:"💪"},
+          e('div',{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}},
+            AF.map(dim=>{const s=NA[dim.id]||0;const cl=s>=7?C.gn:s>=4?C.yw:C.rd;
+              return e('div',{key:dim.id,style:{padding:14,borderRadius:10,background:C.sh,border:`1px solid ${cl}30`}},
+                e('div',{style:{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8}},
+                  e('span',{style:{fontSize:12,fontWeight:700,color:C.tx}},dim.ic+" "+dim.n),
+                  e('span',{style:{fontSize:16,fontWeight:800,color:cl,fontVariantNumeric:"tabular-nums"}},s.toFixed(1))
+                ),
+                e('div',{style:{fontSize:10,color:C.tm,lineHeight:1.4}},dim.d),
+                e('div',{style:{marginTop:8,height:4,borderRadius:99,background:cl+"20",overflow:"hidden"}},
+                  e('div',{style:{width:`${(s/10)*100}%`,height:"100%",borderRadius:99,background:cl,transition:"width .6s ease"}})
+                )
+              )
+            })
+          )
+        ),
+        e(Sec,{title:"压力情景模拟",sub:"Stress Scenario Simulation",icon:"🌪️",open:false},
+          e('div',{style:{display:"flex",flexDirection:"column",gap:8}},
+            [{sc:"广告市场崩盘 (-40%)",imp:"中低",nf:"+2.3%",di:"-8.1%",d:"Netflix 广告收入占比低，反而可吸引转投用户"},
+             {sc:"内容成本通胀 (+30%)",imp:"高",nf:"-3.5%",di:"-5.2%",d:"规模优势下 Netflix 单位成本增幅较低"},
+             {sc:"全球经济衰退",imp:"中",nf:"+1.8%",di:"-4.7%",d:"低价娱乐需求反增，订阅粘性高"},
+             {sc:"AI 颠覆内容生产",imp:"未知",nf:"?",di:"?",d:"双刃剑：降本但可能同质化"}
+            ].map((s,i)=>e('div',{key:i,style:{padding:12,borderRadius:8,background:C.sh,display:"flex",alignItems:"center",gap:12}},
+              e('div',{style:{flex:1}},
+                e('div',{style:{fontSize:12,fontWeight:700,color:C.tx}},s.sc),
+                e('div',{style:{fontSize:10,color:C.ts,marginTop:2}},s.d)
+              ),
+              e(Badge,{color:s.imp==="高"?C.rd:s.imp==="中低"?C.gn:C.yw},"冲击: "+s.imp),
+              e('div',{style:{textAlign:"right",minWidth:60}},
+                e('div',{style:{fontSize:11,color:s.nf[0]==="+"?C.gn:s.nf==="?"?C.tm:C.rd,fontWeight:700}},"NFLX "+s.nf),
+                e('div',{style:{fontSize:11,color:s.di[0]==="+"?C.gn:s.di==="?"?C.tm:C.rd,fontWeight:700}},"DIS "+s.di)
+              )
+            ))
+          )
+        )
+      ),
+
+      // ── 16 Modules ──
+      tab==="modules"&&e('div',{style:{display:"flex",flexDirection:"column",gap:12},className:"fade"},
+        e('div',{style:{display:"flex",flexWrap:"wrap",gap:6,padding:"12px 16px",borderRadius:10,background:C.cd,border:`1px solid ${C.bd}`}},
+          Object.entries(CL).map(([k,v])=>e(Badge,{key:k,color:CC[k]},v))
+        ),
+        e('div',{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10}},
+          MODS.map(m=>{const cl=CC[m.c];return e('div',{key:m.id,style:{padding:14,borderRadius:10,background:C.cd,border:`1px solid ${C.bd}`,display:"flex",alignItems:"center",gap:12}},
+            e('div',{style:{width:36,height:36,borderRadius:8,background:cl+"15",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,fontWeight:900,color:cl}},m.id),
+            e('div',{style:{flex:1}},
+              e('div',{style:{fontSize:13,fontWeight:700,color:C.tx}},m.n),
+              e('div',{style:{fontSize:10,color:C.tm}},m.en)
+            ),
+            e(Bar,{v:5+Math.random()*4.5,color:cl,w:80})
+          )})
+        )
+      ),
+
+      // ── 6 Philosophies (single) ──
+      tab==="philosophies"&&e('div',{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12},className:"fade"},
+        PHILS.map(p=>e(Sec,{key:p.id,title:p.n,sub:p.en+" · "+p.m,icon:"🧠"},
+          e('div',{style:{fontSize:12,color:C.ts,lineHeight:1.6}},p.txt),
+          e('div',{style:{marginTop:10}},e(Badge,{color:p.cl},p.id==="deepvalue"?"⚠️ 中性偏谨慎":"✅ 看多"))
+        ))
+      ),
+
+      // ── Evidence ──
+      tab==="evidence"&&e('div',{style:{display:"flex",flexDirection:"column",gap:16},className:"fade"},
+        e(Sec,{title:"数据源审计总览",sub:"Data Source Audit Dashboard",icon:"🔍"},
+          e('div',{style:{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:8}},
+            TIERS.map(t=>e('div',{key:t.s,style:{padding:14,borderRadius:10,background:t.bg,textAlign:"center"}},
+              e('div',{style:{fontSize:24,fontWeight:900,color:t.cl}},[12,8,15,6,2][5-t.s]),
+              e('div',{style:{fontSize:10,color:t.cl,fontWeight:600}},t.l),
+              e('div',{style:{fontSize:9,color:C.tm,marginTop:2}},t.n)
+            ))
+          )
+        ),
+        e(Sec,{title:"关键数据点置信度",sub:"Key Datapoint Confidence",icon:"📋"},
+          e('div',{style:{display:"flex",flexDirection:"column",gap:6}},
+            [{p:"Netflix Q4 2025 收入 $10.25B",t:5,src:"NFLX 10-Q SEC Filing"},
+             {p:"全球订阅者 3.01 亿",t:5,src:"NFLX Shareholder Letter"},
+             {p:"尼尔森美国流媒体收视份额 8.5%",t:3,src:"Nielsen Gauge Report (Jan 2026)"},
+             {p:"广告层 ARPU $8.50/月",t:4,src:"NFLX Investor Day 2025"},
+             {p:"Disney+ 全球订阅者 1.52 亿",t:5,src:"DIS 10-Q SEC Filing"},
+             {p:"流媒体市场总收入份额估算",t:2,src:"Variety Intelligence Platform"},
+             {p:"Prime Video 用户留存率 85%",t:1,src:"分析师估算（未经验证）"}
+            ].map((d,i)=>e('div',{key:i,style:{display:"flex",alignItems:"center",gap:12,padding:"8px 12px",borderRadius:8,background:i%2===0?C.sh:"transparent"}},
+              e(Tier,{t:d.t}),
+              e('div',{style:{flex:1,fontSize:12,color:C.tx}},d.p),
+              e('div',{style:{fontSize:10,color:C.tm,maxWidth:200,textAlign:"right"}},d.src)
+            ))
+          )
+        )
+      ),
+
+      // ── Report Structure ──
+      tab==="report"&&e('div',{style:{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16},className:"fade"},
+        e(Sec,{title:"报告输出结构",sub:"Report Structure",icon:"📄"},
+          e('div',{style:{display:"flex",flexDirection:"column",gap:2}},
+            (mode==="single"
+              ?["执行摘要与 TL;DR","Key Forces 决定性力量","16 大模块分析 (A-P)","7 Powers 护城河评估","Anti-Fragile 韧性分析","估值矩阵 (多方法)","6 大投资哲学视角","Pre-Mortem 与反偏见检查","监控变量与 Action Trigger","决策框架"]
+              :["竞争格局概览","双维度加权评分矩阵","7 Powers 逐项对比","Anti-Fragile 压力情景","16 模块横向对标","数据源可靠性审计","定价与份额趋势","Variant View 盲点识别","6 大投资哲学交叉验证","相对优势决策矩阵"]
+            ).map((s,i)=>e('div',{key:i,style:{display:"flex",alignItems:"center",gap:12,padding:"8px 12px",borderRadius:8,background:i%2===0?"transparent":C.sh}},
+              e('span',{style:{width:28,height:28,borderRadius:8,background:C.ad,color:C.ac,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:800}},String(i+1).padStart(2,"0")),
+              e('div',{style:{fontSize:13,fontWeight:600,color:C.tx}},s)
+            ))
+          )
+        ),
+        e('div',{style:{display:"flex",flexDirection:"column",gap:16}},
+          e(Sec,{title:"工作流程",sub:"Workflow Pipeline",icon:"🔄"},
+            e('div',{style:{display:"flex",flexDirection:"column",gap:4}},
+              [{s:"1",l:"输入解析",d:"自动识别单/多公司模式",st:"auto"},
+               {s:"2",l:"框架选择",d:"加载对应分析框架和权重",st:"auto"},
+               {s:"3",l:"数据采集",d:"AI 抓取公开数据 + 人工导入",st:"hybrid"},
+               {s:"4",l:"置信度标注",d:"每个数据点标注 Tier 1-5",st:"auto"},
+               {s:"5",l:"人工验证",d:"确认低置信度数据是否参与计算",st:"human"},
+               {s:"6",l:"模型计算",d:"16模块 + 7 Powers + Anti-Fragile",st:"auto"},
+               {s:"7",l:"报告生成",d:"输出 Markdown/Word 报告",st:"auto"},
+              ].map(w=>e('div',{key:w.s,style:{display:"flex",alignItems:"center",gap:10,padding:"8px 12px",borderRadius:8}},
+                e('span',{style:{width:24,height:24,borderRadius:6,background:w.st==="human"?C.yd:w.st==="hybrid"?C.pd:C.ad,color:w.st==="human"?C.yw:w.st==="hybrid"?C.pp:C.ac,display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:800}},w.s),
+                e('div',{style:{flex:1}},
+                  e('div',{style:{fontSize:12,fontWeight:700,color:C.tx}},w.l),
+                  e('div',{style:{fontSize:10,color:C.ts}},w.d)
+                ),
+                e(Badge,{color:w.st==="human"?C.yw:w.st==="hybrid"?C.pp:C.ac},w.st==="human"?"👤 人工":w.st==="hybrid"?"🤝 混合":"🤖 自动")
+              ))
+            )
+          ),
+          e(Sec,{title:"协同 Skills",sub:"Synergy Skills",icon:"🔗",open:false},
+            e('div',{style:{display:"flex",flexDirection:"column",gap:6,fontSize:12,color:C.ts}},
+              e('div',null,e(Badge,{color:C.gn},"us-value-investing")," 四维价值评分交叉验证"),
+              e('div',null,e(Badge,{color:C.og},"us-market-sentiment")," 宏观情绪联动 Module J"),
+              e('div',null,e(Badge,{color:C.cy},"macro-liquidity")," 流动性环境 Key Force 联动")
+            )
+          )
+        )
+      )
+    ),
+
+    // Footer
+    e('div',{style:{padding:"16px 28px",marginTop:20,borderTop:`1px solid ${C.bd}`,display:"flex",justifyContent:"space-between",alignItems:"center"}},
+      e('div',{style:{fontSize:10,color:C.tm}},"Competitive Intelligence Engine v1.0 · Day1Global × 7 Powers × Anti-Fragile · ",e('a',{href:"/",style:{color:C.ts}},"← 返回 onsites.me")),
+      e('div',{style:{fontSize:10,color:C.tm}},"⚠️ 基于公开信息和模型推算，仅供研究参考，不构成投资建议")
+    )
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(e(App));
+</script>
+</body>
+</html>
