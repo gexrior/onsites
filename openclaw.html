@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>零基础安装 OpenClaw 图文教程（Windows 系统）— Telegram AI 助手自托管指南</title>
+    <meta name="description" content="手把手教你在 Windows 上通过 WSL2 安装 OpenClaw，配置 Telegram 机器人、OpenRouter API，搭建可自托管的个人 AI 助手。零基础新手友好，预计 1-2 小时完成。">
+    <meta name="keywords" content="OpenClaw,安装教程,Windows,WSL2,Telegram机器人,AI助手,自托管,OpenRouter,DeepSeek,个人AI,自动化,零基础教程,BotFather,Telegram Bot">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="alternate" type="application/json" href="./openclaw.json" title="OpenClaw Tutorial Machine Readable JSON">
+
+    <!-- 额外样式：代码块 + 步骤编号 -->
+    <style>
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+            font-size: 0.92rem;
+            overflow-x: auto;
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+        .code-block .comment { color: #64748b; }
+        .code-block .cmd { color: #38bdf8; }
+        .step-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-right: 8px;
+            flex-shrink: 0;
+        }
+        .step-row {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+        .step-row p { margin: 0; }
+        .prep-list {
+            padding-left: 0;
+            list-style: none;
+        }
+        .prep-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .prep-list li:last-child { border-bottom: none; }
+        .prep-list li::before {
+            content: "✅ ";
+        }
+        .warn-box {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+        .warn-box strong { color: #d97706; }
+    </style>
+
+    <!-- Schema.org HowTo 结构化数据 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "零基础安装 OpenClaw 图文教程（Windows 系统）",
+      "description": "在 Windows 上通过 WSL2 安装 OpenClaw，配置 Telegram 机器人和 OpenRouter API，搭建可自托管的个人 AI 助手。",
+      "totalTime": "PT2H",
+      "tool": [
+        { "@type": "HowToTool", "name": "一台 Windows 电脑（闲置即可）" },
+        { "@type": "HowToTool", "name": "Telegram 账号" },
+        { "@type": "HowToTool", "name": "OpenRouter API Key" }
+      ],
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "注册 Telegram 机器人",
+          "text": "打开 Telegram 搜索 @BotFather，发送 /newbot 命令，按提示输入机器人显示名和用户名（必须以 bot 结尾），保存返回的 Token。"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "获取 Telegram 用户 ID",
+          "text": "在 Telegram 中搜索 @userinfobot 或 @GetMyID_bot，点击开始，复制返回的纯数字用户 ID。"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "注册 OpenRouter 获取 API Key",
+          "text": "访问 openrouter.ai 注册账号，创建 API Key 并充值少量余额。"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "name": "安装 WSL2 + Ubuntu",
+          "text": "以管理员身份运行 PowerShell，执行 wsl --install 命令安装 WSL2 和 Ubuntu。"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 5,
+          "name": "安装 OpenClaw",
+          "text": "在 Ubuntu 终端中执行 curl -fsSL https://openclaw.ai/install.sh | bash，等待安装完成。"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 6,
+          "name": "完成新手向导配置",
+          "text": "依次选择 QuickStart 模式、OpenRouter 提供商、粘贴 API Key、选择模型（如 DeepSeek V3.1）、选择 Telegram 渠道并输入 Bot Token。"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 7,
+          "name": "开启完整权限 + 设置白名单",
+          "text": "通过 openclaw dashboard 打开控制面板，在 Raw 配置中将 tools profile 改为 full，并在频道设置中添加自己的 Telegram 用户 ID 到白名单。"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 8,
+          "name": "配置 Telegram 代理（可选）",
+          "text": "若 Telegram 连接不上，在 Ubuntu 中执行代理配置命令，设置本地 VPN 端口后重启网关。"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Schema.org FAQPage 结构化数据 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "什么是 OpenClaw？它能做什么？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "OpenClaw 是一个可自托管的个人 AI 助手，运行在你自己的电脑上，通过 Telegram 等聊天渠道接收消息，调用执行、网页、浏览器等能力完成自动化操作。支持接入多种大模型（如 DeepSeek、Claude、GPT 等），数据完全留在本地。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "安装 OpenClaw 需要什么准备？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "需要三样东西：一台闲置电脑（Windows 系统）、一个 Telegram 机器人（通过 @BotFather 创建，获取 Bot Token 和用户 ID）、一个大模型 API 平台账号（推荐 OpenRouter，支持一个 API Key 接入多种模型）。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Windows 上如何安装 OpenClaw？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "通过 WSL2 安装：先在 PowerShell（管理员）中运行 wsl --install 安装 Ubuntu，然后在 Ubuntu 终端中执行 curl -fsSL https://openclaw.ai/install.sh | bash 即可。安装后通过新手向导配置模型、Telegram 渠道等。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "如何给 OpenClaw 开启完整权限？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "打开 openclaw dashboard 控制面板，进入配置 → All Settings → Raw，将 tools 配置从 messaging 改为 full，设置 exec.security 为 full、exec.ask 为 off，保存即可。Tools 显示 Full 表示设置成功。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "如何设置 Telegram 白名单防止他人使用？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "在 OpenClaw 控制台中点击'频道'，找到 Allow From，点击 Add 添加你自己的 Telegram 用户 ID（纯数字，非用户名），保存后只有该 ID 对应的账号可以使用机器人。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Telegram 连接不上怎么办？如何配置代理？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "在 Ubuntu 中执行代理配置命令：先设置 PORT 为你的本地 VPN 端口，获取宿主机 IP，然后运行 openclaw config set channels.telegram.proxy 设置代理地址，最后 openclaw gateway restart 重启即可。"
+          }
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+<div class="max-container">
+    <header>
+        <h1>零基础安装 OpenClaw 图文教程（Windows 系统）</h1>
+        <p class="subtext">手把手教你搭建可自托管的个人 AI 助手 · 通过 Telegram 控制 · 预计耗时 1～2 小时 · 面向人类阅读与 AI 检索的双通道教程</p>
+        <nav class="nav-links" aria-label="页面导航">
+            <a class="btn-primary" href="./index.html">返回首页</a>
+            <a class="btn-secondary" href="./openclaw.json">教程 JSON</a>
+            <a class="btn-secondary" href="./ai-warfare.html">AI 战争报告</a>
+            <a class="btn-secondary" href="./llms.txt">llms.txt</a>
+        </nav>
+    </header>
+
+    <section class="quick-index" aria-labelledby="quick-index-title">
+        <h2 id="quick-index-title">快速索引</h2>
+        <ul>
+            <li><a href="#sec-what">什么是 OpenClaw？</a></li>
+            <li><a href="#sec-prep">开始前准备</a></li>
+            <li><a href="#sec-telegram-bot">一、注册 Telegram 机器人</a></li>
+            <li><a href="#sec-telegram-id">二、获取 Telegram 用户 ID</a></li>
+            <li><a href="#sec-openrouter">三、注册 OpenRouter 获取 API Key</a></li>
+            <li><a href="#sec-wsl">第一步：安装 WSL2 + Ubuntu</a></li>
+            <li><a href="#sec-install">第二～三步：安装 OpenClaw</a></li>
+            <li><a href="#sec-wizard">第四步：新手向导配置</a></li>
+            <li><a href="#sec-permissions">第五步：开启完整权限 + 白名单</a></li>
+            <li><a href="#sec-proxy">第六步：配置 Telegram 代理（可选）</a></li>
+            <li><a href="#sec-commands">OpenClaw 常用命令速查表</a></li>
+            <li><a href="#faq">常见问题 FAQ</a></li>
+        </ul>
+    </section>
+
+    <main>
+        <!-- 什么是 OpenClaw -->
+        <article class="faq-item" id="sec-what">
+            <h2 class="question">什么是 OpenClaw？</h2>
+            <div class="answer">
+                <p><strong>OpenClaw</strong> 是一个可自托管的个人 AI 助手。它运行在你自己的电脑上，通过 <strong>Telegram</strong> 等聊天渠道接收消息，再调用执行、网页、浏览器等能力，帮你完成各种自动化操作。</p>
+                <p>数据完全留在本地，支持接入多种大模型（DeepSeek、Claude、GPT 等），适合注重隐私和自主可控的用户。</p>
+                <p>这篇教程适合<strong>零基础新手</strong>，跟着步骤一步步操作即可完成安装，预计耗时 <strong>1～2 小时</strong>。</p>
+            </div>
+        </article>
+
+        <!-- 准备工作 -->
+        <article class="faq-item" id="sec-prep">
+            <h2 class="question">开始前需要准备什么？</h2>
+            <div class="answer">
+                <ul class="prep-list">
+                    <li><strong>一台闲置的电脑</strong>（Windows 系统）</li>
+                    <li><strong>注册一个 Telegram 机器人</strong>，并保存 Bot Token；同时获取自己的 Telegram 用户 ID（后续配置白名单用）</li>
+                    <li><strong>注册一个大模型 API 平台账号</strong>（推荐 OpenRouter），并先充值少量余额</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- 一、注册 Telegram 机器人 -->
+        <article class="faq-item" id="sec-telegram-bot">
+            <h2 class="question">一、注册 Telegram 机器人</h2>
+            <div class="answer">
+                <div class="step-row"><span class="step-badge">1</span><p>打开 Telegram，搜索并进入 <strong>@BotFather</strong></p></div>
+                <div class="step-row"><span class="step-badge">2</span><p>给 @BotFather 发送命令：</p></div>
+                <div class="code-block"><span class="cmd">/newbot</span></div>
+                <div class="step-row"><span class="step-badge">3</span><p>按提示依次输入：</p></div>
+                <p>• <strong>机器人显示名</strong>：用户看到的名字<br>
+                • <strong>机器人用户名</strong>：用于搜索，只能使用英文字母、数字、下划线，<strong>必须以 bot 结尾</strong></p>
+                <p>例如：<code>my_xiaoc752_bot</code> 或 <code>Myxiaoc752Bot</code></p>
+                <div class="step-row"><span class="step-badge">4</span><p>创建成功后，BotFather 会发你一串 Token，格式类似：</p></div>
+                <div class="code-block">123456789:AAxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</div>
+                <div class="warn-box"><strong>⚠️ 重要：</strong>这串 Token 一定要保存好，后面配置 Telegram 时会用到。</div>
+            </div>
+        </article>
+
+        <!-- 二、获取 Telegram 用户 ID -->
+        <article class="faq-item" id="sec-telegram-id">
+            <h2 class="question">二、获取自己的 Telegram 用户 ID</h2>
+            <div class="answer">
+                <div class="step-row"><span class="step-badge">1</span><p>打开 Telegram，搜索并进入 <strong>@userinfobot</strong> 或 <strong>@GetMyID_bot</strong></p></div>
+                <div class="step-row"><span class="step-badge">2</span><p>点击 <strong>开始 / Start</strong></p></div>
+                <div class="step-row"><span class="step-badge">3</span><p>机器人会自动回复你的账号信息，其中显示你的 Telegram 用户 ID（纯数字）</p></div>
+                <div class="step-row"><span class="step-badge">4</span><p>复制并保存这串数字，后面配置白名单时会用到</p></div>
+            </div>
+        </article>
+
+        <!-- 三、注册 OpenRouter -->
+        <article class="faq-item" id="sec-openrouter">
+            <h2 class="question">三、注册 OpenRouter 获取 API Key</h2>
+            <div class="answer">
+                <p>推荐使用 <strong>OpenRouter</strong>，它支持用一个 API Key 接入多种模型（DeepSeek、Claude、GPT 等），比较适合新手。</p>
+                <div class="step-row"><span class="step-badge">1</span><p>打开网站：<strong>https://openrouter.ai/</strong></p></div>
+                <div class="step-row"><span class="step-badge">2</span><p>注册账户并登录</p></div>
+                <div class="step-row"><span class="step-badge">3</span><p>创建一个 API Key，先充值少量余额</p></div>
+                <div class="warn-box"><strong>⚠️ 重要：</strong>创建的 Key 要保存下来，后续配置时需要粘贴。</div>
+            </div>
+        </article>
+
+        <!-- 第一步：WSL2 -->
+        <article class="faq-item" id="sec-wsl">
+            <h2 class="question">第一步：安装 WSL2 + Ubuntu</h2>
+            <div class="answer">
+                <div class="step-row"><span class="step-badge">1</span><p>开始菜单搜索 <strong>PowerShell</strong> → <strong>以管理员身份运行</strong></p></div>
+                <div class="step-row"><span class="step-badge">2</span><p>在 PowerShell 中输入以下命令：</p></div>
+                <div class="code-block"><span class="cmd">wsl --install</span></div>
+                <p>安装完成后可能需要重启电脑。</p>
+            </div>
+        </article>
+
+        <!-- 第二～三步：安装 OpenClaw -->
+        <article class="faq-item" id="sec-install">
+            <h2 class="question">第二～三步：打开 Ubuntu 并安装 OpenClaw</h2>
+            <div class="answer">
+                <p><strong>第二步：</strong>在开始菜单打开 <strong>Ubuntu</strong>，首次打开需设置 Linux 用户名和密码。</p>
+                <div class="warn-box"><strong>💡 提示：</strong>输入密码时不会显示字符，这是正常的，输完按回车即可。</div>
+                <p><strong>第三步：</strong>在 Ubuntu 终端中执行以下命令安装 OpenClaw：</p>
+                <div class="code-block"><span class="cmd">curl -fsSL https://openclaw.ai/install.sh | bash</span></div>
+                <p>等待安装完成，一般需要几分钟。</p>
+            </div>
+        </article>
+
+        <!-- 第四步：新手向导 -->
+        <article class="faq-item" id="sec-wizard">
+            <h2 class="question">第四步：完成新手向导配置</h2>
+            <div class="answer">
+                <div class="step-row"><span class="step-badge">1</span><p><strong>确认安装方式：</strong>提示 "I understand this is personal-by-default..." 时选择 <strong>YES</strong>，按回车（用键盘方向键选择）</p></div>
+                <div class="step-row"><span class="step-badge">2</span><p><strong>选择安装模式：</strong>选择 <strong>QuickStart</strong></p></div>
+                <div class="step-row"><span class="step-badge">3</span><p><strong>选择模型提供商：</strong>选择 <strong>OpenRouter</strong> → 选择 <strong>Paste API key now</strong> → 粘贴你的 API Key → 选择模型（推荐 <strong>DeepSeek V3.1</strong>）</p></div>
+                <div class="step-row"><span class="step-badge">4</span><p><strong>配置聊天渠道：</strong>选择 <strong>Telegram</strong> → 选择 <strong>Enter Telegram bot token</strong> → 输入你保存的 Bot Token</p></div>
+                <div class="step-row"><span class="step-badge">5</span><p><strong>Skills 配置：</strong>提示 "Configure skills now?" 时建议先选 <strong>NO</strong>，后面有需要再安装</p></div>
+                <div class="warn-box"><strong>💡 提示：</strong>这一项通常需要先按<strong>空格</strong>选中，再按<strong>回车</strong>确认。</div>
+                <div class="step-row"><span class="step-badge">6</span><p><strong>其他配置项：</strong>后续如果出现需要填写额外 API Key 的地方，先全部选择 <strong>NO</strong></p></div>
+                <div class="step-row"><span class="step-badge">7</span><p><strong>安装完成！</strong>在 Ubuntu 中输入以下命令打开控制面板：</p></div>
+                <div class="code-block"><span class="cmd">openclaw dashboard</span></div>
+            </div>
+        </article>
+
+        <!-- 第五步：权限+白名单 -->
+        <article class="faq-item" id="sec-permissions">
+            <h2 class="question">第五步：开启完整权限 + 设置白名单</h2>
+            <div class="answer">
+                <h3>修改工具权限</h3>
+                <div class="step-row"><span class="step-badge">1</span><p>打开控制台：在 Ubuntu 中输入 <code>openclaw dashboard</code></p></div>
+                <div class="step-row"><span class="step-badge">2</span><p>进入 <strong>配置</strong> → 点击 <strong>All Settings</strong> → 在下方选择 <strong>Raw</strong></p></div>
+                <div class="step-row"><span class="step-badge">3</span><p>找到 tools 配置，将原来的内容替换为：</p></div>
+                <div class="code-block"><span class="comment">// 替换前（原始配置）</span>
+"tools": {
+  "profile": "messaging"
+}
+
+<span class="comment">// 替换后（完整权限配置）</span>
+"tools": {
+  "profile": "full",
+  "exec": {
+    "host": "gateway",
+    "security": "full",
+    "ask": "off"
+  },
+  "web": {
+    "fetch": {
+      "enabled": true
+    }
+  }
+}</div>
+                <div class="step-row"><span class="step-badge">4</span><p>点击 <strong>Save</strong> 保存。Tools 显示 <strong>Full</strong> 就表示设置成功。</p></div>
+                <p>这表示把工具配置从仅消息模式改成完整模式，并把本机执行权限开到最高，同时关闭逐次确认。</p>
+
+                <h3>设置 Telegram 白名单</h3>
+                <p>为防止他人随意使用你的机器人，建议开启白名单：</p>
+                <div class="step-row"><span class="step-badge">1</span><p>在控制台中点击 <strong>频道</strong></p></div>
+                <div class="step-row"><span class="step-badge">2</span><p>找到 <strong>Allow From</strong> → 点击 <strong>Add</strong></p></div>
+                <div class="step-row"><span class="step-badge">3</span><p>添加你的 <strong>Telegram 用户 ID</strong>（纯数字，不是用户名）</p></div>
+                <div class="step-row"><span class="step-badge">4</span><p>滑到最下方点 <strong>Save</strong> 保存</p></div>
+                <div class="warn-box"><strong>⚠️ 注意：</strong>这里填写的是 Telegram 用户 ID（纯数字），不是用户名。</div>
+            </div>
+        </article>
+
+        <!-- 第六步：代理配置 -->
+        <article class="faq-item" id="sec-proxy">
+            <h2 class="question">第六步：配置 Telegram 代理（可选）</h2>
+            <div class="answer">
+                <div class="warn-box"><strong>💡 提示：</strong>只有在你发现 Telegram 连不上、收不到消息时，才需要配置这一项。</div>
+                <div class="step-row"><span class="step-badge">1</span><p>先确认你本地代理软件（VPN）的端口号</p></div>
+                <div class="step-row"><span class="step-badge">2</span><p>在 Ubuntu 中执行以下命令（把 <strong>你的端口数字</strong> 替换为实际端口）：</p></div>
+                <div class="code-block"><span class="comment"># 设置代理端口（记得替换为你的实际端口号）</span>
+<span class="cmd">PORT=你的端口数字</span>
+<span class="cmd">HOST_IP=$(ip route show | awk '/default/ {print $3}')</span>
+<span class="cmd">openclaw config set channels.telegram.proxy "http://$HOST_IP:$PORT"</span>
+<span class="cmd">openclaw config set channels.telegram.network.autoSelectFamily false</span></div>
+                <div class="step-row"><span class="step-badge">3</span><p>重启服务：</p></div>
+                <div class="code-block"><span class="cmd">openclaw gateway restart</span>
+<span class="cmd">openclaw channels status --probe</span>
+<span class="cmd">openclaw logs --follow</span></div>
+                <div class="step-row"><span class="step-badge">4</span><p>打开 Telegram，给你的机器人发一条消息，测试是否正常。</p></div>
+                <p><strong>到这里，OpenClaw 就安装完成了！🎉</strong></p>
+            </div>
+        </article>
+
+        <!-- 常用命令速查表 -->
+        <article class="faq-item" id="sec-commands">
+            <h2 class="question">OpenClaw 常用命令速查表</h2>
+            <div class="answer">
+                <h3>启动与运行</h3>
+                <table>
+                    <thead><tr><th>命令</th><th>说明</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>openclaw gateway</code></td><td>启动网关服务（核心，必须运行）</td></tr>
+                        <tr><td><code>openclaw gateway start</code></td><td>后台启动网关</td></tr>
+                        <tr><td><code>openclaw gateway stop</code></td><td>停止网关</td></tr>
+                        <tr><td><code>openclaw gateway restart</code></td><td>重启服务</td></tr>
+                        <tr><td><code>openclaw gateway status</code></td><td>查看 Gateway 状态</td></tr>
+                        <tr><td><code>openclaw tui</code></td><td>启动终端界面</td></tr>
+                        <tr><td><code>openclaw dashboard</code></td><td>打开控制面板（可视化界面）</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>配置管理</h3>
+                <table>
+                    <thead><tr><th>命令</th><th>说明</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>openclaw onboard</code></td><td>首次引导</td></tr>
+                        <tr><td><code>openclaw setup</code></td><td>初始化</td></tr>
+                        <tr><td><code>openclaw configure</code></td><td>交互式配置</td></tr>
+                        <tr><td><code>openclaw config get</code></td><td>查看当前配置</td></tr>
+                        <tr><td><code>openclaw config set</code></td><td>设置配置项</td></tr>
+                        <tr><td><code>openclaw config validate</code></td><td>校验配置文件</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>渠道管理</h3>
+                <table>
+                    <thead><tr><th>命令</th><th>说明</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>openclaw channels add</code></td><td>添加渠道</td></tr>
+                        <tr><td><code>openclaw channels login</code></td><td>登录渠道（WhatsApp、Telegram 等）</td></tr>
+                        <tr><td><code>openclaw channels list</code></td><td>查看已连接渠道</td></tr>
+                        <tr><td><code>openclaw channels logout</code></td><td>退出渠道</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>状态与诊断</h3>
+                <table>
+                    <thead><tr><th>命令</th><th>说明</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>openclaw status</code></td><td>查看状态</td></tr>
+                        <tr><td><code>openclaw health</code></td><td>检查网关健康</td></tr>
+                        <tr><td><code>openclaw doctor</code></td><td>诊断问题 + 自动修复</td></tr>
+                        <tr><td><code>openclaw logs</code></td><td>查看日志</td></tr>
+                    </tbody>
+                </table>
+
+                <h3>技能、记忆与定时任务</h3>
+                <table>
+                    <thead><tr><th>命令</th><th>说明</th></tr></thead>
+                    <tbody>
+                        <tr><td><code>openclaw skills install &lt;skill&gt;</code></td><td>安装技能</td></tr>
+                        <tr><td><code>openclaw skills list</code></td><td>列出已安装技能</td></tr>
+                        <tr><td><code>openclaw sessions</code></td><td>列出历史会话</td></tr>
+                        <tr><td><code>openclaw memory</code></td><td>搜索记忆内容</td></tr>
+                        <tr><td><code>openclaw cron add</code></td><td>添加定时任务</td></tr>
+                        <tr><td><code>openclaw cron list</code></td><td>查看定时任务</td></tr>
+                        <tr><td><code>openclaw update</code></td><td>更新 CLI</td></tr>
+                        <tr><td><code>openclaw reset</code></td><td>重置配置</td></tr>
+                        <tr><td><code>openclaw uninstall</code></td><td>完全卸载</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <!-- FAQ -->
+        <section id="faq">
+            <h2 class="question">常见问题 FAQ</h2>
+
+            <article class="faq-item" id="faq-1">
+                <h3 class="question">Q1：什么是 OpenClaw？它能做什么？</h3>
+                <div class="answer">
+                    <p><strong>A：</strong>OpenClaw 是可自托管的个人 AI 助手，运行在你的电脑上，通过 Telegram 等聊天渠道接收消息，调用执行、网页、浏览器能力完成自动化操作。支持接入 DeepSeek、Claude、GPT 等多种模型，数据完全本地化。</p>
+                </div>
+            </article>
+
+            <article class="faq-item" id="faq-2">
+                <h3 class="question">Q2：安装需要什么准备？</h3>
+                <div class="answer">
+                    <p><strong>A：</strong>三样东西：一台闲置 Windows 电脑、一个 Telegram 机器人（通过 @BotFather 创建，获取 Bot Token 和用户 ID）、一个 OpenRouter API Key（充值少量余额即可）。</p>
+                </div>
+            </article>
+
+            <article class="faq-item" id="faq-3">
+                <h3 class="question">Q3：Windows 上怎么安装？</h3>
+                <div class="answer">
+                    <p><strong>A：</strong>通过 WSL2：先在 PowerShell（管理员）中运行 <code>wsl --install</code>，然后在 Ubuntu 终端执行 <code>curl -fsSL https://openclaw.ai/install.sh | bash</code>。安装后跟随新手向导配置模型和 Telegram 即可。</p>
+                </div>
+            </article>
+
+            <article class="faq-item" id="faq-4">
+                <h3 class="question">Q4：怎么开启完整权限？</h3>
+                <div class="answer">
+                    <p><strong>A：</strong>打开 <code>openclaw dashboard</code>，进入 配置 → All Settings → Raw，将 tools profile 从 messaging 改为 full，设置 exec.security 为 full、exec.ask 为 off，保存后 Tools 显示 Full 即成功。</p>
+                </div>
+            </article>
+
+            <article class="faq-item" id="faq-5">
+                <h3 class="question">Q5：怎么防止别人使用我的机器人？</h3>
+                <div class="answer">
+                    <p><strong>A：</strong>在控制台 → 频道 → Allow From → Add，添加你的 Telegram 用户 ID（纯数字），保存后只有该账号可使用。</p>
+                </div>
+            </article>
+
+            <article class="faq-item" id="faq-6">
+                <h3 class="question">Q6：Telegram 连不上怎么办？</h3>
+                <div class="answer">
+                    <p><strong>A：</strong>在 Ubuntu 中配置代理：设置 PORT 为本地 VPN 端口，获取宿主机 IP，运行 <code>openclaw config set channels.telegram.proxy</code> 设置代理地址，然后 <code>openclaw gateway restart</code> 重启即可。</p>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 OnSites.me · OpenClaw 安装教程</p>
+    </footer>
+</div>
+</body>
+</html>
