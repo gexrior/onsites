@@ -22,14 +22,20 @@
             --btn-green: #66BB6A;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+        html {
+            min-height: 100%;
+        }
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
             background-color: var(--primary-bg);
             color: var(--text-color);
             display: flex;
             flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            min-height: 100dvh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         /* 顶部状态栏 */
         header {
