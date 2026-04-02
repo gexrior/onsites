@@ -31,6 +31,12 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://www.onsites.me/game.html</loc>
+    <lastmod>2026-04-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://www.onsites.me/faq.json</loc>
     <lastmod>2026-03-08</lastmod>
     <changefreq>monthly</changefreq>

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>橘喵的暖冬营地 V2</title>
+    <meta name="description" content="橘喵的暖冬营地 V2 是一个治愈风格的合成小游戏，玩家可以在营地中合成物品、升级火炉并阅读孕期百科。">
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
+    <link rel="canonical" href="https://www.onsites.me/game.html">
+    <meta property="og:title" content="橘喵的暖冬营地 V2">
+    <meta property="og:description" content="在暖冬营地中合成物品、升级火炉，体验轻松治愈的小游戏。">
+    <meta property="og:url" content="https://www.onsites.me/game.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="OnSites.me">
+    <style>
+        :root {
+            --primary-bg: #FFF3E0;
+            --board-bg: #FFE0B2;
+            --cell-bg: #FFCC80;
+            --text-color: #5D4037;
+            --accent: #FF9800;
+            --btn-green: #66BB6A;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+        /* 顶部状态栏 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #FFB74D;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+
+        /* 营地区域 */
+        #camp-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .cat { font-size: 4rem; transition: transform 0.3s; }
+        .fireplace { font-size: 3rem; margin-top: 5px; }
+        .camp-level { margin-top: 5px; font-size: 1.1rem; font-weight: bold; }
+        
+        #owl-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 2.2rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            animation: float 3s ease-in-out infinite;
+        }
+    
+        /* 道具栏与读书按钮 */
+        .toolbar {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+            margin: 0 10px 10px 10px;
+            border-radius: 15px;
+        }
+        .tool-btn {
+            background: white;
+            border: 2px solid #FFCC80;
+            border-radius: 12px;
+            padding: 8px 12px;
+            font-size: 1rem;
+            color: var(--text-color);
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: 0.2s;
+        }
+        .tool-btn.active {
+            background: var(--accent);
+            color: white;
+            border-color: #F57C00;
+            transform: scale(1.05);
+        }
+        .tool-btn span { font-size: 1.2rem; margin-bottom: 2px; }
+        .read-btn {
+            background: var(--btn-green);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 8px 15px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #43A047;
+        }
+        .read-btn:active { transform: translateY(4px); box-shadow: none; }
+    
+        /* 棋盘区域 */
+        #board-container {
+            padding: 15px;
+            background-color: var(--board-bg);
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+        }
+        .board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .cell {
+            aspect-ratio: 1 / 1;
+            background-color: var(--cell-bg);
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: inset 0 -4px 0 rgba(0,0,0,0.1);
+        }
+        .cell.selected { border: 3px solid white; transform: scale(1.05); }
+        .cell.prop-target { border: 3px dashed var(--accent); animation: pulse 1s infinite; }
+    
+        /* 底部控制台 */
+        .controls {
+            display: flex;
+            justify-content: center;
+            padding: 15px 0 5px 0;
+        }
+        .spawn-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            font-weight: bold;
+            box-shadow: 0 4px 0 #F57C00;
+            cursor: pointer;
+        }
+        .spawn-btn:active { transform: translateY(4px); box-shadow: none; }
+    
+        /* 弹窗样式 */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .modal-content {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            width: 85%;
+            max-width: 350px;
+            position: relative;
+        }
+        .modal-content h3 { margin-bottom: 15px; font-size: 1.3rem; }
+        .knowledge-text { line-height: 1.6; font-size: 1.05rem; color: #444; margin-bottom: 20px; text-align: left; background: #F5F5F5; padding: 15px; border-radius: 10px; }
+        
+        .claim-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--btn-green);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .claim-btn:disabled { background: #BDBDBD; cursor: not-allowed; }
+    
+        .close-icon { position: absolute; top: 15px; right: 15px; font-size: 1.5rem; color: #999; border: none; background: none; cursor: pointer; }
+    
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0px); } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(0.95); } 100% { transform: scale(1); } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div>🏕️ 橘喵营地</div>
+        <div>💖 <span id="health-score">0</span></div>
+    </header>
+    
+    <div id="camp-area">
+        <button id="owl-btn" onclick="showOwlQuote()">🦉</button>
+        <div class="cat" id="cat-icon">🐈</div>
+        <div class="fireplace" id="fireplace-icon">🪵</div>
+        <div class="camp-level">火炉等级: <span id="camp-level-text">1 (简陋)</span></div>
+        <p style="margin-top: 5px; font-size: 0.85rem; color: #8D6E63;">合成到最高级[🚼婴儿车]来升级火炉</p>
+    </div>
+    
+    <div class="toolbar">
+        <button class="tool-btn" id="btn-broom" onclick="toggleProp('broom')">
+            <span>🧹</span> <div style="font-size:0.8rem">清理 (<b id="count-broom">0</b>)</div>
+        </button>
+        <button class="tool-btn" id="btn-wand" onclick="toggleProp('wand')">
+            <span>✨</span> <div style="font-size:0.8rem">升级 (<b id="count-wand">0</b>)</div>
+        </button>
+        <button class="read-btn" onclick="openBookModal()">📖 孕期百科</button>
+    </div>
+    
+    <div id="board-container">
+        <div class="board" id="board"></div>
+        <div class="controls">
+            <button class="spawn-btn" onclick="spawnItem()">🛒 进货 (获取毛线球)</button>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="book-modal">
+        <div class="modal-content">
+            <button class="close-icon" onclick="closeModals()">×</button>
+            <h3>📚 每日孕期小知识</h3>
+            <div class="knowledge-text" id="knowledge-content">加载中...</div>
+            <button class="claim-btn" id="claim-btn" onclick="claimReward()" disabled>阅读中 (3s)</button>
+        </div>
+    </div>
+    
+    <div class="modal-overlay" id="owl-modal">
+        <div class="modal-content">
+            <button class="close-icon" onclick="closeModals()">×</button>
+            <h3>🦉 猫头鹰爷爷说</h3>
+            <p class="knowledge-text" id="quote-text" style="text-align:center; background:none;"></p>
+        </div>
+    </div>
+    
+    <script>
+        // 游戏核心数据
+        const items = ["", "🧶", "🍼", "🧸", "🚼", "🎁"]; // 1:毛线(焦虑), 2:奶瓶, 3:安抚熊, 4:婴儿车(满级)
+        let boardState = new Array(16).fill(0);
+        let selectedIndex = -1;
+        let campLevel = 1;
+        let healthScore = 0;
+    
+        // 道具数据
+        let props = { broom: 0, wand: 0 };
+        let activeProp = null; // 当前选中的道具：'broom' 或 'wand'
+    
+        // 孕期知识库 (结合梅奥、西尔斯、温尼科特)
+        const knowledges = [
+            "【梅奥医学】宝宝现在有自己的睡眠周期啦！有时候你感觉不到胎动，只是因为他正在肚子里安稳地睡大觉，不需要过度惊慌哦。",
+            "【西尔斯建议】不要强迫自己做“完美”的准备。把注意力放在你此刻的呼吸上，你的身体为了迎接小生命，已经进化了几十万年，它懂得怎么做。",
+            "【温尼科特心理】偶尔感到烦躁和焦虑是完全正常的。允许这些情绪像小乌云一样飘过，不要因为“我焦虑了”而感到内疚，60分的妈妈就是最好的。",
+            "【梅奥医学】定期产检如果一切正常，就请相信宝宝旺盛的生命力！他那像小火车一样有力的心跳，就是最好的证明。",
+            "【实用贴士】孕晚期准备一个巨大的U型孕妇枕，给自己找一个最舒服的姿势。保证妈妈自己的休息和舒适，比买多少婴儿用品都重要。"
+        ];
+    
+        const owlQuotes = [
+            "允许自己害怕，然后去睡个午觉吧。",
+            "你的身体比你的大脑更懂得如何保护小猫。",
+            "不用做100分的完美妈妈，剩下的空间让小猫自己长大。",
+            "焦虑就像这些毛线球，慢慢理一理，或者干脆用扫帚扫掉吧！"
+        ];
+    
+        // 初始化棋盘
+        function initBoard() {
+            const board = document.getElementById('board');
+            board.innerHTML = '';
+            boardState.forEach((itemLevel, index) => {
+                const cell = document.createElement('div');
+                cell.className = 'cell';
+                if (itemLevel > 0) cell.innerText = items[itemLevel];
+                
+                // 如果正在使用道具，添加特殊动画类
+                if (activeProp) cell.classList.add('prop-target');
+                
+                cell.onclick = () => handleCellClick(index);
+                board.appendChild(cell);
+            });
+            updatePropsUI();
+        }
+    
+        // 处理格子点击
+        function handleCellClick(index) {
+            // ================= 道具使用逻辑 =================
+            if (activeProp === 'broom') {
+                if (boardState[index] > 0) {
+                    boardState[index] = 0; // 清空
+                    props.broom--;
+                    activeProp = null; // 取消道具状态
+                    initBoard();
+                    showOwlQuote("🧹 呼~ 碍事的焦虑毛线球被扫走啦！", true);
+                }
+                return;
+            }
+            if (activeProp === 'wand') {
+                if (boardState[index] > 0 && boardState[index] < 4) { // 只能升级非满级物品
+                    boardState[index]++;
+                    props.wand--;
+                    activeProp = null;
+                    initBoard();
+                    checkCampUpgrade(index);
+                    showOwlQuote("✨ 魔法生效！物品升级啦！", true);
+                } else if (boardState[index] === 4) {
+                    alert("这个已经是最高级啦！");
+                }
+                return;
+            }
+    
+            // ================= 正常合成逻辑 =================
+            const cells = document.querySelectorAll('.cell');
+            if (selectedIndex === -1) {
+                if (boardState[index] > 0) {
+                    selectedIndex = index;
+                    cells[index].classList.add('selected');
+                }
+            } else {
+                if (selectedIndex === index) {
+                    cells[index].classList.remove('selected');
+                    selectedIndex = -1;
+                    return;
+                }
+                const sourceLevel = boardState[selectedIndex];
+                const targetLevel = boardState[index];
+    
+                if (targetLevel === 0) {
+                    // 移动
+                    boardState[index] = sourceLevel;
+                    boardState[selectedIndex] = 0;
+                } else if (sourceLevel === targetLevel && sourceLevel < items.length - 2) {
+                    // 合成 (最高合到索引4的婴儿车)
+                    boardState[index] = sourceLevel + 1;
+                    boardState[selectedIndex] = 0;
+                    healthScore += sourceLevel * 10;
+                    document.getElementById('health-score').innerText = healthScore;
+                    checkCampUpgrade(index);
+                }
+                selectedIndex = -1;
+                initBoard();
+            }
+        }
+    
+        // 检查是否合成了满级物品并升级营地
+        function checkCampUpgrade(index) {
+            if (boardState[index] === 4) { // 4是婴儿车
+                setTimeout(() => {
+                    boardState[index] = 0; 
+                    campLevel++;
+                    healthScore += 100;
+                    document.getElementById('health-score').innerText = healthScore;
+                    
+                    const levelText = document.getElementById('camp-level-text');
+                    const fireplace = document.getElementById('fireplace-icon');
+                    if (campLevel === 2) { levelText.innerText = "2 (温暖)"; fireplace.innerText = "🔥"; }
+                    else if (campLevel >= 3) { levelText.innerText = "MAX (无坚不摧的堡垒)"; fireplace.innerText = "🏕️🔥"; }
+                    
+                    const cat = document.getElementById('cat-icon');
+                    cat.style.transform = 'scale(1.2)';
+                    setTimeout(() => cat.style.transform = 'scale(1)', 300);
+                    
+                    initBoard();
+                    showOwlQuote("太棒了！你为小猫打造了更安全的堡垒，完全不用担心！", true);
+                }, 400);
+            }
+        }
+    
+        function spawnItem() {
+            const emptyIndexes = boardState.map((val, idx) => val === 0 ? idx : -1).filter(val => val !== -1);
+            if (emptyIndexes.length > 0) {
+                const randomIdx = emptyIndexes[Math.floor(Math.random() * emptyIndexes.length)];
+                boardState[randomIdx] = 1; // 1是毛线球
+                initBoard();
+            } else {
+                showOwlQuote("哎呀，营地太满啦！用【扫帚】清理一下，或者合并物品吧！", true);
+            }
+        }
+    
+        // ================= 道具与阅读系统 =================
+        function toggleProp(type) {
+            if (props[type] <= 0) {
+                alert("道具数量不足，快去【孕期百科】阅读获取吧！");
+                return;
+            }
+            if (activeProp === type) {
+                activeProp = null; // 再次点击取消使用
+            } else {
+                activeProp = type; // 激活该道具
+            }
+            initBoard(); // 触发重绘以显示选中状态和棋盘动画
+        }
+    
+        function updatePropsUI() {
+            document.getElementById('count-broom').innerText = props.broom;
+            document.getElementById('count-wand').innerText = props.wand;
+            document.getElementById('btn-broom').className = activeProp === 'broom' ? 'tool-btn active' : 'tool-btn';
+            document.getElementById('btn-wand').className = activeProp === 'wand' ? 'tool-btn active' : 'tool-btn';
+        }
+    
+        let readTimer;
+        function openBookModal() {
+            const modal = document.getElementById('book-modal');
+            const content = document.getElementById('knowledge-content');
+            const btn = document.getElementById('claim-btn');
+            
+            // 随机抽取知识
+            content.innerText = knowledges[Math.floor(Math.random() * knowledges.length)];
+            modal.style.display = 'flex';
+            
+            // 重置按钮状态
+            btn.disabled = true;
+            let timeLeft = 3;
+            btn.innerText = `沉浸阅读中... (${timeLeft}s)`;
+            
+            clearInterval(readTimer);
+            readTimer = setInterval(() => {
+                timeLeft--;
+                if (timeLeft > 0) {
+                    btn.innerText = `沉浸阅读中... (${timeLeft}s)`;
+                } else {
+                    clearInterval(readTimer);
+                    btn.disabled = false;
+                    btn.innerText = "🎁 阅读完毕，领取随机道具";
+                    btn.style.background = "#FF9800"; // 变成亮橙色提示可点击
+                }
+            }, 1000);
+        }
+    
+        function claimReward() {
+            // 50%概率给扫帚，50%概率给魔法棒
+            const isBroom = Math.random() > 0.5;
+            if (isBroom) {
+                props.broom++;
+                alert("🎉 获得奖励：【🧹 扫除帚】x 1\n点击扫帚，再点击棋盘上的任意物品即可清除！");
+            } else {
+                props.wand++;
+                alert("🎉 获得奖励：【✨ 魔法棒】x 1\n点击魔法棒，再点击棋盘上的低级物品即可升级！");
+            }
+            updatePropsUI();
+            closeModals();
+        }
+    
+        // ================= 弹窗控制 =================
+        function showOwlQuote(customText = null, isAlert = false) {
+            const modal = document.getElementById('owl-modal');
+            const quoteText = document.getElementById('quote-text');
+            quoteText.innerText = customText ? customText : owlQuotes[Math.floor(Math.random() * owlQuotes.length)];
+            modal.style.display = 'flex';
+        }
+    
+        function closeModals() {
+            document.getElementById('book-modal').style.display = 'none';
+            document.getElementById('owl-modal').style.display = 'none';
+            clearInterval(readTimer); // 如果没读完就关掉，清除定时器
+        }
+    
+        // 开局初始化
+        initBoard();
+        spawnItem();
+        spawnItem();
+    
+    </script>
+</body>
+</html>
