@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /analytics
+Disallow: /api/
+
+Sitemap: https://bit.onsites.me/sitemap.xml

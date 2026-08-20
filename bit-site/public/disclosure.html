@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>网站身份、推广关系与安全说明｜bit.onsites.me</title>
+<meta name="description" content="bit.onsites.me 的独立运营身份、BIT 推广邀请关系、外部链接、数据统计与访问安全说明。">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://bit.onsites.me/disclosure">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+:root{
+  --brand:#7c3aed;--brand-dark:#5420b8;--ice:#f8f7fd;--panel:#fff;
+  --line:#e3ddf2;--ink:#171129;--muted:#675d83;--deep:#160d33;
+  --safe:#166534;--safe-bg:#f0fdf4;--safe-line:#bbf7d0;
+  --maxw:940px;--radius:18px;
+  --font:'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--font);color:var(--ink);background:linear-gradient(180deg,#fff 0,var(--ice) 430px);line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.top{background:var(--deep);color:#fff}
+.top-inner{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:18px;font-size:13px}
+.top strong{font-weight:900}
+.top a{font-weight:800;text-underline-offset:3px}
+header{padding:68px 0 38px}
+.eyebrow{display:inline-flex;padding:7px 13px;border:1px solid #d8ccf3;border-radius:999px;background:#fff;color:var(--brand-dark);font-size:12px;font-weight:900;letter-spacing:.08em}
+h1{max-width:760px;margin:18px 0 14px;font-size:clamp(34px,6vw,56px);line-height:1.12;letter-spacing:-.04em}
+.lead{max-width:760px;margin:0;color:var(--muted);font-size:17px}
+.identity{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:30px 0 0}
+.domain{padding:22px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;box-shadow:0 10px 30px rgba(23,17,41,.05)}
+.domain small{display:block;color:var(--muted);font-size:12px;font-weight:800;letter-spacing:.06em}
+.domain strong{display:block;margin-top:5px;font-size:20px;word-break:break-all}
+.domain p{margin:7px 0 0;color:var(--muted);font-size:13px}
+.domain.official{border-color:var(--safe-line);background:var(--safe-bg)}
+.domain.official strong{color:var(--safe)}
+main{padding:18px 0 72px}
+.alert{padding:22px 24px;border-left:5px solid var(--brand);border-radius:0 var(--radius) var(--radius) 0;background:#f2edff;color:#312151}
+.alert strong{display:block;margin-bottom:4px;color:var(--ink);font-size:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:28px}
+.card{padding:28px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);box-shadow:0 8px 26px rgba(23,17,41,.045)}
+.card.wide{grid-column:1/-1}
+.num{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;background:#ede7fc;color:var(--brand-dark);font-size:12px;font-weight:900}
+h2{margin:15px 0 9px;font-size:21px;line-height:1.35}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.card ul{margin:12px 0 0;padding-left:20px;color:var(--muted);font-size:14px}
+.card li+li{margin-top:6px}
+.safe-box{margin-top:28px;padding:26px;border:1px solid var(--safe-line);border-radius:var(--radius);background:var(--safe-bg)}
+.safe-box h2{margin:0;color:var(--safe)}
+.safe-box p{margin:8px 0 0;color:#315b3c;font-size:14px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:10px 24px;border-radius:999px;font-weight:900;text-decoration:none}
+.primary{background:linear-gradient(135deg,#8b5cf6,var(--brand-dark));color:#fff;box-shadow:0 8px 24px rgba(84,32,184,.23)}
+.secondary{border:1px solid var(--line);background:#fff;color:var(--ink)}
+.updated{margin:28px 0 0;color:var(--muted);font-size:12px}
+footer{padding:30px 0;background:var(--deep);color:#c9bce9;font-size:12px}
+footer strong{color:#fff}
+@media(max-width:680px){
+  .wrap{padding:0 16px}.top-inner{align-items:flex-start;flex-direction:column;padding-top:10px;padding-bottom:10px;gap:2px}
+  header{padding:46px 0 28px}.lead{font-size:15px}.identity,.grid{grid-template-columns:1fr}.card.wide{grid-column:auto}
+  .card{padding:22px}.actions{display:grid}.btn{width:100%}
+}
+</style>
+</head>
+<body>
+<div class="top">
+  <div class="wrap top-inner">
+    <strong>身份提示：本站并非 BIT 官方网站或登录页</strong>
+    <a href="/">返回信息页面</a>
+  </div>
+</div>
+
+<header class="wrap">
+  <span class="eyebrow">透明度与访问安全</span>
+  <h1>网站身份、推广关系与安全说明</h1>
+  <p class="lead">本页说明 bit.onsites.me 的运营身份、与 BIT 的关系、邀请链接的利益披露，以及访问者在离开本站前应了解的安全边界。</p>
+  <div class="identity" aria-label="域名身份对照">
+    <div class="domain">
+      <small>你当前访问的独立信息页面</small>
+      <strong>bit.onsites.me</strong>
+      <p>由 onsites.me 域名持有人独立维护，不提供账户服务。</p>
+    </div>
+    <div class="domain official">
+      <small>BIT 账户服务所在域名</small>
+      <strong>www.bit.com</strong>
+      <p>注册、登录、身份认证和资金操作应在该域名完成。</p>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="alert">
+    <strong>非官方、非登录、非客户支持渠道</strong>
+    bit.onsites.me 是由邀请链接持有人维护的第三方独立推广页面，不代表 BIT 作出承诺，也不声称是 BIT 官方网站、账户入口或在线客服。
+  </div>
+
+  <div class="grid">
+    <section class="card">
+      <span class="num">01</span>
+      <h2>运营身份</h2>
+      <p>本站运营方为 onsites.me 独立内容发布者，即本域名持有人。页面用途是整理公开产品信息并提供一个可选的外部邀请链接。</p>
+    </section>
+
+    <section class="card">
+      <span class="num">02</span>
+      <h2>推广关系与利益披露</h2>
+      <p>本站部分前往 www.bit.com 的注册链接包含邀请码。访问者使用该链接并符合相关活动条件时，邀请链接持有人可能获得 BIT 邀请计划提供的奖励。</p>
+    </section>
+
+    <section class="card">
+      <span class="num">03</span>
+      <h2>本站不会收集的资料</h2>
+      <ul>
+        <li>账户密码、短信或邮箱验证码</li>
+        <li>身份证件、银行卡或 KYC 文件</li>
+        <li>充值、转账、钱包私钥或助记词</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <span class="num">04</span>
+      <h2>离站与域名核验</h2>
+      <p>点击推广按钮会离开本站。提交资料或进行任何账户操作前，请确认浏览器地址栏显示 www.bit.com；如域名不符，请立即关闭页面。</p>
+    </section>
+
+    <section class="card wide">
+      <span class="num">05</span>
+      <h2>流量统计与隐私</h2>
+      <p>本站使用第一方流量统计了解访问次数、来源参数、设备类型，以及 Cloudflare 提供的粗粒度国家、地区和网络信息。原始 IP 地址不会写入统计数据库；系统仅保存按日期加盐生成、不可用于还原原始 IP 的匿名标识，并按保留策略定期删除历史记录。</p>
+    </section>
+  </div>
+
+  <section class="safe-box">
+    <h2>遇到以下情况，请立即停止</h2>
+    <p>任何人通过私人聊天要求你提供密码、验证码、证件、银行卡信息、私钥、助记词或直接转账，都不属于本站功能。本站已移除所有站外私人联系入口，也不提供代办开户、代收资金或远程协助。</p>
+  </section>
+
+  <div class="actions">
+    <a class="btn primary" href="https://www.bit.com" target="_blank" rel="nofollow noopener noreferrer">访问 www.bit.com ↗</a>
+    <a class="btn secondary" href="/">返回本站首页</a>
+  </div>
+  <p class="updated">最后更新：2026 年 7 月 21 日</p>
+</main>
+
+<footer>
+  <div class="wrap"><strong>bit.onsites.me</strong> · onsites.me 独立信息页面 · 非 BIT 官方网站</div>
+</footer>
+</body>
+</html>
