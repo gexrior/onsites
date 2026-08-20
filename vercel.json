@@ -2,6 +2,11 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/",
+      "destination": "https://bit.onsites.me/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "destination": "https://bit.onsites.me/:path*",
       "permanent": true
