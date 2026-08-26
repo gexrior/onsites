@@ -160,16 +160,31 @@ h1,h2,h3{margin:0;font-weight:900;letter-spacing:-.5px}
 .hero-art img{filter:drop-shadow(0 24px 50px rgba(124,58,237,.22));animation:float 6s ease-in-out infinite}
 .hero-downloads{
   display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;
-  width:min(100%,440px);margin:10px auto 0;
+  width:min(100%,500px);margin:10px auto 0;
 }
 .hero-download-btn{
-  width:100%;min-width:0;min-height:44px;padding:10px 8px;border-radius:12px;
-  font-size:13px;box-shadow:0 6px 18px rgba(124,58,237,.22);
+  justify-content:flex-start;width:100%;min-width:0;min-height:64px;padding:10px 12px;
+  border:1px solid rgba(255,255,255,.12);border-radius:12px;
+  background:linear-gradient(145deg,#102B4D,#071D38);color:#fff;
+  box-shadow:0 9px 22px rgba(7,29,56,.20);
 }
+.hero-download-btn:hover{transform:translateY(-2px);background:linear-gradient(145deg,#173A63,#0A2546);box-shadow:0 13px 28px rgba(7,29,56,.28)}
+.hero-download-icon{display:grid;place-items:center;flex:0 0 27px;width:27px;height:27px}
+.hero-download-icon svg{display:block;width:27px;height:27px}
+.hero-download-copy{display:grid;min-width:0;text-align:left;line-height:1.15}
+.hero-download-copy strong{overflow:hidden;text-overflow:ellipsis;font-size:13.5px;font-weight:800;white-space:nowrap}
+.hero-download-copy small{margin-top:4px;color:rgba(255,255,255,.66);font-size:9.5px;font-weight:500;white-space:nowrap}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 @media(max-width:960px){
   .hero-grid{grid-template-columns:1fr}
   .hero-art{order:-1;max-width:400px;margin:0 auto}
+}
+@media(min-width:701px) and (max-width:960px){
+  .hero-download-btn{padding:9px 8px;gap:6px}
+  .hero-download-icon,.hero-download-icon svg{width:24px;height:24px}
+  .hero-download-icon{flex-basis:24px}
+  .hero-download-copy strong{font-size:12.5px}
+  .hero-download-copy small{font-size:8.5px}
 }
 
 /* ---------- 奖励速览条（hero 下） ---------- */
@@ -719,9 +734,18 @@ footer a{text-decoration:underline;text-underline-offset:3px}
     <div class="hero-art">
       <img src="/bit-global-assets.png" alt="BIT 一个账户投资美股与加密资产" width="1188" height="1164" fetchpriority="high" decoding="async">
       <div class="hero-downloads" data-linki-downloads hidden aria-label="客户端下载快捷入口">
-        <a class="btn btn-primary hero-download-btn" data-download-link="app-store" href="https://bit.go.link/eeWZn" target="_blank" rel="nofollow noopener noreferrer">App Store</a>
-        <a class="btn btn-primary hero-download-btn" data-download-link="google-play" href="https://bit.go.link/eeWZn" target="_blank" rel="nofollow noopener noreferrer">Google Play</a>
-        <a class="btn btn-primary hero-download-btn" data-download-link="android-apk" href="https://download.onsites.me/matrixport-official-master-19-25_234bclet.apk" rel="nofollow">下载 APK</a>
+        <a class="btn hero-download-btn" data-download-link="app-store" href="https://bit.go.link/eeWZn" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="hero-download-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2" opacity=".75"/><path d="m10 24 9.5-17M12 7l10 17M7.5 20.5h17" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="hero-download-copy"><strong>App Store</strong><small>iOS 官方下载</small></span>
+        </a>
+        <a class="btn hero-download-btn" data-download-link="google-play" href="https://bit.go.link/eeWZn" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="hero-download-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M6 4.5 26.5 16 6 27.5v-23Z" fill="currentColor"/><path d="m6.5 5 13 11-13 11M19.5 16l6.5-3.7M19.5 16l6.5 3.7" stroke="#0A2546" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="hero-download-copy"><strong>Google Play</strong><small>Google 官方下载</small></span>
+        </a>
+        <a class="btn hero-download-btn" data-download-link="android-apk" href="https://download.onsites.me/matrixport-official-master-19-25_234bclet.apk" rel="nofollow">
+          <span class="hero-download-icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M11 15h18v15a4 4 0 0 1-4 4H15a4 4 0 0 1-4-4V15Z" fill="currentColor"/><path d="M11 14a9 9 0 0 1 18 0H11Z" fill="currentColor"/><path d="m14 10-3-4M26 10l3-4M8 17v11M32 17v11M16 33v5M24 33v5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="16" cy="11" r="1.4" fill="#0A2546"/><circle cx="24" cy="11" r="1.4" fill="#0A2546"/></svg></span>
+          <span class="hero-download-copy"><strong>Android APK</strong><small>专属安装包</small></span>
+        </a>
       </div>
     </div>
   </div>
