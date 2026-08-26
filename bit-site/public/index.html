@@ -158,6 +158,14 @@ h1,h2,h3{margin:0;font-weight:900;letter-spacing:-.5px}
 .trust-strip .ck{color:var(--brand);font-weight:900}
 .hero-art{position:relative;display:grid;place-items:center}
 .hero-art img{filter:drop-shadow(0 24px 50px rgba(124,58,237,.22));animation:float 6s ease-in-out infinite}
+.hero-downloads{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;
+  width:min(100%,440px);margin:10px auto 0;
+}
+.hero-download-btn{
+  width:100%;min-width:0;min-height:44px;padding:10px 8px;border-radius:12px;
+  font-size:13px;box-shadow:0 6px 18px rgba(124,58,237,.22);
+}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
 @media(max-width:960px){
   .hero-grid{grid-template-columns:1fr}
@@ -507,6 +515,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   .hero-grid{gap:14px}
   .hero-art{order:initial;max-width:260px;margin:6px auto 0}
   .hero-art img{animation:none}
+  .hero-downloads{grid-template-columns:1fr;width:100%;gap:8px}
   .hero h1{font-size:clamp(38px,11vw,46px);line-height:1.08;letter-spacing:-1px}
   .hero .lead{font-size:16px;line-height:1.7;margin-top:16px}
   .eyebrow{padding:7px 12px;font-size:12px;line-height:1.45;margin-bottom:16px}
@@ -709,6 +718,11 @@ footer a{text-decoration:underline;text-underline-offset:3px}
     </div>
     <div class="hero-art">
       <img src="/bit-global-assets.png" alt="BIT 一个账户投资美股与加密资产" width="1188" height="1164" fetchpriority="high" decoding="async">
+      <div class="hero-downloads" data-linki-downloads hidden aria-label="客户端下载快捷入口">
+        <a class="btn btn-primary hero-download-btn" data-download-link="app-store" href="https://bit.go.link/eeWZn" target="_blank" rel="nofollow noopener noreferrer">App Store</a>
+        <a class="btn btn-primary hero-download-btn" data-download-link="google-play" href="https://bit.go.link/eeWZn" target="_blank" rel="nofollow noopener noreferrer">Google Play</a>
+        <a class="btn btn-primary hero-download-btn" data-download-link="android-apk" href="https://download.onsites.me/matrixport-official-master-19-25_234bclet.apk" rel="nofollow">下载 APK</a>
+      </div>
     </div>
   </div>
 </section>
@@ -1238,8 +1252,9 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 <script>
 (function(){
   if(location.pathname.replace(/\/+$/,'').toUpperCase()!=='/LINKI')return;
-  var downloads=document.querySelector('[data-linki-downloads]');
-  if(downloads)downloads.hidden=false;
+  document.querySelectorAll('[data-linki-downloads]').forEach(function(downloads){
+    downloads.hidden=false;
+  });
 })();
 </script>
 
