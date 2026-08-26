@@ -156,10 +156,46 @@ h1,h2,h3{margin:0;font-weight:900;letter-spacing:-.5px}
 .trust-strip .ck{color:var(--brand);font-weight:900}
 .hero-art{position:relative;display:grid;place-items:center}
 .hero-art img{filter:drop-shadow(0 24px 50px rgba(124,58,237,.22));animation:float 6s ease-in-out infinite}
+.hero-downloads{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;
+  position:relative;z-index:2;width:min(100%,470px);margin:-18px auto 0;padding:18px 10px 10px;
+  border:1px solid rgba(124,58,237,.28);border-radius:17px;
+  background:rgba(250,247,255,.94);box-shadow:0 10px 28px rgba(76,29,149,.10);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.hero-download-heading{
+  position:absolute;top:0;left:50%;transform:translate(-50%,-50%);
+  display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:999px;
+  border:1px solid rgba(124,58,237,.32);background:#E9DEFF;color:var(--brand);
+  box-shadow:0 5px 14px rgba(124,58,237,.14);font-size:12.5px;font-weight:800;white-space:nowrap;
+}
+.hero-download-heading svg{width:15px;height:15px}
+.hero-download-btn{
+  justify-content:flex-start;width:100%;min-width:0;min-height:56px;padding:9px 10px;gap:7px;
+  border:1px solid rgba(124,58,237,.26);border-radius:13px;
+  background:linear-gradient(145deg,#FCFAFF,#E9E0FF);color:var(--ink);
+  box-shadow:0 5px 14px rgba(76,29,149,.11);
+}
+.hero-download-btn:hover{transform:translateY(-2px);border-color:rgba(124,58,237,.46);background:linear-gradient(145deg,#F8F4FF,#DED0FF);box-shadow:0 9px 20px rgba(76,29,149,.16)}
+.hero-download-icon{display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border-radius:9px;background:rgba(124,58,237,.14);color:var(--brand)}
+.hero-download-icon svg{display:block;width:22px;height:22px}
+.hero-download-copy{display:grid;min-width:0;text-align:left;line-height:1.15}
+.hero-download-copy strong{overflow:hidden;text-overflow:ellipsis;font-size:13px;font-weight:800;white-space:nowrap}
+.hero-download-copy small{margin-top:3px;color:var(--ink-muted);font-size:9.5px;font-weight:500;white-space:nowrap}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@media(min-width:961px){.hero-downloads{transform:translateY(33px)}}
 @media(max-width:960px){
   .hero-grid{grid-template-columns:1fr}
   .hero-art{order:-1;max-width:400px;margin:0 auto}
+}
+@media(min-width:701px) and (max-width:960px){
+  .hero-art{order:initial;max-width:440px}
+  .hero-downloads{margin:-6px auto 6px}
+  .hero-download-btn{padding:9px 8px;gap:6px}
+  .hero-download-icon{flex-basis:26px;width:26px;height:26px}
+  .hero-download-icon svg{width:20px;height:20px}
+  .hero-download-copy strong{font-size:12.5px}
+  .hero-download-copy small{font-size:8.5px}
 }
 
 /* ---------- 奖励速览条（hero 下） ---------- */
@@ -341,6 +377,47 @@ h1,h2,h3{margin:0;font-weight:900;letter-spacing:-.5px}
 .invite-card .it::before{content:"🎁 "}
 .invite-card .id{font-size:14px;color:var(--ink-muted);line-height:1.7}
 
+/* ---------- VPNAH 客户端下载 ---------- */
+.download-module{margin-top:44px;text-align:center}
+.download-module-title{font-size:clamp(26px,3.2vw,38px);line-height:1.2;color:var(--ink)}
+.download-module-sub{margin:10px auto 0;color:var(--ink-muted);font-size:15.5px}
+.download-card{
+  display:grid;grid-template-columns:1.06fr .94fr;margin-top:28px;overflow:hidden;text-align:left;
+  border:1px solid var(--line);border-radius:22px;background:var(--ice-0);box-shadow:var(--shadow-m);
+}
+.download-preview{
+  display:grid;grid-template-columns:minmax(150px,.72fr) minmax(210px,1.28fr);gap:20px;
+  min-height:440px;padding:34px 24px 0 34px;overflow:hidden;
+  background:radial-gradient(420px 280px at 72% 40%,rgba(139,92,246,.12),transparent 70%);
+}
+.download-copy{padding-top:18px}
+.download-app-icon{
+  display:grid;place-items:center;width:86px;height:86px;border-radius:20px;
+  background:linear-gradient(145deg,#0A4BFF,#1437F2);color:#fff;
+  font-size:28px;font-weight:800;letter-spacing:.5px;box-shadow:0 12px 28px rgba(20,55,242,.24);
+}
+.download-benefits{display:grid;gap:16px;margin-top:38px;color:var(--ink-muted);font-size:14.5px}
+.download-benefits span{display:flex;align-items:flex-start;gap:8px}
+.download-benefits b{color:var(--brand);font-size:17px;line-height:1.35}
+.download-phone{align-self:end;max-width:285px;margin:0 auto -92px;filter:drop-shadow(0 18px 30px rgba(23,17,41,.12))}
+.download-phone img{width:100%;height:auto}
+.download-options{display:grid;gap:18px;padding:46px 34px;border-left:1px solid var(--line);align-content:center}
+.download-option{
+  display:grid;grid-template-columns:48px minmax(120px,1fr) auto;align-items:center;gap:16px;
+  min-height:108px;padding:18px 20px;border:1px solid var(--line);border-radius:17px;background:var(--ice-50);
+}
+.download-icon{display:grid;place-items:center;width:44px;height:44px;color:var(--ink)}
+.download-icon svg{width:36px;height:36px;display:block}
+.download-option-meta strong{display:block;color:var(--ink);font-size:17px;line-height:1.35}
+.download-option-meta span{display:block;margin-top:4px;color:var(--ink-muted);font-size:13px}
+.download-btn{min-width:152px;padding:12px 20px;font-size:14px}
+.download-footer{
+  grid-column:1/-1;display:flex;justify-content:space-between;gap:24px;padding:18px 30px;
+  border-top:1px solid var(--line);background:rgba(124,58,237,.055);color:var(--ink-2);font-size:13.5px;
+}
+.download-footer span{display:flex;align-items:center;gap:8px}
+.download-footer .shield{color:var(--brand);font-weight:900}
+
 /* ---------- 页面维护者联系方式 ---------- */
 .cs-tags{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
 .cs-tag{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:var(--ice-0);border:1px solid var(--line);font-size:14px;color:var(--ink-2);box-shadow:var(--shadow-s)}
@@ -465,8 +542,10 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   .hd .btn-sm{min-height:44px;padding:10px 17px;font-size:14px}
   .hero{padding:34px 0 26px}
   .hero-grid{gap:14px}
-  .hero-art{order:initial;max-width:260px;margin:6px auto 0}
-  .hero-art img{animation:none}
+  .hero-art{order:initial;width:100%;max-width:none;margin:18px auto 0}
+  .hero-art img{width:min(260px,76vw);margin:0 auto;animation:none}
+  .hero-downloads{grid-template-columns:1fr;width:min(100%,360px);gap:8px;margin:6px auto 0;padding:8px}
+  .hero-download-btn{min-height:52px;padding:8px 16px}
   .hero h1{font-size:clamp(38px,11vw,46px);line-height:1.08;letter-spacing:-1px}
   .hero .lead{font-size:16px;line-height:1.7;margin-top:16px}
   .eyebrow{padding:7px 12px;font-size:12px;line-height:1.45;margin-bottom:16px}
@@ -482,6 +561,22 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   .trust-strip{gap:6px 14px;margin-top:16px}
   .trust-strip span{font-size:12px}
   .hero .disclaimer{margin-top:20px}
+  .download-module{margin-top:34px}
+  .download-card{display:block;border-radius:18px}
+  .download-preview{grid-template-columns:122px 1fr;min-height:330px;padding:22px 14px 0 20px}
+  .download-copy{padding-top:12px}
+  .download-app-icon{width:68px;height:68px;border-radius:16px;font-size:23px}
+  .download-benefits{gap:11px;margin-top:26px;font-size:12px}
+  .download-benefits b{font-size:15px}
+  .download-phone{max-width:210px;margin-bottom:-74px}
+  .download-options{gap:12px;padding:18px;border-left:0;border-top:1px solid var(--line)}
+  .download-option{grid-template-columns:40px 1fr;gap:12px;min-height:0;padding:15px 14px}
+  .download-icon{width:38px;height:38px}
+  .download-icon svg{width:31px;height:31px}
+  .download-option-meta strong{font-size:15px}
+  .download-option-meta span{font-size:12px}
+  .download-btn{grid-column:1/-1;width:100%;min-height:46px;margin-top:2px}
+  .download-footer{display:grid;gap:10px;padding:15px 18px;font-size:12px;line-height:1.55}
   .reward-nav{padding-bottom:38px}
   .sec-a,.sec-b,.sec-deep{padding:56px 0}
   .h-sec{font-size:clamp(29px,8.5vw,36px)}
@@ -540,6 +635,8 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 
 @media(max-width:960px){
+  .download-card{display:block}
+  .download-options{border-left:0;border-top:1px solid var(--line)}
   .card-grid-4,.prob-grid,.comp-grid,.tut-grid{grid-template-columns:1fr 1fr}
   .rn-grid{grid-template-columns:1fr 1fr}
   .steps,.prob-grid.cols-3,.fee-cols{grid-template-columns:1fr}
@@ -643,6 +740,21 @@ footer a{text-decoration:underline;text-underline-offset:3px}
     </div>
     <div class="hero-art">
       <img src="/bit-global-assets.png" alt="BIT 一个账户投资美股与加密资产" width="1188" height="1164" fetchpriority="high" decoding="async">
+      <div class="hero-downloads" data-download-placement="hero" aria-label="客户端下载快捷入口">
+        <span class="hero-download-heading"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2v10m0 0 4-4m-4 4L6 8M3 15v2h14v-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>BIT APP 下载</span>
+        <a class="btn hero-download-btn" data-download-link="app-store" href="https://bit.go.link/fUeJX" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="hero-download-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2" opacity=".75"/><path d="m10 24 9.5-17M12 7l10 17M7.5 20.5h17" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="hero-download-copy"><strong>App Store</strong><small>iOS 官方下载</small></span>
+        </a>
+        <a class="btn hero-download-btn" data-download-link="google-play" href="https://bit.go.link/fUeJX" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="hero-download-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M6 4.5 26.5 16 6 27.5v-23Z" fill="currentColor"/><path d="m6.5 5 13 11-13 11M19.5 16l6.5-3.7M19.5 16l6.5 3.7" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="hero-download-copy"><strong>Google Play</strong><small>Google 官方下载</small></span>
+        </a>
+        <a class="btn hero-download-btn" data-download-link="android-apk" href="https://download.onsites.me/matrixport-official-master-19-25_23e214yv.apk" rel="nofollow">
+          <span class="hero-download-icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M11 15h18v15a4 4 0 0 1-4 4H15a4 4 0 0 1-4-4V15Z" fill="currentColor"/><path d="M11 14a9 9 0 0 1 18 0H11Z" fill="currentColor"/><path d="m14 10-3-4M26 10l3-4M8 17v11M32 17v11M16 33v5M24 33v5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="16" cy="11" r="1.4" fill="#FFFFFF"/><circle cx="24" cy="11" r="1.4" fill="#FFFFFF"/></svg></span>
+          <span class="hero-download-copy"><strong>Android APK</strong><small>专属安装包</small></span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -734,7 +846,6 @@ footer a{text-decoration:underline;text-underline-offset:3px}
     </div>
 
     <div style="margin-top:52px">
-      <div class="block-title"><span class="tnum">2</span>入金奖励｜股票现金卡</div>
       <div class="wrap-scroll">
       <table class="rtable">
         <thead><tr><th>累计净入金达标</th><th>即时到账<br>股票现金卡</th><th>留存满 30 天<br>股票现金卡</th><th>累计股票现金卡奖励</th></tr></thead>
@@ -813,6 +924,53 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   <div class="wrap center">
     <h2 class="h-sec">简单 3 步，轻松领赏</h2>
     <p class="sub">BIT 美股功能现已在 App 全面上线（网页版即将推出），开户全程仅需 3 分钟</p>
+    <div class="download-module" data-download-placement="steps">
+      <span class="eyebrow pill-ice">客户端下载</span>
+      <h3 class="download-module-title">下载 BIT，开始美股交易</h3>
+      <p class="download-module-sub">选择适合你的设备，安装后即可进入开户流程</p>
+      <div class="download-card">
+        <div class="download-preview">
+          <div class="download-copy">
+            <div class="download-app-icon" aria-label="BIT App">BIT</div>
+            <div class="download-benefits" aria-label="BIT App 特点">
+              <span><b>✓</b>美股交易，极速体验</span>
+              <span><b>✓</b>实时行情，深度数据</span>
+              <span><b>✓</b>安全合规，资金保障</span>
+            </div>
+          </div>
+          <div class="download-phone">
+            <img src="/bit-step-market.webp" alt="BIT App 美股入口界面" width="544" height="1042" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="download-options" aria-label="客户端下载方式">
+          <article class="download-option">
+            <span class="download-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none"><rect x="10" y="3" width="20" height="34" rx="5" stroke="currentColor" stroke-width="3"/><path d="M17 8h6M17 32h6" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+            </span>
+            <div class="download-option-meta"><strong>iOS</strong><span>官方 App Store</span></div>
+            <a class="btn btn-primary download-btn" data-download-link="app-store" href="https://bit.go.link/fUeJX" target="_blank" rel="nofollow noopener noreferrer">前往 App Store</a>
+          </article>
+          <article class="download-option">
+            <span class="download-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none"><path d="M8 5.5 31.5 20 8 34.5V5.5Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="m8.5 6 15 14-15 14M23.5 20l7.5-4.5M23.5 20l7.5 4.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+            </span>
+            <div class="download-option-meta"><strong>Google Play</strong><span>官方应用商店</span></div>
+            <a class="btn btn-primary download-btn" data-download-link="google-play" href="https://bit.go.link/fUeJX" target="_blank" rel="nofollow noopener noreferrer">前往 Google Play</a>
+          </article>
+          <article class="download-option">
+            <span class="download-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none"><path d="M11 15h18v15a4 4 0 0 1-4 4H15a4 4 0 0 1-4-4V15Z" fill="currentColor"/><path d="m14 10-3-4M26 10l3-4M11 14a9 9 0 0 1 18 0H11Z" fill="currentColor"/><circle cx="16" cy="11" r="1.4" fill="white"/><circle cx="24" cy="11" r="1.4" fill="white"/><path d="M8 17v11M32 17v11M16 33v5M24 33v5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+            </span>
+            <div class="download-option-meta"><strong>Android APK</strong><span>内置专属邀请码</span></div>
+            <a class="btn btn-primary download-btn" data-download-link="android-apk" href="https://download.onsites.me/matrixport-official-master-19-25_23e214yv.apk" rel="nofollow">直接下载 APK</a>
+          </article>
+        </div>
+        <div class="download-footer">
+          <span><b class="shield">◆</b>专属安装包 · 点击直接下载</span>
+          <span>Android 安装包已内置专属邀请码，请勿通过其他来源替换。</span>
+        </div>
+      </div>
+    </div>
     <div class="steps">
       <div class="step">
         <div class="stag">Step 1</div>
