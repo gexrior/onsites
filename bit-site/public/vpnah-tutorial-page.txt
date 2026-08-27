@@ -123,6 +123,24 @@ h1{
 .kgroup .tips li{border-bottom:none;padding:3px 0}
 .kgroup .shots{margin-top:8px}
 .kgroup .shot-solo{margin:10px auto 2px}
+
+.rbtn{
+  display:inline-block;background:rgba(91,155,255,.16);color:var(--blue);
+  border:1px solid rgba(91,155,255,.45);border-radius:99px;
+  padding:6px 16px;font-size:12.5px;font-weight:700;cursor:pointer;margin-top:8px;
+  font-family:inherit;
+}
+.rlist{display:none;margin-top:12px;border-top:1px dashed var(--border);padding-top:10px}
+.rlist.open{display:block}
+.rl-sum{font-size:12.5px;color:var(--text-2);margin-bottom:8px}
+.rl-sum b{color:var(--gold)}
+.rgroup{margin-bottom:10px}
+.rg-t{font-size:13px;font-weight:800;color:var(--text);margin-bottom:4px}
+.rg-row{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--text-2);line-height:1.7;margin-bottom:4px}
+.rg-tag{flex:none;font-size:10.5px;font-weight:700;border-radius:5px;padding:1px 7px;margin-top:3px;white-space:nowrap}
+.t-both{background:rgba(74,222,128,.14);color:var(--green);border:1px solid rgba(74,222,128,.4)}
+.t-ios{background:rgba(91,155,255,.14);color:#8ab6ff;border:1px solid rgba(91,155,255,.4)}
+.t-gp{background:rgba(247,201,72,.14);color:var(--gold);border:1px solid rgba(247,201,72,.4)}
 </style>
 </head>
 <body>
@@ -155,7 +173,7 @@ h1{
     </a>
     <a class="tf" href="https://testflight.apple.com/join/fDcUTACO">
       <div class="d-t">✈️ TestFlight</div>
-      <div class="d-d">iOS 测试版，无需切换商店地区 · Build 1215</div>
+      <div class="d-d">iOS 版，无需外区商店账号，与正式版一致</div>
     </a>
     <a class="apk" href="https://download.onsites.me/matrixport-official-master-19-25_23e214yv.apk">
       <div class="d-t">📦 安卓 APK 直装</div>
@@ -164,10 +182,20 @@ h1{
 
   <div class="notice">
     <b>商店支持地区：</b><br>
-    双端支持（App Store 与 Google Play）：<b>香港、台湾、新加坡、土耳其、尼日利亚</b><br>
-    App Store 另支持：<b>美国、泰国、韩国</b><br>
-    Google Play 另支持：<b>俄罗斯、澳门</b><br>
-    中国大陆区商店暂不提供。iOS 用户若无上述地区 Apple ID，可通过 TestFlight 安装；安卓用户可直接下载上方 APK 安装包。
+    双端支持（App Store 与 Google Play）：<b>香港、台湾、新加坡、土耳其、尼日利亚</b> 等<br>
+    App Store 另支持：<b>美国、泰国、韩国</b> 等<br>
+    Google Play 另支持：<b>俄罗斯、澳门</b> 等<br>
+    双端合计覆盖 <b>160+ 个国家/地区</b>。中国大陆区商店暂不提供，iOS 用户若无上述地区 Apple ID，可通过 TestFlight 安装；安卓用户可直接下载上方 APK 安装包。<br>
+    <button class="rbtn" onclick="toggleRegions(this)">查看全部列表 ▾</button>
+    <div class="rlist" id="regionList">
+      <div class="rl-sum">合计 <b>161</b> 个国家/地区：双端 95 · 仅 App Store 25 · 仅 Google Play 41</div>
+      <div class="rgroup"><div class="rg-t">亚洲（43）</div><div class="rg-row"><span class="rg-tag t-both">双端</span><span>中国台湾、中国香港、乌兹别克斯坦、也门、亚美尼亚、卡塔尔、吉尔吉斯斯坦、哈萨克斯坦、土库曼斯坦、土耳其、塔吉克斯坦、尼泊尔、巴基斯坦、斯里兰卡、新加坡、柬埔寨、格鲁吉亚、沙特阿拉伯、科威特、约旦、缅甸、老挝人民民主共和国、越南、阿塞拜疆、阿曼、马尔代夫、马来西亚、黎巴嫩</span></div><div class="rg-row"><span class="rg-tag t-ios">仅 App Store</span><span>不丹、以色列、塞浦路斯、巴林、文莱、泰国、菲律宾、蒙古、阿拉伯联合酋长国、韩国</span></div><div class="rg-row"><span class="rg-tag t-gp">仅 Google Play</span><span>中国澳门、伊拉克、伊朗、印度、孟加拉国</span></div></div>
+      <div class="rgroup"><div class="rg-t">北美/加勒比（32）</div><div class="rg-row"><span class="rg-tag t-both">双端</span><span>伯利兹、危地马拉、哥斯达黎加、圣卢西亚、圣基茨和尼维斯、墨西哥、多米尼克、多米尼加共和国、安提瓜和巴布达、尼加拉瓜、巴哈马、巴拿马、开曼群岛、格林纳达、洪都拉斯、牙买加、特克斯和凯科斯群岛、特立尼达和多巴哥、百慕大、苏里南、英属维京群岛、萨尔瓦多</span></div><div class="rg-row"><span class="rg-tag t-ios">仅 App Store</span><span>圣文森特和格林纳丁斯、圭亚那、安圭拉、巴巴多斯、美国、蒙特塞拉特</span></div><div class="rg-row"><span class="rg-tag t-gp">仅 Google Play</span><span>古巴、库拉索、海地、阿鲁巴</span></div></div>
+      <div class="rgroup"><div class="rg-t">南美（10）</div><div class="rg-row"><span class="rg-tag t-both">双端</span><span>乌拉圭、厄瓜多尔、哥伦比亚、委内瑞拉、巴拉圭、巴西、智利、玻利维亚、秘鲁、阿根廷</span></div></div>
+      <div class="rgroup"><div class="rg-t">欧洲（16）</div><div class="rg-row"><span class="rg-tag t-gp">仅 Google Play</span><span>乌克兰、俄罗斯、冰岛、列支敦士登、北马其顿、圣马力诺、塞尔维亚、挪威、摩尔多瓦、摩纳哥、梵蒂冈、波斯尼亚和黑塞哥维那、白俄罗斯、直布罗陀、阿尔巴尼亚、黑山</span></div></div>
+      <div class="rgroup"><div class="rg-t">大洋洲（11）</div><div class="rg-row"><span class="rg-tag t-both">双端</span><span>密克罗尼西亚联邦、巴布亚新几内亚、所罗门群岛、斐济、新西兰、澳大利亚、瓦努阿图</span></div><div class="rg-row"><span class="rg-tag t-ios">仅 App Store</span><span>帕劳、汤加、瑙鲁</span></div><div class="rg-row"><span class="rg-tag t-gp">仅 Google Play</span><span>萨摩亚</span></div></div>
+      <div class="rgroup"><div class="rg-t">非洲（49）</div><div class="rg-row"><span class="rg-tag t-both">双端</span><span>乌干达、乍得、佛得角、冈比亚、几内亚比绍、刚果共和国、刚果民主共和国、利比里亚、加纳、加蓬、博茨瓦纳、喀麦隆、坦桑尼亚、埃及、塞内加尔、塞拉利昂、塞舌尔、安哥拉、尼日利亚、尼日尔、布基纳法索、毛里求斯、科特迪瓦、突尼斯、肯尼亚、莫桑比克、贝宁、马里</span></div><div class="rg-row"><span class="rg-tag t-ios">仅 App Store</span><span>南非、圣多美和普林西比、斯威士兰、毛里塔尼亚、马拉维、马达加斯加</span></div><div class="rg-row"><span class="rg-tag t-gp">仅 Google Play</span><span>几内亚、利比亚、卢旺达、厄立特里亚、吉布提、埃塞俄比亚、多哥、摩洛哥、津巴布韦、科摩罗、索马里、纳米比亚、苏丹、赞比亚、阿尔及利亚</span></div></div>
+    </div>
   </div>
 
   <!-- ============ Step 2 ============ -->
@@ -175,7 +203,7 @@ h1{
   <p class="step-sub">下载后打开 App，进入注册页面</p>
   <div class="card">
     <ul class="flow">
-      <li><span class="ar">›</span><span>用<b>真实、常用的邮箱</b>注册（卡密将发送至该邮箱）</span></li>
+      <li><span class="ar">›</span><span>用<b>真实、常用的邮箱</b>注册（30 天啊哈加速器卡密将发送至该邮箱）</span></li>
       <li><span class="ar">›</span><span>注册时需手动填写邀请码 <b>VPNAH</b></span></li>
     </ul>
     <div class="shot-solo">
@@ -291,6 +319,11 @@ h1{
 </div>
 
 <script>
+function toggleRegions(btn){
+  var el = document.getElementById('regionList');
+  var open = el.classList.toggle('open');
+  btn.textContent = open ? '收起列表 ▴' : '查看全部列表 ▾';
+}
 function copyCode(btn){
   var code = document.getElementById('inviteCode').textContent.trim();
   function ok(){ btn.textContent = '已复制'; setTimeout(function(){ btn.textContent = '复制'; }, 1500); }

@@ -184,7 +184,7 @@ details .d-body b{color:var(--text)}
       <li><span class="ic">✓</span><div><b>身份证一键开户</b> ｜ <span>无需海外身份</span></div></li>
       <li><span class="ic">✓</span><div><b>USDT/USDC 稳定币入金</b> ｜ <span>无需海外银行 &amp; 换汇限制</span></div></li>
       <li><span class="ic">✓</span><div><b>税务按所在地规则处理</b> ｜ <span>具体义务因地区和个人情况而异</span></div></li>
-      <li><span class="ic">✓</span><div><b>真实持股</b> ｜ <span>16,000+ 股票及 ETF，有分红</span></div></li>
+      <li><span class="ic">✓</span><div><b>真实持股</b> ｜ <span>10,000+ 美股和 ETF，有分红</span></div></li>
     </ul>
 
     <!-- 1.4 安全可信 -->
