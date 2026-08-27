@@ -7,6 +7,7 @@ const SPECIAL_SIGNUP_URLS = new Map([
   ["MEIGU88", "https://bit.bshareweb.com/newRegister/cn?invite_code=MEIGU88"],
   ["W7CF6T", "https://bit.bshareweb.com/newRegister/cn?invite_code=W7CF6T"],
 ]);
+const VPNAH_CONTENT_SECURITY_POLICY = "default-src 'self'; connect-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests";
 const RESERVED_INVITE_PATHS = new Set([
   "admin",
   "admin.html",
@@ -388,6 +389,28 @@ async function publicAsset(request, env) {
   });
 }
 
+async function vpnahPageAsset(request, env, url, assetPath, canonicalPath) {
+  const assetUrl = new URL(assetPath, url);
+  const asset = await publicAsset(new Request(assetUrl, request), env);
+  const headers = new Headers(asset.headers);
+  headers.set("Cache-Control", "no-store");
+  headers.set("Content-Type", "text/html; charset=utf-8");
+  headers.set("Content-Security-Policy", VPNAH_CONTENT_SECURITY_POLICY);
+  headers.set("Link", `<${url.origin}${canonicalPath}>; rel="canonical"`);
+  headers.set("X-Robots-Tag", "noindex, follow");
+  return new Response(asset.body, {
+    status: asset.status,
+    statusText: asset.statusText,
+    headers,
+  });
+}
+
+function redirectPath(url, pathname) {
+  const target = new URL(url);
+  target.pathname = pathname;
+  return Response.redirect(target, 308);
+}
+
 async function inviteLandingPage(request, env, url) {
   const code = inviteCodeFromPath(url.pathname);
   const specialLandingPages = {
@@ -397,6 +420,9 @@ async function inviteLandingPage(request, env, url) {
   };
   const normalizedCode = code.toUpperCase();
   const specialAsset = specialLandingPages[normalizedCode];
+  if (normalizedCode === "VPNAH") {
+    return vpnahPageAsset(request, env, url, specialAsset, "/VPNAH");
+  }
   const assetUrl = new URL(specialAsset || "/", url);
   const asset = await publicAsset(new Request(assetUrl, request), env);
   const headers = new Headers(asset.headers);
@@ -568,6 +594,15 @@ export default {
 
     if (url.pathname === "/linki-page.txt") {
       return Response.redirect(`${url.origin}/LINKI`, 308);
+    }
+
+    if (["/VPNAH/tutorial/", "/VPNAH/tutorial.html", "/vpnah-tutorial-page.txt"].includes(url.pathname)) {
+      return redirectPath(url, "/VPNAH/tutorial");
+    }
+
+    if (url.pathname === "/VPNAH/tutorial") {
+      if (!["GET", "HEAD"].includes(request.method)) return response(405, "method not allowed");
+      return vpnahPageAsset(request, env, url, "/vpnah-tutorial-page.txt", "/VPNAH/tutorial");
     }
 
     if (url.pathname === "/vpnah-page.txt") {
