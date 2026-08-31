@@ -1326,30 +1326,29 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   var PARTNER_ID='9736740',CONVERSION_ID=27766628;
   if(location.pathname.replace(/\/+$/,'').toUpperCase()!=='/LINKI')return;
 
+  window._linkedin_partner_id=PARTNER_ID;
+  window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];
+  if(window._linkedin_data_partner_ids.indexOf(PARTNER_ID)===-1){
+    window._linkedin_data_partner_ids.push(PARTNER_ID);
+  }
+  if(!window.lintrk){
+    window.lintrk=function(a,b){window.lintrk.q.push([a,b]);};
+    window.lintrk.q=[];
+  }
+  if(!document.querySelector('script[data-linkedin-insight]')){
+    var insight=document.createElement('script');
+    insight.type='text/javascript';
+    insight.async=true;
+    insight.src='https://snap.licdn.com/li.lms-analytics/insight.min.js';
+    insight.setAttribute('data-linkedin-insight','');
+    document.head.appendChild(insight);
+  }
+
   var fired=false;
   function trackSignupClick(){
     if(fired)return;
     fired=true;
-
-    window._linkedin_partner_id=PARTNER_ID;
-    window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];
-    if(window._linkedin_data_partner_ids.indexOf(PARTNER_ID)===-1){
-      window._linkedin_data_partner_ids.push(PARTNER_ID);
-    }
-    if(!window.lintrk){
-      window.lintrk=function(a,b){window.lintrk.q.push([a,b]);};
-      window.lintrk.q=[];
-    }
     window.lintrk('track',{conversion_id:CONVERSION_ID});
-
-    if(!document.querySelector('script[data-linkedin-insight]')){
-      var insight=document.createElement('script');
-      insight.type='text/javascript';
-      insight.async=true;
-      insight.src='https://snap.licdn.com/li.lms-analytics/insight.min.js';
-      insight.setAttribute('data-linkedin-insight','');
-      document.head.appendChild(insight);
-    }
   }
   document.querySelectorAll('a.btn[data-signup-link]').forEach(function(link){
     link.addEventListener('click',trackSignupClick);
