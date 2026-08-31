@@ -7,7 +7,7 @@ const SPECIAL_SIGNUP_URLS = new Map([
   ["MEIGU88", "https://bit.bshareweb.com/newRegister/cn?invite_code=MEIGU88"],
   ["W7CF6T", "https://bit.bshareweb.com/newRegister/cn?invite_code=W7CF6T"],
 ]);
-const VPNAH_CONTENT_SECURITY_POLICY = "default-src 'self'; connect-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self'; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests";
+const VPNAH_CONTENT_SECURITY_POLICY = "default-src 'self'; connect-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests";
 const RESERVED_INVITE_PATHS = new Set([
   "admin",
   "admin.html",
