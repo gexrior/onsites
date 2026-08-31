@@ -319,12 +319,19 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
 .totop.show{opacity:1;pointer-events:auto}
 .totop:hover{color:var(--blue);border-color:rgba(0,82,255,.3)}
 
+@media(max-width:479px){
+  .gift .lockline{padding:6px 9px;font-size:9px;gap:3px}
+}
 @media(max-width:419px){
   .topbar .inner{padding:0 14px;gap:7px}
   .brand{font-size:11px;gap:4px;letter-spacing:-.03em;white-space:nowrap;flex:none}
   .brand .mark{width:22px;height:22px;border-radius:7px;font-size:10px}
   .brand .x{font-size:10px}
   .topbar .nav-cta{font-size:11px;padding:8px 12px}
+}
+@media(max-width:379px){
+  .gifts{grid-template-columns:1fr}
+  .gift .lockline{padding:6px 15px;font-size:10px;gap:6px}
 }
 @media(min-width:420px){.gift .big{font-size:36px}}
 @media(min-width:900px){
