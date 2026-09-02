@@ -1,4 +1,6 @@
 .wrangler/
 .dev.vars
 .DS_Store
+node_modules/
+private-assets/
 test-results/

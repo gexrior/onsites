@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BIT 9月美股新人礼｜开户享 $310 大礼包</title>
+<meta name="description" content="BIT 9月美股新人礼：开户享美股免佣交易、$100 平台费抵扣卡及双行情卡；入金与交易达标最高可获 $210 股票现金卡。">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="onsites.me 独立内容发布者">
+<link rel="canonical" href="https://bit.onsites.me/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<style>
+/* ============================================================
+   BIT 冰川白 (Glacier White) Design System
+   base: 薰衣草冰川白 / accent: 紫罗兰 / anchor: 深紫罗兰
+   ============================================================ */
+:root{
+  --brand:#7C3AED; --brand-2:#8B5CF6; --brand-3:#A78BFA;
+  --ice-0:#FFFFFF;            /* 纯白卡面 */
+  --ice-50:#FCFBFF;           /* 冰面高光 */
+  --ice-100:#F8F7FD;          /* 冰川白 · 主底色 */
+  --ice-200:#F0EDFA;          /* 冰川白 · 间隔段底色 */
+  --ice-300:#E6E0F5;          /* 冰纹面板 */
+  --line:#E3DDF2;             /* 冰缝描边 */
+  --line-2:#D4CAEB;
+  --deep:#160D33;             /* 深紫罗兰 · 锚点段 */
+  --deep-2:#2B1863;
+  --violet:#8B5CF6; --violet-2:#A78BFA;
+  --ink:#171129; --ink-2:#2A2148; --ink-muted:#6A6089; --ink-soft:#746B8F;
+  --gold-deep:#9A6B14; --gold-line:#E4C079;
+  --green:#3E7D57;
+  --radius:18px;
+  --maxw:1180px;
+  --shadow-s:0 4px 16px rgba(23,17,41,.05);
+  --shadow-m:0 12px 34px rgba(23,17,41,.07);
+  --shadow-brand:0 8px 24px rgba(124,58,237,.30);
+  --font:'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC',sans-serif;
+}
+*{box-sizing:border-box}
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
+html,body{margin:0;padding:0}
+body{
+  font-family:var(--font); background:var(--ice-100); color:var(--ink);
+  min-width:280px;-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden;
+}
+::selection{background:rgba(139,92,246,.22)}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;height:auto;display:block;-webkit-user-drag:none}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.hero-grid>*,.fee-cols>*,.info-grid>*,.comp-grid>*,.steps>*{min-width:0}
+.sub,.lead,.rk,.note-bar{overflow-wrap:anywhere}
+.rtable td,.rtable th,.ttable td,.stat .sv,.rn .rn-v,.prob .pv{font-variant-numeric:tabular-nums}
+.blue{color:var(--brand)}
+.gold-txt{color:var(--gold-deep)}
+section[id]{scroll-margin-top:84px}
+.reward-nav[id]{scroll-margin-top:84px}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:var(--font);font-weight:700;cursor:pointer;border:none;
+  min-height:44px;border-radius:999px;white-space:nowrap;touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;transition:transform .15s,box-shadow .15s,filter .15s;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--brand-2),var(--brand));
+  color:#fff;box-shadow:var(--shadow-brand);
+}
+.btn-primary:hover{transform:translateY(-1px);filter:brightness(1.06);box-shadow:0 12px 30px rgba(124,58,237,.4)}
+.btn-sm{padding:10px 26px;font-size:15px}
+.btn-lg{padding:16px 46px;font-size:17px}
+.btn:focus-visible,.rn:focus-visible{
+  outline:3px solid rgba(124,58,237,.34);outline-offset:3px;
+}
+
+/* ---------- header：冰面磨砂 ---------- */
+header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+}
+.hd{display:flex;align-items:center;justify-content:space-between;height:70px;gap:20px}
+.logo{display:flex;align-items:baseline;gap:12px;flex-shrink:0}
+.logo .bar{width:5px;height:26px;background:linear-gradient(180deg,var(--brand-2),var(--brand));border-radius:2px;align-self:center}
+.logo .name{font-size:28px;font-weight:900;letter-spacing:.5px;color:var(--ink)}
+.logo .tag{font-size:12px;color:var(--ink-soft);letter-spacing:2px;text-transform:uppercase}
+.hd-promo{flex:1;text-align:center;font-size:15px;font-weight:500;color:var(--ink-2)}
+@media(max-width:900px){.hd-promo{display:none}}
+
+/* ---------- section 骨架：冰川白双色 + 深冰川锚点 ---------- */
+section{position:relative}
+.sec-a{background:var(--ice-100);padding:92px 0}
+.sec-b{background:var(--ice-200);padding:92px 0}
+.sec-deep{
+  background:
+    radial-gradient(1000px 500px at 80% 0%,rgba(139,92,246,.20),transparent 60%),
+    linear-gradient(160deg,var(--deep),var(--deep-2));
+  color:#fff;padding:92px 0;
+}
+.sec-deep .sub{color:#C4B8E8}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;margin:0 auto 20px;
+  padding:8px 20px;border-radius:999px;font-size:14px;font-weight:700;
+}
+.eyebrow.pill-blue{background:linear-gradient(135deg,var(--brand-2),var(--brand));color:#fff;box-shadow:0 6px 18px rgba(124,58,237,.28)}
+.eyebrow.pill-ice{background:rgba(124,58,237,.07);border:1px solid rgba(124,58,237,.25);color:var(--brand)}
+.sec-deep .eyebrow.pill-ice{background:rgba(255,255,255,.08);border-color:rgba(167,139,250,.4);color:#DCCFFF}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--brand-2);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(139,92,246,.4)}70%{box-shadow:0 0 0 8px rgba(139,92,246,0)}100%{box-shadow:0 0 0 0 rgba(139,92,246,0)}}
+.center{text-align:center}
+h1,h2,h3{margin:0;font-weight:900;letter-spacing:-.5px}
+.h-sec{font-size:clamp(30px,4vw,48px);line-height:1.16}
+.sub{font-size:17.5px;margin:18px auto 0;max-width:680px;color:var(--ink-muted)}
+.disclaimer{font-size:13px;color:var(--ink-soft);margin-top:34px}
+.sec-deep .disclaimer{color:#9D8FC6}
+.task1-title-line{display:inline-block;white-space:nowrap}
+@media(min-width:701px){#task1 .h-sec{font-size:clamp(34px,4vw,46px)}}
+
+/* ---------- 通用卡片 ---------- */
+.card{background:var(--ice-0);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-s)}
+
+/* ---------- hero：冰川白高光 ---------- */
+.hero{
+  background:
+    radial-gradient(1000px 620px at 85% 20%,rgba(139,92,246,.14),transparent 60%),
+    radial-gradient(760px 500px at 8% 90%,rgba(124,58,237,.07),transparent 55%),
+    linear-gradient(180deg,#FFFFFF 0%,var(--ice-100) 70%,var(--ice-100) 100%);
+  padding:64px 0 40px;overflow:hidden;
+}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(40px,5.4vw,68px);line-height:1.1;margin:8px 0 0;color:var(--ink)}
+.hero .lead{font-size:18.5px;color:var(--ink-muted);max-width:560px;margin:22px 0 0}
+.hero .lead b{color:var(--ink)}
+.gift-banner{
+  display:flex;align-items:center;gap:16px;margin:30px 0 20px;padding:20px 24px;
+  border-radius:16px;border:1px solid rgba(124,58,237,.28);
+  background:linear-gradient(135deg,rgba(124,58,237,.08),rgba(139,92,246,.03)),#fff;
+  box-shadow:var(--shadow-s);
+}
+.gift-banner .gi{
+  flex-shrink:0;width:48px;height:48px;border-radius:12px;display:grid;place-items:center;
+  background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2);font-size:24px;
+}
+.gift-banner .bt{font-size:19px;font-weight:700;color:var(--ink)}
+.gift-banner .bs{font-size:14px;color:var(--ink-muted);margin-top:2px}
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.feat{padding:16px 20px;border-radius:14px;background:var(--ice-0);border:1px solid var(--line);box-shadow:var(--shadow-s)}
+.feat .ft{display:flex;align-items:center;gap:8px;font-size:15.5px;font-weight:700;color:var(--ink)}
+.feat .ck{color:var(--brand);font-weight:900}
+.feat .fd{font-size:13px;color:var(--ink-muted);margin-top:5px;padding-left:22px}
+.hero-cta{margin-top:28px}
+.trust-strip{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px}
+.trust-strip span{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--ink-2)}
+.trust-strip .ck{color:var(--brand);font-weight:900}
+.hero-art{position:relative;display:grid;place-items:center}
+.hero-art img{filter:drop-shadow(0 24px 50px rgba(124,58,237,.22));animation:float 6s ease-in-out infinite}
+.hero-downloads{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;
+  position:relative;z-index:2;width:min(100%,470px);margin:-18px auto 0;padding:18px 10px 10px;
+  border:1px solid rgba(124,58,237,.28);border-radius:17px;
+  background:rgba(250,247,255,.94);box-shadow:0 10px 28px rgba(76,29,149,.10);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+.hero-download-heading{
+  position:absolute;top:0;left:50%;transform:translate(-50%,-50%);
+  display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:999px;
+  border:1px solid rgba(124,58,237,.32);background:#E9DEFF;color:var(--brand);
+  box-shadow:0 5px 14px rgba(124,58,237,.14);font-size:12.5px;font-weight:800;white-space:nowrap;
+}
+.hero-download-heading svg{width:15px;height:15px}
+.hero-download-btn{
+  justify-content:flex-start;width:100%;min-width:0;min-height:56px;padding:9px 10px;gap:7px;
+  border:1px solid rgba(124,58,237,.26);border-radius:13px;
+  background:linear-gradient(145deg,#FCFAFF,#E9E0FF);color:var(--ink);
+  box-shadow:0 5px 14px rgba(76,29,149,.11);
+}
+.hero-download-btn:hover{transform:translateY(-2px);border-color:rgba(124,58,237,.46);background:linear-gradient(145deg,#F8F4FF,#DED0FF);box-shadow:0 9px 20px rgba(76,29,149,.16)}
+.hero-download-icon{display:grid;place-items:center;flex:0 0 30px;width:30px;height:30px;border-radius:9px;background:rgba(124,58,237,.14);color:var(--brand)}
+.hero-download-icon svg{display:block;width:22px;height:22px}
+.hero-download-copy{display:grid;min-width:0;text-align:left;line-height:1.15}
+.hero-download-copy strong{overflow:hidden;text-overflow:ellipsis;font-size:13px;font-weight:800;white-space:nowrap}
+.hero-download-copy small{margin-top:3px;color:var(--ink-muted);font-size:9.5px;font-weight:500;white-space:nowrap}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@media(min-width:961px){.hero-downloads{transform:translateY(67px)}}
+@media(max-width:960px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-art{order:-1;max-width:400px;margin:0 auto}
+}
+@media(min-width:701px) and (max-width:960px){
+  .hero-art{order:initial;max-width:440px}
+  .hero-downloads{margin:-6px auto 6px}
+  .hero-download-btn{padding:9px 8px;gap:6px}
+  .hero-download-icon{flex-basis:26px;width:26px;height:26px}
+  .hero-download-icon svg{width:20px;height:20px}
+  .hero-download-copy strong{font-size:12.5px}
+  .hero-download-copy small{font-size:8.5px}
+}
+
+/* ---------- 奖励速览条（hero 下） ---------- */
+.reward-nav{padding:0 0 56px;background:var(--ice-100)}
+.rn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rn{
+  display:block;background:var(--ice-0);border:1px solid var(--line);border-radius:16px;
+  padding:18px 20px;box-shadow:var(--shadow-s);transition:transform .15s,box-shadow .15s,border-color .15s;
+}
+.rn:hover{transform:translateY(-3px);box-shadow:var(--shadow-m);border-color:var(--brand-2)}
+.rn .rn-k{font-size:12.5px;font-weight:700;color:var(--brand);letter-spacing:1px}
+.rn .rn-v{font-size:19px;font-weight:900;color:var(--ink);margin-top:4px}
+.rn .rn-d{font-size:12.5px;color:var(--ink-muted);margin-top:2px}
+
+/* ---------- 图标卡（任务一） ---------- */
+.card-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:52px}
+.icard{
+  background:var(--ice-0);border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;
+  box-shadow:var(--shadow-s);transition:transform .18s,box-shadow .18s;text-align:left;
+}
+.icard:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(124,58,237,.10)}
+.icard .ico{
+  width:56px;height:56px;border-radius:14px;display:grid;place-items:center;font-size:26px;
+  background:linear-gradient(135deg,var(--brand-2),var(--brand));color:#fff;margin-bottom:22px;
+  box-shadow:0 8px 20px rgba(124,58,237,.25);font-weight:900;
+}
+.icard h3{font-size:19px;color:var(--ink)}
+.icard p{font-size:14px;color:var(--ink-muted);margin:12px 0 0}
+
+/* ---------- 奖励表（任务二） ---------- */
+.tnum{
+  display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;
+  background:linear-gradient(135deg,var(--brand-2),var(--brand));font-weight:900;font-size:15px;color:#fff;
+}
+.block-title{display:flex;align-items:center;gap:12px;font-size:23px;font-weight:900;margin:0 0 22px;color:var(--ink)}
+.rtable{
+  width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;
+  border-radius:16px;border:1px solid var(--line);background:var(--ice-0);box-shadow:var(--shadow-m);
+}
+.rtable th{
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;text-align:left;
+  padding:18px 28px;font-size:15.5px;font-weight:700;
+}
+.rtable td{padding:20px 28px;font-size:15.5px;border-top:1px solid var(--ice-200);color:var(--ink-2)}
+.rtable tr:nth-child(even) td{background:var(--ice-50)}
+.rtable td b{color:var(--ink);font-weight:700}
+.rtable tr.hot td{background:rgba(124,58,237,.06)}
+.rtable tr.hot td:last-child{color:var(--brand);font-weight:700}
+.wrap-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+/* ---------- 任务二：浅色档位测算区 ---------- */
+.task2-showcase{
+  padding:84px 0;background:var(--ice-100);
+  color:var(--ink);overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.task2-head{text-align:center}
+.task2-kicker{
+  display:inline-flex;margin:0 auto 18px;padding:7px 14px;border:0;border-radius:999px;
+  background:linear-gradient(135deg,var(--brand-2),var(--brand));color:#fff;box-shadow:0 6px 18px rgba(124,58,237,.28);
+  font-size:13px;font-weight:800;letter-spacing:1px;
+}
+.task2-title{font-size:clamp(30px,4vw,48px);line-height:1.16;letter-spacing:-.5px;color:var(--ink)}
+.task2-title .accent{color:var(--brand)}
+.task2-sub{margin:14px auto 0;color:var(--ink-muted);font-size:17px}
+.task2-sub b{color:var(--ink)}
+.task2-calculator{
+  display:flex;align-items:center;justify-content:space-between;gap:28px;margin-top:30px;padding:17px 20px;
+  border:1px solid var(--line);border-radius:17px;background:#fff;color:var(--ink);
+  box-shadow:var(--shadow-m);
+}
+.task2-tier-side{display:flex;align-items:center;gap:16px;min-width:0}
+.task2-tier-label{color:#77839A;font-size:13px;font-weight:700;white-space:nowrap}
+.task2-tier-group{display:grid;grid-template-columns:repeat(3,minmax(76px,1fr));gap:3px;padding:4px;border-radius:999px;background:#F1F4F9}
+.task2-tier{
+  min-height:40px;padding:9px 16px;border:0;border-radius:999px;background:transparent;color:#8994A8;
+  font:700 13px/1 var(--font);cursor:pointer;white-space:nowrap;touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;transition:background .15s,color .15s,box-shadow .15s,transform .15s;
+}
+.task2-tier:hover{color:#0D1528}
+.task2-tier.is-active{background:#fff;color:#0D1528;box-shadow:0 2px 8px rgba(8,18,42,.15)}
+.task2-tier:focus-visible{outline:3px solid rgba(124,58,237,.35);outline-offset:2px}
+.task2-breakdown{display:flex;align-items:center;justify-content:flex-end;gap:22px;min-width:0}
+.task2-metric{display:flex;align-items:baseline;gap:8px;white-space:nowrap}
+.task2-metric span{color:#7D899F;font-size:12.5px;font-weight:700}
+.task2-metric b{color:#111827;font-size:14px;font-variant-numeric:tabular-nums}
+.task2-total{
+  display:flex;align-items:baseline;gap:10px;padding:11px 18px;border-radius:999px;background:#F1ECFF;
+  white-space:nowrap;
+}
+.task2-total span{color:#111827;font-size:12.5px;font-weight:800}
+.task2-total strong{color:var(--brand);font-size:28px;line-height:1;font-variant-numeric:tabular-nums}
+.task2-table-card{margin-top:20px;border:1px solid var(--line);border-radius:17px;background:#fff;color:var(--ink);overflow:hidden;box-shadow:var(--shadow-m)}
+.task2-table-top{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px 18px;color:#2E3B52;font-size:12px}
+.task2-table-top span:last-child{color:#8290A8;text-align:right}
+.task2-table-scroll{max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.task2-table{width:100%;border-collapse:collapse;table-layout:fixed;font-variant-numeric:tabular-nums}
+.task2-table th{padding:14px 18px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;font-size:13px;font-weight:800;text-align:center}
+.task2-table td{padding:18px;border-bottom:1px solid #E5EAF2;color:#111827;font-size:14px;text-align:center;transition:background .15s}
+.task2-table tbody tr:nth-child(even) td{background:#FAFBFD}
+.task2-table tbody tr.is-active td{background:#F8F5FF}
+.task2-table td:nth-child(2){color:#52617A}
+.task2-table td:last-child{background:#F5F0FF;color:var(--brand);font-size:16px;font-weight:900}
+.task2-table tbody tr.is-active td:last-child{background:#EDE5FF}
+.task2-table-foot{margin:0;padding:14px 18px 16px;background:#F5F7FA;color:#7B879C;font-size:11.5px;line-height:1.7}
+.task2-table-foot b{color:#334057}
+.task2-action-row{display:flex;align-items:center;justify-content:flex-start;gap:20px;margin-top:26px}
+.task2-cta.btn{border-radius:12px;background:linear-gradient(135deg,var(--brand-2),var(--brand));box-shadow:var(--shadow-brand)}
+.task2-cta.btn:hover{box-shadow:0 16px 34px rgba(124,58,237,.42)}
+
+/* 概率卡 */
+.prob-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:26px}
+.prob-grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.prob{
+  background:var(--ice-0);border:1px solid var(--line);border-radius:16px;
+  padding:28px 22px;text-align:center;box-shadow:var(--shadow-s);
+}
+.prob .pl{font-size:14.5px;color:var(--ink-muted);min-height:44px;display:flex;align-items:center;justify-content:center}
+.prob .pv{font-size:42px;font-weight:900;margin:14px 0 6px;background:linear-gradient(135deg,var(--brand-2),var(--brand));-webkit-background-clip:text;background-clip:text;color:transparent}
+.prob .pc{font-size:13px;color:var(--ink-soft)}
+.prob.gold{border-color:var(--gold-line);background:linear-gradient(160deg,#FFFDF6,#FBF3DC)}
+.prob.gold .pv{background:linear-gradient(135deg,#C89232,var(--gold-deep));-webkit-background-clip:text;background-clip:text}
+.sec-deep .prob{background:rgba(255,255,255,.05);border-color:rgba(167,139,250,.22);box-shadow:none}
+.sec-deep .prob .pl{color:#C4B8E8}
+.sec-deep .prob .pc{color:#9C8CC9}
+.sec-deep .prob .pv{background:linear-gradient(135deg,#C6B2FF,var(--violet));-webkit-background-clip:text;background-clip:text}
+.sec-deep .prob.gold{border-color:rgba(228,192,121,.55);background:linear-gradient(160deg,rgba(228,192,121,.10),rgba(154,107,20,.05))}
+.sec-deep .prob.gold .pv{background:linear-gradient(135deg,#F0C75A,#C89232);-webkit-background-clip:text;background-clip:text}
+
+/* 说明卡 */
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:34px}
+.info-card{background:var(--ice-0);border:1px solid var(--line);border-radius:16px;padding:28px 30px;box-shadow:var(--shadow-s);text-align:left}
+.info-card h4{margin:0 0 16px;font-size:17.5px;font-weight:700;color:var(--ink)}
+.info-card ul{margin:0;padding-left:4px;list-style:none}
+.info-card li{position:relative;padding-left:20px;font-size:14px;color:var(--ink-muted);margin-bottom:12px;line-height:1.65}
+.info-card li b{color:var(--ink)}
+.info-card li:before{content:"";position:absolute;left:2px;top:9px;width:6px;height:6px;border-radius:50%;background:var(--brand-2)}
+
+/* ---------- 通用表格与费率表 ---------- */
+.ttable{width:100%;border-collapse:separate;border-spacing:0;background:var(--ice-0);border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-m)}
+.ttable th{background:linear-gradient(135deg,var(--brand),var(--brand-2));color:#fff;padding:18px;font-size:15.5px;font-weight:700;text-align:center}
+.ttable td{padding:24px 20px;text-align:center;border-top:1px solid var(--ice-200);vertical-align:middle}
+.ttable td.tier{font-size:22px;font-weight:900;color:var(--ink)}
+.voucher{
+  display:inline-block;min-width:150px;text-align:left;padding:14px 18px;border-radius:12px;position:relative;
+  background:linear-gradient(135deg,#FBF3DC,#F7E7BC);border:1px solid var(--gold-line);
+}
+.voucher .vl{font-size:12px;color:var(--gold-deep);font-weight:700;letter-spacing:1px}
+.voucher .vv{font-size:22px;font-weight:900;color:#7A5410;margin-top:2px}
+.voucher .vv small{font-size:13px;font-weight:700}
+.voucher:after{content:"";position:absolute;top:14px;right:16px;width:22px;height:8px;border-radius:2px;background:linear-gradient(90deg,#C89232,#9A6B14)}
+.cashcard{
+  display:inline-block;min-width:150px;text-align:center;padding:14px 18px;border-radius:12px;
+  background:linear-gradient(135deg,#E9F6EE,#D6EEDF);border:1px solid #A9D6BC;
+}
+.cashcard .cl{font-size:11px;color:var(--green);letter-spacing:2px;font-weight:700}
+.cashcard .cv{display:block;font-size:20px;font-weight:900;color:#26603F;margin:4px 0}
+.cashcard .cs{font-size:11px;color:var(--green);letter-spacing:4px}
+.fee-cols{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:48px;align-items:start}
+.fee-h{font-size:19px;color:var(--ink);margin:0 0 14px;font-weight:900}
+.ttable.left td{text-align:left;padding:13px 18px;font-size:14px;color:var(--ink-muted);line-height:1.6}
+.ttable.left td:first-child{font-weight:700;color:var(--ink);white-space:nowrap;width:1%}
+.ttable.left td b{color:var(--brand)}
+
+/* ---------- 步骤 ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:52px}
+.step .stag{color:var(--brand);font-weight:700;font-size:14px;letter-spacing:1px}
+.step .stitle{font-size:19px;font-weight:700;margin:6px 0 0;min-height:56px;color:var(--ink)}
+.phone{
+  max-width:290px;margin:20px auto 0;border-radius:30px;overflow:hidden;
+  background:var(--ice-0);border:1px solid var(--line-2);box-shadow:var(--shadow-m);
+}
+.phone img{width:100%;height:auto}
+.note-bar{display:inline-block;margin-top:44px;padding:14px 24px;border-radius:12px;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.32);color:var(--ink-2);font-size:14.5px;font-weight:500;max-width:760px}
+.invite-card{max-width:760px;margin:34px auto 0;padding:24px 28px;border-radius:16px;background:var(--ice-0);border:1px solid var(--line);box-shadow:var(--shadow-s);text-align:left}
+.invite-card .it{font-size:17.5px;font-weight:700;margin-bottom:8px;color:var(--ink)}
+.invite-card .it::before{content:"🎁 "}
+.invite-card .id{font-size:14px;color:var(--ink-muted);line-height:1.7}
+
+/* ---------- LINKI 客户端下载 ---------- */
+.download-module{margin-top:44px;text-align:center}
+.download-module-title{font-size:clamp(26px,3.2vw,38px);line-height:1.2;color:var(--ink)}
+.download-module-sub{margin:10px auto 0;color:var(--ink-muted);font-size:15.5px}
+.download-card{
+  display:grid;grid-template-columns:1.06fr .94fr;margin-top:28px;overflow:hidden;text-align:left;
+  border:1px solid var(--line);border-radius:22px;background:var(--ice-0);box-shadow:var(--shadow-m);
+}
+.download-preview{
+  display:grid;grid-template-columns:minmax(150px,.72fr) minmax(210px,1.28fr);gap:20px;
+  min-height:440px;padding:34px 24px 0 34px;overflow:hidden;
+  background:radial-gradient(420px 280px at 72% 40%,rgba(139,92,246,.12),transparent 70%);
+}
+.download-copy{padding-top:18px}
+.download-app-icon{
+  display:grid;place-items:center;width:86px;height:86px;border-radius:20px;
+  background:linear-gradient(145deg,#0A4BFF,#1437F2);color:#fff;
+  font-size:28px;font-weight:800;letter-spacing:.5px;box-shadow:0 12px 28px rgba(20,55,242,.24);
+}
+.download-benefits{display:grid;gap:16px;margin-top:38px;color:var(--ink-muted);font-size:14.5px}
+.download-benefits span{display:flex;align-items:flex-start;gap:8px}
+.download-benefits b{color:var(--brand);font-size:17px;line-height:1.35}
+.download-phone{align-self:end;max-width:285px;margin:0 auto -92px;filter:drop-shadow(0 18px 30px rgba(23,17,41,.12))}
+.download-phone img{width:100%;height:auto}
+.download-options{display:grid;gap:18px;padding:46px 34px;border-left:1px solid var(--line);align-content:center}
+.download-option{
+  display:grid;grid-template-columns:48px minmax(120px,1fr) auto;align-items:center;gap:16px;
+  min-height:108px;padding:18px 20px;border:1px solid var(--line);border-radius:17px;background:var(--ice-50);
+}
+.download-icon{display:grid;place-items:center;width:44px;height:44px;color:var(--ink)}
+.download-icon svg{width:36px;height:36px;display:block}
+.download-option-meta strong{display:block;color:var(--ink);font-size:17px;line-height:1.35}
+.download-option-meta span{display:block;margin-top:4px;color:var(--ink-muted);font-size:13px}
+.download-btn{min-width:152px;padding:12px 20px;font-size:14px}
+.download-footer{
+  grid-column:1/-1;display:flex;justify-content:space-between;gap:24px;padding:18px 30px;
+  border-top:1px solid var(--line);background:rgba(124,58,237,.055);color:var(--ink-2);font-size:13.5px;
+}
+.download-footer span{display:flex;align-items:center;gap:8px}
+.download-footer .shield{color:var(--brand);font-weight:900}
+
+/* ---------- 页面维护者联系方式 ---------- */
+.cs-tags{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.cs-tag{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:var(--ice-0);border:1px solid var(--line);font-size:14px;color:var(--ink-2);box-shadow:var(--shadow-s)}
+.cs-tag .ck{color:var(--brand)}
+.qr-row{display:grid;grid-template-columns:repeat(2,minmax(0,220px));gap:18px;justify-content:center}
+.qr{min-width:0;padding:14px;background:var(--ice-0);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow-s);text-align:center}
+.qr .frame{display:grid;place-items:center;width:100%;aspect-ratio:1;padding:10px;overflow:hidden;border-radius:13px;background:#fff}
+.qr .frame img{width:100%;height:100%;object-fit:contain}
+.qr .ql{margin-top:12px;color:var(--ink);font-size:14px;font-weight:900;overflow-wrap:anywhere}
+
+/* ---------- 信任三卡 / 牌照 ---------- */
+.comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:52px;text-align:left}
+.comp-card{background:var(--ice-0);border:1px solid var(--line);border-radius:var(--radius);padding:30px 28px;box-shadow:var(--shadow-s)}
+.comp-card .ce{color:var(--brand);font-weight:700;font-size:13.5px;letter-spacing:3px}
+.comp-card h3{font-size:20px;color:var(--ink);margin:12px 0 14px}
+.comp-card p{font-size:14px;color:var(--ink-muted);margin:0}
+.broker{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--ice-200);transition:color .15s}
+.broker .bn{font-weight:700;color:var(--ink);font-size:14px;transition:color .15s}
+.broker .crd{font-size:12.5px;color:var(--ink-soft);white-space:nowrap}
+.broker .crd b{color:var(--brand);font-weight:700}
+a.broker:hover .bn{color:var(--brand)}
+a.broker:focus-visible{outline:3px solid rgba(124,58,237,.34);outline-offset:2px;border-radius:6px}
+.broker .role{display:inline-block;font-style:normal;font-size:11px;font-weight:600;color:var(--ink-muted);background:var(--ice-200);border-radius:999px;padding:2px 9px;margin-left:8px;vertical-align:1px;white-space:nowrap}
+.lic-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px;margin-top:34px;text-align:left}
+.lic{background:var(--ice-0);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:var(--shadow-s)}
+.lic .lr{font-weight:900;color:var(--ink);font-size:17px;margin-bottom:8px}
+.lic .ld{font-size:13px;color:var(--ink-muted)}
+.lic-note{font-size:13px;color:var(--ink-soft);margin-top:24px;max-width:960px}
+
+/* ---------- 品牌数据 ---------- */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px}
+.stat{background:var(--ice-0);border:1px solid var(--line);border-radius:16px;padding:36px 18px;text-align:center;box-shadow:var(--shadow-s)}
+.stat .sv{font-size:clamp(30px,3.2vw,42px);font-weight:900;background:linear-gradient(135deg,var(--brand-2),var(--brand));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat .sl{font-size:14.5px;color:var(--ink-muted);margin-top:10px}
+.sec-deep .stat{background:rgba(255,255,255,.05);border-color:rgba(167,139,250,.22);box-shadow:none}
+.sec-deep .stat .sv{background:linear-gradient(135deg,#C6B2FF,var(--violet));-webkit-background-clip:text;background-clip:text}
+.sec-deep .stat .sl{color:#C4B8E8}
+.sec-deep .cs-tag{background:rgba(255,255,255,.06);border-color:rgba(167,139,250,.28);color:#DCCFFF;box-shadow:none}
+.sec-deep .cs-tag .ck{color:#A78BFA}
+
+/* ---------- why-BIT 附件 ---------- */
+.chip-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:40px}
+.chip{padding:10px 20px;border-radius:999px;background:var(--ice-0);border:1px solid var(--line);font-size:14px;font-weight:500;color:var(--ink-2);box-shadow:var(--shadow-s)}
+.pull-quote{margin:48px auto 0;max-width:720px;font-size:21px;font-weight:900;color:var(--ink);line-height:1.5}
+.pull-quote span{display:block;margin-top:10px;font-size:14.5px;font-weight:400;color:var(--ink-muted)}
+
+/* ---------- 教程 ---------- */
+.tut-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:52px;text-align:left}
+.tut{background:var(--ice-0);border:1px solid var(--line);border-radius:var(--radius);padding:28px 26px;box-shadow:var(--shadow-s);transition:transform .18s,box-shadow .18s}
+.tut:hover{transform:translateY(-4px);box-shadow:var(--shadow-m)}
+.tut h3{font-size:17.5px;color:var(--ink);line-height:1.45;min-height:52px}
+.tut .link{margin-top:20px;color:var(--brand);font-weight:700;font-size:15px}
+
+/* ---------- footer：深冰川收尾 ---------- */
+footer{background:linear-gradient(180deg,var(--deep),#0E081F);padding:64px 0 48px;color:#fff}
+footer .flogo{margin-bottom:26px}
+footer .logo .name{color:#fff}
+footer .logo .tag{color:#9D8FC6}
+footer .rk{font-size:13px;color:#A093C4;margin:0 0 16px;line-height:1.75}
+footer .rk b{color:#D3C8F0}
+footer .copy{font-size:13px;color:#8E80B8;margin-top:24px}
+footer a{text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- 快速导航 ---------- */
+.quick-nav{
+  position:fixed;right:24px;bottom:24px;z-index:140;
+  display:flex;flex-direction:column;align-items:flex-end;
+}
+.quick-nav-toggle{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-width:94px;height:48px;padding:0 18px;border:1px solid rgba(124,58,237,.24);
+  border-radius:999px;background:rgba(255,255,255,.94);color:var(--ink);
+  box-shadow:0 12px 32px rgba(23,17,41,.16);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  font:700 14px/1 var(--font);cursor:pointer;touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;transition:transform .15s,box-shadow .15s,background .15s;
+}
+.quick-nav-toggle:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(23,17,41,.20)}
+.quick-nav-toggle:focus-visible,.quick-nav-close:focus-visible,.quick-nav-link:focus-visible{
+  outline:3px solid rgba(124,58,237,.34);outline-offset:3px;
+}
+.quick-nav-toggle svg{width:18px;height:18px;stroke:var(--brand);stroke-width:2.2;fill:none}
+.quick-nav-menu{
+  position:absolute;right:0;bottom:calc(100% + 12px);width:min(320px,calc(100vw - 32px));
+  max-height:min(570px,calc(100vh - 110px));padding:14px;overflow-y:auto;
+  border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.97);
+  box-shadow:0 20px 54px rgba(23,17,41,.20);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  opacity:0;visibility:hidden;pointer-events:none;transform:translateY(10px) scale(.98);
+  transform-origin:bottom right;transition:opacity .16s,transform .16s,visibility .16s;
+  overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+}
+.quick-nav.is-open .quick-nav-menu{
+  opacity:1;visibility:visible;pointer-events:auto;transform:none;
+}
+.quick-nav-head{display:flex;align-items:center;justify-content:space-between;padding:2px 4px 10px 8px}
+.quick-nav-head strong{font-size:14px;color:var(--ink)}
+.quick-nav-close{
+  display:grid;place-items:center;width:44px;height:44px;padding:0;border:0;border-radius:50%;
+  background:var(--ice-200);color:var(--ink-muted);font:700 20px/1 var(--font);cursor:pointer;
+}
+.quick-nav-links{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.quick-nav-link{
+  display:flex;align-items:center;min-height:44px;padding:9px 12px;border:1px solid transparent;
+  border-radius:12px;background:var(--ice-100);color:var(--ink-2);font-size:13px;font-weight:700;
+  transition:background .15s,border-color .15s,color .15s;
+}
+.quick-nav-link:hover,.quick-nav-link[aria-current="location"]{
+  background:rgba(124,58,237,.08);border-color:rgba(124,58,237,.22);color:var(--brand);
+}
+
+/* ---------- 移动端底部常驻 CTA ---------- */
+.mcta{display:none}
+@media(max-width:700px){
+  html{overflow-x:hidden;overflow-x:clip}
+  .wrap{padding:0 16px}
+  .hd{height:62px;gap:10px}
+  .logo{gap:8px;min-width:0}
+  .logo .bar{width:4px;height:24px}
+  .logo .name{font-size:24px}
+  .logo .tag{display:none}
+  .hd .btn-sm{min-height:44px;padding:10px 17px;font-size:14px}
+  .hero{padding:34px 0 26px}
+  .hero-grid{gap:14px}
+  .hero-art{order:initial;width:100%;max-width:none;margin:18px auto 0}
+  .hero-art img{width:min(260px,76vw);margin:0 auto;animation:none}
+  .hero-downloads{grid-template-columns:1fr;width:min(100%,360px);gap:8px;margin:6px auto 0;padding:8px}
+  .hero-download-btn{min-height:52px;padding:8px 16px}
+  .hero h1{font-size:clamp(38px,11vw,46px);line-height:1.08;letter-spacing:-1px}
+  .hero .lead{font-size:16px;line-height:1.7;margin-top:16px}
+  .eyebrow{padding:7px 12px;font-size:12px;line-height:1.45;margin-bottom:16px}
+  .gift-banner{align-items:flex-start;gap:12px;margin:20px 0 14px;padding:15px 16px}
+  .gift-banner .gi{width:42px;height:42px;font-size:21px}
+  .gift-banner .bt{font-size:16px;line-height:1.45}
+  .gift-banner .bs{font-size:12px}
+  .feat-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .feat{padding:13px 12px}
+  .feat .ft{align-items:flex-start;font-size:13px;line-height:1.45}
+  .feat .fd{display:none}
+  .hero-cta{display:flex;width:100%;min-height:50px;margin-top:20px;padding:13px 24px}
+  .trust-strip{gap:6px 14px;margin-top:16px}
+  .trust-strip span{font-size:12px}
+  .hero .disclaimer{margin-top:20px}
+  .reward-nav{padding-bottom:38px}
+  .sec-a,.sec-b,.sec-deep{padding:56px 0}
+  .h-sec{font-size:clamp(29px,8.5vw,36px)}
+  .sub{font-size:15.5px;line-height:1.7;margin-top:14px}
+  .block-title{font-size:19px;line-height:1.45}
+  .card-grid-4,.steps,.comp-grid,.tut-grid,.stat-grid{margin-top:34px}
+  .icard,.info-card,.comp-card,.tut{padding:22px 20px}
+  .prob{padding:23px 18px}
+  .prob .pv{font-size:36px}
+  .info-grid{gap:16px;margin-top:24px}
+  .wrap-scroll{
+    margin-left:-16px;margin-right:-16px;padding:0 16px 10px;
+    overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin;
+  }
+  .rtable,.ttable{min-width:680px}
+  .rtable th,.rtable td{padding:16px 18px;font-size:14px}
+  .ttable th{padding:15px;font-size:14px}
+  .ttable td{padding:18px 16px}
+  .task2-showcase{padding:54px 0 58px}
+  .task2-kicker{margin-bottom:14px;font-size:12px}
+  .task2-title{font-size:clamp(31px,9vw,39px);line-height:1.16;letter-spacing:-.8px}
+  .task2-sub{font-size:14.5px;line-height:1.7}
+  .task2-calculator{display:block;margin-top:24px;padding:16px;border-radius:15px}
+  .task2-tier-side{display:block}
+  .task2-tier-label{display:block;margin-bottom:10px}
+  .task2-tier-group{grid-template-columns:repeat(3,minmax(0,1fr));width:100%}
+  .task2-tier{min-width:0;min-height:44px;padding:9px 6px;font-size:12.5px}
+  .task2-breakdown{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid #E6EAF1}
+  .task2-metric{display:block;text-align:center;white-space:normal}
+  .task2-metric span{display:block;font-size:11px}
+  .task2-metric b{display:block;margin-top:3px;font-size:14px}
+  .task2-total{grid-column:1/-1;justify-content:center;margin-top:4px;padding:12px 16px}
+  .task2-total strong{font-size:26px}
+  .task2-table-card{border-radius:15px}
+  .task2-table-top{display:block;padding:13px 15px;line-height:1.65}
+  .task2-table-top span{display:block}
+  .task2-table-top span:last-child{margin-top:4px;text-align:left}
+  .task2-table{min-width:0;table-layout:fixed}
+  .task2-table th{padding:12px 5px;font-size:10.5px;line-height:1.45}
+  .task2-table td{padding:15px 5px;font-size:12px}
+  .task2-table td:last-child{font-size:13px}
+  .task2-table-foot{padding:13px 15px;font-size:11px}
+  .task2-action-row{display:block;margin-top:22px}
+  .task2-cta.btn{display:flex;width:100%;min-height:50px}
+  .download-module{margin-top:34px}
+  .download-card{display:block;border-radius:18px}
+  .download-preview{grid-template-columns:122px 1fr;min-height:330px;padding:22px 14px 0 20px}
+  .download-copy{padding-top:12px}
+  .download-app-icon{width:68px;height:68px;border-radius:16px;font-size:23px}
+  .download-benefits{gap:11px;margin-top:26px;font-size:12px}
+  .download-benefits b{font-size:15px}
+  .download-phone{max-width:210px;margin-bottom:-74px}
+  .download-options{gap:12px;padding:18px;border-left:0;border-top:1px solid var(--line)}
+  .download-option{grid-template-columns:40px 1fr;gap:12px;min-height:0;padding:15px 14px}
+  .download-icon{width:38px;height:38px}
+  .download-icon svg{width:31px;height:31px}
+  .download-option-meta strong{font-size:15px}
+  .download-option-meta span{font-size:12px}
+  .download-btn{grid-column:1/-1;width:100%;min-height:46px;margin-top:2px}
+  .download-footer{display:grid;gap:10px;padding:15px 18px;font-size:12px;line-height:1.55}
+  .note-bar{margin-top:28px;padding:13px 16px;font-size:13px;line-height:1.65}
+  .invite-card{margin-top:24px;padding:20px}
+  .cs-tags{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:20px}
+  .cs-tag{min-width:0;justify-content:flex-start;padding:9px 11px;font-size:12px;line-height:1.45}
+  .qr-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .qr{min-width:0}
+  .qr .frame{width:100%;height:auto;aspect-ratio:1;padding:9px;border-radius:14px}
+  .qr .ql{font-size:12px;margin-top:9px}
+  footer{padding:48px 0 34px}
+  .mcta{
+    display:flex;position:fixed;left:0;right:0;bottom:0;z-index:120;
+    align-items:center;justify-content:space-between;gap:10px;
+    padding:
+      9px calc(12px + env(safe-area-inset-right))
+      calc(9px + env(safe-area-inset-bottom))
+      calc(12px + env(safe-area-inset-left));
+    background:rgba(255,255,255,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border-top:1px solid var(--line);box-shadow:0 -8px 30px rgba(23,17,41,.10);
+  }
+  .mcta .mt{min-width:0;font-size:13px;font-weight:700;color:var(--ink);line-height:1.35}
+  .mcta .mt small{display:block;font-weight:400;color:var(--ink-muted);font-size:11px}
+  .mcta .btn{flex-shrink:0;min-height:44px;padding:11px 20px;font-size:14px}
+  .quick-nav{
+    right:calc(12px + env(safe-area-inset-right));
+    bottom:calc(82px + env(safe-area-inset-bottom));
+  }
+  .quick-nav-toggle{min-width:88px;height:46px;padding:0 16px}
+  .quick-nav-menu{
+    width:min(320px,calc(100vw - 24px));
+    max-height:min(520px,calc(100vh - 164px));
+    max-height:min(520px,calc(100dvh - 164px));
+  }
+  body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+}
+
+/* ---------- 滚动浮现 ---------- */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+@media(max-width:960px){
+  .download-card{display:block}
+  .download-options{border-left:0;border-top:1px solid var(--line)}
+  .card-grid-4,.prob-grid,.comp-grid,.tut-grid{grid-template-columns:1fr 1fr}
+  .rn-grid{grid-template-columns:1fr 1fr}
+  .steps,.prob-grid.cols-3,.fee-cols{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:repeat(2,1fr)}
+  .info-grid,.feat-grid{grid-template-columns:1fr}
+  .qr-row{flex-wrap:wrap}
+}
+@media(max-width:560px){
+  .card-grid-4,.prob-grid,.comp-grid,.tut-grid,.rn-grid{
+    width:calc(100% + 32px);max-width:calc(100% + 32px);min-width:0;
+    grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:82%;
+    gap:14px;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;scroll-padding-left:16px;scrollbar-width:none;
+    margin-left:-16px;margin-right:-16px;padding:0 16px 12px;
+  }
+  .prob-grid.cols-3{grid-template-columns:none}
+  .card-grid-4::-webkit-scrollbar,.prob-grid::-webkit-scrollbar,.comp-grid::-webkit-scrollbar,.tut-grid::-webkit-scrollbar,.rn-grid::-webkit-scrollbar,.steps::-webkit-scrollbar{display:none}
+  .card-grid-4>* ,.prob-grid>* ,.comp-grid>* ,.tut-grid>* ,.rn-grid>*{scroll-snap-align:start;scroll-snap-stop:always}
+  .lic-grid{grid-template-columns:1fr}
+  .steps{
+    width:calc(100% + 32px);max-width:calc(100% + 32px);min-width:0;
+    grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:82%;
+    gap:14px;overflow-x:auto;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;scroll-padding-left:16px;scrollbar-width:none;
+    margin-left:-16px;margin-right:-16px;padding:0 16px 12px;
+  }
+  .step{scroll-snap-align:start;scroll-snap-stop:always;padding:22px 16px;background:var(--ice-0);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow-s)}
+  .stat{padding:24px 12px}
+  .step .stitle{font-size:16px;min-height:48px}
+  .phone{max-width:220px;margin-top:14px;border-radius:24px}
+  .sec-a,.sec-b,.sec-deep{padding:56px 0}
+}
+@media(max-width:380px){
+  .logo .name{font-size:21px}
+  .hd .btn-sm{padding:9px 13px;font-size:13px}
+  .mcta .mt{font-size:12px}
+  .mcta .btn{padding:10px 15px;font-size:13px}
+  .qr-row{grid-template-columns:1fr;max-width:240px;margin:0 auto}
+  .quick-nav-links{grid-template-columns:1fr}
+  .quick-nav-menu{width:min(280px,calc(100vw - 24px))}
+}
+@media(max-width:340px){#task1 .h-sec{font-size:27px}}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="wrap hd">
+    <div class="logo"><span class="bar"></span><span class="name">BIT</span></div>
+    <div class="hd-promo">开户即享 <span class="blue">$310 新人大礼包</span>｜美股免佣交易</div>
+    <a class="btn btn-primary btn-sm" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT 注册页面，将在新窗口打开">立即开户</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow pill-ice"><span class="dot"></span>9月美股新人礼 · 9月1日 — 9月30日 限时开放（UTC+8）</span>
+      <h1>一个账户，<br>投资全球资产</h1>
+      <p class="lead">交易加密货币、投资美股、配置代币化现实世界资产，一切尽在一个受监管的账户。<br><b>不是美股代币——直连美国持牌券商，真实持股、权益完整。</b></p>
+      <div class="gift-banner">
+        <div class="gi">🎁</div>
+        <div>
+          <div class="bt">开户即享 <span class="blue">$310</span> 新人大礼包</div>
+          <div class="bs">$100 平台费抵扣卡 + 最高 $200 入金礼 + 最高 $10 交易礼</div>
+        </div>
+      </div>
+      <div class="feat-grid">
+        <div class="feat"><div class="ft"><span class="ck">✓</span>美股免佣交易</div><div class="fd">开户即可享受美股免佣交易权益</div></div>
+        <div class="feat"><div class="ft"><span class="ck">✓</span>$100 平台费抵扣卡</div><div class="fd">进入美股页面后自动发放，有效期 30 天</div></div>
+        <div class="feat"><div class="ft"><span class="ck">✓</span>美股实时行情卡</div><div class="fd">30 天 Nasdaq Basic 实时行情</div></div>
+        <div class="feat"><div class="ft"><span class="ck">✓</span>期权实时行情卡</div><div class="fd">30 天 OPRA 期权实时行情</div></div>
+      </div>
+      <a class="btn btn-primary btn-lg hero-cta" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT 注册页面，将在新窗口打开">立即开户，领取 $310 大礼包</a>
+      <div class="trust-strip">
+        <span><span class="ck">✓</span>直连美国持牌券商 · SIPC 成员</span>
+        <span><span class="ck">✓</span>Matrixport 升级 · $60亿+ 管理资产</span>
+        <span><span class="ck">✓</span>稳定币入金 · 7×24 秒级出入</span>
+      </div>
+    </div>
+    <div class="hero-art">
+      <img src="/bit-global-assets.png" alt="BIT 一个账户投资美股与加密资产" width="1188" height="1164" fetchpriority="high" decoding="async">
+      <div class="hero-downloads" data-linki-downloads hidden aria-label="客户端下载快捷入口">
+        <span class="hero-download-heading"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2v10m0 0 4-4m-4 4L6 8M3 15v2h14v-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>BIT APP 下载</span>
+        <a class="btn hero-download-btn" data-download-link="app-store" href="https://bit.go.link/eeWZn" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="hero-download-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2" opacity=".75"/><path d="m10 24 9.5-17M12 7l10 17M7.5 20.5h17" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="hero-download-copy"><strong>App Store</strong><small>iOS 官方下载</small></span>
+        </a>
+        <a class="btn hero-download-btn" data-download-link="google-play" href="https://bit.go.link/eeWZn" target="_blank" rel="nofollow noopener noreferrer">
+          <span class="hero-download-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><path d="M6 4.5 26.5 16 6 27.5v-23Z" fill="currentColor"/><path d="m6.5 5 13 11-13 11M19.5 16l6.5-3.7M19.5 16l6.5 3.7" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          <span class="hero-download-copy"><strong>Google Play</strong><small>Google 官方下载</small></span>
+        </a>
+        <a class="btn hero-download-btn" data-download-link="android-apk" href="https://download.onsites.me/matrixport-official-master-19-25_234bclet.apk" rel="nofollow">
+          <span class="hero-download-icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M11 15h18v15a4 4 0 0 1-4 4H15a4 4 0 0 1-4-4V15Z" fill="currentColor"/><path d="M11 14a9 9 0 0 1 18 0H11Z" fill="currentColor"/><path d="m14 10-3-4M26 10l3-4M8 17v11M32 17v11M16 33v5M24 33v5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="16" cy="11" r="1.4" fill="#FFFFFF"/><circle cx="24" cy="11" r="1.4" fill="#FFFFFF"/></svg></span>
+          <span class="hero-download-copy"><strong>Android APK</strong><small>专属安装包</small></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 奖励速览（锚点导航） ============ -->
+<div class="reward-nav" id="rewards">
+  <div class="wrap">
+    <div class="rn-grid">
+      <a class="rn" href="#task1"><span class="rn-k">任务一 · 开户</span><span class="rn-v" style="display:block">四重开户权益</span><span class="rn-d" style="display:block">免佣 / $100 抵扣卡 / 双行情卡</span></a>
+      <a class="rn" href="#task2"><span class="rn-k">任务二 · 入金</span><span class="rn-v" style="display:block">最高 $200 股票现金卡</span><span class="rn-d" style="display:block">开户后 14 天达标 · 留存 30 天</span></a>
+      <a class="rn" href="#task3"><span class="rn-k">任务三 · 交易</span><span class="rn-v" style="display:block">最高 $10 股票现金卡</span><span class="rn-d" style="display:block">3 笔得 $5 · 8 笔累计 $10</span></a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ TASK 1 · 开户奖励 ============ -->
+<section class="sec-b" id="task1">
+  <div class="wrap center">
+    <span class="eyebrow pill-blue">任务一 · 开户奖励</span>
+    <h2 class="h-sec"><span class="task1-title-line">完成美股开户，</span><span class="task1-title-line">一键获赠 <span class="blue">$100 抵扣卡</span>，</span><span class="task1-title-line">解锁四重福利</span></h2>
+    <p class="sub">开户即得，无需入金门槛</p>
+    <div class="card-grid-4">
+      <div class="icard"><div class="ico">$0</div><h3>美股免佣交易</h3><p>活动期间首次完成美股开户，即可享受美股免佣交易权益。</p></div>
+      <div class="icard"><div class="ico">🎟️</div><h3>$100 平台费抵扣卡</h3><p>成功注册并进入美股页面后自动发放，有效期 30 天。</p></div>
+      <div class="icard"><div class="ico">📈</div><h3>美股实时行情卡</h3><p>自动发放 30 天 Nasdaq Basic 美股实时行情卡，手动激活后使用。</p></div>
+      <div class="icard"><div class="ico">📊</div><h3>期权实时行情卡</h3><p>自动发放 30 天 OPRA 期权实时行情卡，手动激活后使用。</p></div>
+    </div>
+    <p class="disclaimer">*投资涉及风险，优惠设有期限并受活动条款及细则约束。活动不构成投资建议。</p>
+  </div>
+</section>
+
+<!-- ============ TASK 2 · 入金奖励 ============ -->
+<section class="task2-showcase" id="task2">
+  <div class="wrap">
+    <div class="task2-head">
+      <span class="task2-kicker">任务二 · 入金奖励</span>
+      <h2 class="task2-title">入金达标，最高获赠 $200 股票现金卡</h2>
+      <p class="task2-sub">开户后 <b>14 天内</b>达到净入金档位，留存满 <b>30 天</b>后激活完整奖励</p>
+    </div>
+
+    <div class="task2-calculator" data-task2-calculator>
+      <div class="task2-tier-side">
+        <span class="task2-tier-label">按档位测算</span>
+        <div class="task2-tier-group" role="group" aria-label="选择累计净入金档位">
+          <button class="task2-tier" type="button" data-task2-tier="1000" aria-pressed="false">$1,000</button>
+          <button class="task2-tier" type="button" data-task2-tier="2000" aria-pressed="false">$2,000</button>
+          <button class="task2-tier is-active" type="button" data-task2-tier="10000" aria-pressed="true">$10,000</button>
+        </div>
+      </div>
+      <div class="task2-breakdown" aria-live="polite">
+        <div class="task2-metric"><span>入金礼</span><b data-task2-deposit>$200</b></div>
+        <div class="task2-metric"><span>抵扣卡</span><b>$100</b></div>
+        <div class="task2-metric"><span>交易礼</span><b>$10</b></div>
+        <div class="task2-total"><span>累计最高可得</span><strong data-task2-total>$310</strong></div>
+      </div>
+    </div>
+
+    <div class="task2-table-card">
+      <div class="task2-table-top">
+        <span>就高不就低，每人按最高达成档位计一次。</span>
+        <span>入金礼股票现金卡：激活后有效期 60 天</span>
+      </div>
+      <div class="task2-table-scroll">
+        <table class="task2-table">
+          <thead><tr><th>累计净入金达标</th><th>即时到账</th><th>留存 30 天再激活</th><th>累计获得股票现金卡</th></tr></thead>
+          <tbody>
+            <tr data-task2-row="1000"><td><b>≥ $1,000</b></td><td>—</td><td>$50</td><td>$50</td></tr>
+            <tr data-task2-row="2000"><td><b>≥ $2,000</b></td><td>$5</td><td>$95</td><td>$100</td></tr>
+            <tr class="is-active" data-task2-row="10000"><td><b>≥ $10,000</b></td><td>$5</td><td>$195</td><td>$200</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="task2-table-foot"><b>净入金 = 累计入金 − 累计出金。</b>跌破档位需重新计算留存期；资产变动及入金币种兑换不影响达标金额。开户后 14 天内可重新达标，考核完成后余下奖励将在 14 个工作日内发放。</p>
+    </div>
+
+    <div class="task2-action-row">
+      <a class="btn btn-primary btn-lg task2-cta" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT 注册页面，将在新窗口打开">立即开户领 $310 大礼包</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TASK 3 · 交易奖励 ============ -->
+<section class="sec-b" id="task3">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow pill-blue">任务三 · 交易奖励</span>
+      <h2 class="h-sec">交易达标，额外最高获赠 $10 股票现金卡</h2>
+      <p class="sub">开户后 14 天内完成符合条件的美股买入交易</p>
+    </div>
+    <div class="wrap-scroll" style="margin-top:48px">
+    <table class="rtable">
+      <thead><tr><th>累计交易笔数</th><th>单笔交易要求</th><th>本档股票现金卡</th><th>最终累计奖励</th></tr></thead>
+      <tbody>
+        <tr><td><b>≥ 3 笔</b></td><td>单笔成交金额 ≥ $100</td><td>$5</td><td><b>$5 股票现金卡</b></td></tr>
+        <tr class="hot"><td><b>≥ 8 笔</b></td><td>单笔成交金额 ≥ $100</td><td>$5</td><td><b>$10 股票现金卡</b></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h4>交易达标规则</h4>
+        <ul>
+          <li>须在活动期间首次完成美股开户，并在开户后 <b>14 天内</b>完成任务。</li>
+          <li>仅统计符合条件的<b>美股买入交易</b>，每笔成交金额须达到 $100。</li>
+          <li>达到 3 笔获 $5；达到 8 笔再获 $5，累计最高 $10。</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h4>奖励说明</h4>
+        <ul>
+          <li>交易奖励为<b>股票现金卡</b>，并非平台费抵扣卡。</li>
+          <li>股票现金卡激活后有效期为 7 天。</li>
+          <li>只要在活动期间完成开户，即使活动结束，仍可继续完成开户后 14 天内的任务。</li>
+        </ul>
+      </div>
+    </div>
+    <p class="disclaimer center">*投资涉及风险，优惠设有期限并受活动条款及细则约束。活动不构成投资建议。</p>
+  </div>
+</section>
+
+<!-- ============ 简单 3 步 ============ -->
+<section class="sec-a" id="steps">
+  <div class="wrap center">
+    <h2 class="h-sec">简单 3 步，轻松领赏</h2>
+    <p class="sub">BIT 美股功能现已在 App 全面上线（网页版即将推出），开户全程仅需 3 分钟</p>
+    <div class="download-module" data-linki-downloads hidden>
+      <span class="eyebrow pill-ice">客户端下载</span>
+      <h3 class="download-module-title">下载 BIT，开始美股交易</h3>
+      <p class="download-module-sub">选择适合你的设备，安装后即可进入开户流程</p>
+      <div class="download-card">
+        <div class="download-preview">
+          <div class="download-copy">
+            <div class="download-app-icon" aria-label="BIT App">BIT</div>
+            <div class="download-benefits" aria-label="BIT App 特点">
+              <span><b>✓</b>美股交易，极速体验</span>
+              <span><b>✓</b>实时行情，深度数据</span>
+              <span><b>✓</b>安全合规，资金保障</span>
+            </div>
+          </div>
+          <div class="download-phone">
+            <img src="/bit-step-market.webp" alt="BIT App 美股入口界面" width="544" height="1042" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="download-options" aria-label="客户端下载方式">
+          <article class="download-option">
+            <span class="download-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none"><rect x="10" y="3" width="20" height="34" rx="5" stroke="currentColor" stroke-width="3"/><path d="M17 8h6M17 32h6" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+            </span>
+            <div class="download-option-meta"><strong>iOS</strong><span>官方 App Store</span></div>
+            <a class="btn btn-primary download-btn" data-download-link="app-store" href="https://bit.go.link/eeWZn" target="_blank" rel="nofollow noopener noreferrer">前往 App Store</a>
+          </article>
+          <article class="download-option">
+            <span class="download-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none"><path d="M8 5.5 31.5 20 8 34.5V5.5Z" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/><path d="m8.5 6 15 14-15 14M23.5 20l7.5-4.5M23.5 20l7.5 4.5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+            </span>
+            <div class="download-option-meta"><strong>Google Play</strong><span>官方应用商店</span></div>
+            <a class="btn btn-primary download-btn" data-download-link="google-play" href="https://bit.go.link/eeWZn" target="_blank" rel="nofollow noopener noreferrer">前往 Google Play</a>
+          </article>
+          <article class="download-option">
+            <span class="download-icon" aria-hidden="true">
+              <svg viewBox="0 0 40 40" fill="none"><path d="M11 15h18v15a4 4 0 0 1-4 4H15a4 4 0 0 1-4-4V15Z" fill="currentColor"/><path d="m14 10-3-4M26 10l3-4M11 14a9 9 0 0 1 18 0H11Z" fill="currentColor"/><circle cx="16" cy="11" r="1.4" fill="white"/><circle cx="24" cy="11" r="1.4" fill="white"/><path d="M8 17v11M32 17v11M16 33v5M24 33v5" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+            </span>
+            <div class="download-option-meta"><strong>Android APK</strong><span>内置专属邀请码</span></div>
+            <a class="btn btn-primary download-btn" data-download-link="android-apk" href="https://download.onsites.me/matrixport-official-master-19-25_234bclet.apk" rel="nofollow">直接下载 APK</a>
+          </article>
+        </div>
+        <div class="download-footer">
+          <span><b class="shield">◆</b>专属安装包 · 点击直接下载</span>
+          <span>Android 安装包已内置专属邀请码，请勿通过其他来源替换。</span>
+        </div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="stag">Step 1</div>
+        <div class="stitle">在 BIT APP 首页，点击“美股”按钮</div>
+        <div class="phone"><img src="/bit-step-market.webp" alt="在 BIT APP 首页，点击美股按钮" width="544" height="1042" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="step">
+        <div class="stag">Step 2</div>
+        <div class="stitle">3 分钟完成极速美股开户</div>
+        <div class="phone"><img src="/bit-step-account.webp" alt="3 分钟完成极速美股开户" width="534" height="1042" loading="lazy" decoding="async"></div>
+      </div>
+      <div class="step">
+        <div class="stag">Step 3</div>
+        <div class="stitle">使用稳定币或银行转账入金，开始交易</div>
+        <div class="phone"><img src="/bit-step-funding.webp" alt="使用稳定币或银行转账入金，开始交易" width="534" height="1042" loading="lazy" decoding="async"></div>
+      </div>
+    </div>
+    <div class="note-bar">📌 通过本页按钮注册将自动携带邀请码，否则可能无法获得上述活动奖励。</div>
+    <br>
+    <a class="btn btn-primary btn-lg" style="margin-top:36px" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT 注册页面，将在新窗口打开">3 分钟开户 · 立即领取</a>
+  </div>
+</section>
+
+<!-- ============ 联系方式 ============ -->
+<section class="sec-b" id="contact">
+  <div class="wrap center">
+    <span class="eyebrow pill-ice">联系方式</span>
+    <h2 style="font-size:clamp(22px,3vw,30px);margin-top:4px">添加 BIT 官方客服经理</h2>
+    <p class="sub" style="font-size:15.5px;margin-top:10px">完成注册后，扫码添加 BIT 专属客服经理，享受一对一服务，协助你快速完成开户、了解产品及最新活动。</p>
+    <div class="cs-tags" style="justify-content:center;margin-top:22px" aria-label="客服经理服务范围">
+      <span class="cs-tag"><span class="ck">✓</span>开户流程答疑</span>
+      <span class="cs-tag"><span class="ck">✓</span>产品信息咨询</span>
+      <span class="cs-tag"><span class="ck">✓</span>奖励与福利说明</span>
+      <span class="cs-tag"><span class="ck">✓</span>最新活动通知</span>
+    </div>
+    <div class="qr-row" style="margin-top:30px">
+      <article class="qr">
+        <div class="frame"><img src="/contact-wechat-liam.png" alt="微信二维码 Liam@BIT" width="656" height="656" loading="lazy" decoding="async"></div>
+        <div class="ql">WeChat · Liam@BIT</div>
+      </article>
+      <article class="qr">
+        <div class="frame"><img src="/contact-telegram-bitstk.png" alt="Telegram 二维码 @BITSTK" width="1200" height="1200" loading="lazy" decoding="async"></div>
+        <div class="ql">Telegram · @BITSTK</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 为什么选 BIT ============ -->
+<section class="sec-a" id="why-bit">
+  <div class="wrap center">
+    <span class="eyebrow pill-ice">为什么选 BIT</span>
+    <h2 class="h-sec">不是美股代币，是真实美股</h2>
+    <p class="sub">直连美国持牌券商，用 USDT/USDC 即刻配置全球核心资产</p>
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="ce">真实持仓</div>
+        <h3>100% 真实持股，权益完整</h3>
+        <p>非 CFD、非合成资产、非美股代币。产品结构上「数字资产 + 持牌券商」直连，享有分红、投票权等完整股东权益，资产安全有底层保障。</p>
+      </div>
+      <div class="comp-card">
+        <div class="ce">丝滑出入</div>
+        <h3>稳定币直投，T+0 高效流转</h3>
+        <p>USDT/USDC 直接入金，7×24 小时秒级出入金，无 T+N 等待；加密市场与美股市场无缝切换，无需多账户跳转，不错过行情的「黄金入场点」。</p>
+      </div>
+      <div class="comp-card">
+        <div class="ce">越交易越省</div>
+        <h3>0 佣金 + 低固定费</h3>
+        <p>交易佣金 0，平台费固定 0.005 USD/股；对比美股代币化平台约 0.1%–0.3% 的比例型收费，中大额与高频交易场景成本优势显著。</p>
+      </div>
+    </div>
+    <div class="chip-row">
+      <span class="chip">美股主板股票</span>
+      <span class="chip">主流 ETF（指数 / 行业）</span>
+      <span class="chip">碎股交易 · $1 起投</span>
+      <span class="chip">融资融券 · 已上线</span>
+      <span class="chip">期权实时行情 · OPRA</span>
+      <span class="chip">夜间模式 · 盯盘更轻松</span>
+    </div>
+    <p class="pull-quote">「对 Crypto 用户来说，这是进入美股最顺的一条路。」<span>一个账户，完成加密货币、美股、ETF、固收、结构化理财及 RWA 黄金的跨市场资产配置，灵活切换、组合管理。</span></p>
+  </div>
+</section>
+
+<!-- ============ 费率与出入金时效 ============ -->
+<section class="sec-b" id="fees">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow pill-blue">费率透明</span>
+      <h2 class="h-sec">交易与出入金费率，一目了然</h2>
+      <p class="sub">比例费会随金额线性增长，固定费更可控——越交易，成本越省</p>
+    </div>
+    <div class="fee-cols">
+      <div>
+        <h3 class="fee-h">美股交易费率</h3>
+        <div class="wrap-scroll"><table class="ttable left">
+          <tbody>
+            <tr><td>交易佣金</td><td><b>免费</b></td></tr>
+            <tr><td>平台费</td><td>固定 0.005 USD/股，每笔订单最低 0.99 USD</td></tr>
+            <tr><td>交收费</td><td>0.003 USD/股</td></tr>
+            <tr><td>交易活动费</td><td>0.000195 USD/股，仅卖单收取（每次成交最低 0.01、最高 9.79 USD）</td></tr>
+            <tr><td>SEC 费用</td><td>交易金额 × 0.0000206，仅卖出股票时收取（最低 0.01 USD）</td></tr>
+            <tr><td>综合审计跟踪费</td><td>0.000053 USD/股</td></tr>
+            <tr><td>碎股（&lt;1 股）</td><td>平台使用费 0.99% × 交易金额，其他费用正常收取</td></tr>
+            <tr><td>转仓</td><td><b>转入免费</b>；转出每支股票 150 USD</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+      <div>
+        <h3 class="fee-h">稳定币出入金（OTC 兑换）</h3>
+        <div class="wrap-scroll"><table class="ttable left">
+          <tbody>
+            <tr><td>USDC → USD 入金</td><td>$0–1 万：0.20%｜$1–10 万：0.15%｜$10–100 万：0.10%｜$100–500 万：0.08%｜$500 万以上：0.06%</td></tr>
+            <tr><td>USDT → USD 入金</td><td>固定 0.15%（实际兑换受汇率浮动影响）</td></tr>
+            <tr><td>出金</td><td>USD → USDC/USDT：0.05%<b>（限时特惠 0，活动期间 1:1 兑换）</b></td></tr>
+            <tr><td>快速到账</td><td>加收 0.1% 服务费<b>（限时优惠 0）</b></td></tr>
+          </tbody>
+        </table></div>
+        <h3 class="fee-h" style="margin-top:28px">到账时效</h3>
+        <div class="wrap-scroll"><table class="ttable left">
+          <tbody>
+            <tr><td>稳定币入金</td><td>快速通道即刻入金（活动期间 0 服务费）；最小入金 100 USDC/USDT</td></tr>
+            <tr><td>银行电汇</td><td>入金约 2–5 个工作日（BIT 不收手续费）；出金约 1–5 个工作日（60 USD/笔，最低 1,000 USD）</td></tr>
+            <tr><td>股票转仓</td><td>转入约 3–5 个工作日到账（以双方券商确认为准）</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+    <p class="disclaimer center">*OTC 费率会随市场情况实时调整，全部费率以 <a data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="使用邀请码 STOCK 打开 BIT 注册页面，将在新窗口打开">www.bit.com</a> 实时公布为准。</p>
+  </div>
+</section>
+
+<!-- ============ 合规持牌 ============ -->
+<section class="sec-a" id="compliance">
+  <div class="wrap center">
+    <span class="eyebrow pill-ice">合规持牌 · 独立托管</span>
+    <h2 class="h-sec">资金安全，值得托付</h2>
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="ce">美股监管</div>
+        <h3>SEC 与 FINRA 监管，SIPC 成员</h3>
+        <p>BIT 通过直连美国持牌券商，为客户构建通往美国证券市场的合规通道。所有合作券商均受美国 SEC 及 FINRA 监管，并为 SIPC 成员——用户的交易与资产依托成熟且受监管的美国金融市场基础设施。</p>
+      </div>
+      <div class="comp-card">
+        <div class="ce">资金去向</div>
+        <h3>存放于美国持牌清算机构</h3>
+        <p style="margin-bottom:8px">客户资金与股票由美国 SEC 注册、受 FINRA 监管的持牌清算机构托管清算，各合作券商均可通过 FINRA BrokerCheck 一键核验：</p>
+        <a class="broker" href="https://brokercheck.finra.org/firm/summary/288933" target="_blank" rel="nofollow noopener noreferrer" aria-label="在 FINRA BrokerCheck 查看 Clear Street"><span class="bn">Clear Street LLC<em class="role">清算 · 托管</em></span><span class="crd">CRD <b>288933</b> ↗</span></a>
+        <a class="broker" href="https://brokercheck.finra.org/firm/summary/134284" target="_blank" rel="nofollow noopener noreferrer" aria-label="在 FINRA BrokerCheck 查看 RQD Clearing"><span class="bn">RQD* Clearing, LLC<em class="role">清算 · 托管</em></span><span class="crd">CRD <b>134284</b> ↗</span></a>
+        <a class="broker" href="https://brokercheck.finra.org/firm/summary/317194" target="_blank" rel="nofollow noopener noreferrer" aria-label="在 FINRA BrokerCheck 查看 Atomic Vaults Securities"><span class="bn">Atomic Vaults Securities, LLC<em class="role">介绍券商</em></span><span class="crd">CRD <b>317194</b> ↗</span></a>
+      </div>
+      <div class="comp-card">
+        <div class="ce">资金隔离</div>
+        <h3>客户资产与公司自有资产隔离</h3>
+        <p>在相关规则和服务安排下，客户资产与公司自有资产保持隔离；BIT 在自身系统中维护用户层面的资金和持仓记录，用户可随时通过 BIT App 查看账户信息。</p>
+      </div>
+    </div>
+
+    <h3 style="text-align:left;font-size:22px;color:var(--ink);margin:56px 0 0">全球牌照与注册</h3>
+    <div class="lic-grid">
+      <div class="lic"><div class="lr">新加坡</div><div class="ld">大型支付机构（Major Payment Institution）牌照</div></div>
+      <div class="lic"><div class="lr">香港</div><div class="ld">信托或公司服务提供者（TCSP）牌照及放债人牌照</div></div>
+      <div class="lic"><div class="lr">瑞士</div><div class="ld">FINMA 监管下的集合资产管理人</div></div>
+      <div class="lic"><div class="lr">不丹</div><div class="ld">金融服务牌照（FSL）</div></div>
+      <div class="lic"><div class="lr">英属维尔京群岛</div><div class="ld">SIBA 投资业务牌照（第2类）+ VASP 注册</div></div>
+    </div>
+    <p class="lic-note">相关牌照、注册及监管批准由 BIT/Matrixport 集团旗下不同实体分别持有，且仅适用于各实体在其获批范围内所开展的业务活动。BIT 美股服务由 BIT 全资子公司 Matrix Gelephu Pte. Ltd. 设立并承载，该实体持有不丹 Gelephu Mindfulness City 金融服务局（GFSO）颁发的金融服务牌照（FSL），获准以代理方式进行投资交易并提供托管服务。</p>
+  </div>
+</section>
+
+<!-- ============ 品牌实力 ============ -->
+<section class="sec-deep" id="brand">
+  <div class="wrap center">
+    <span class="eyebrow pill-ice">品牌实力</span>
+    <h2 class="h-sec">不是新面孔，是 Matrixport 的下一步</h2>
+    <p class="sub" style="max-width:820px">BIT（Bridge Into Tomorrow）由亚洲领先加密金融机构 Matrixport 品牌升级而来——成立 7 年的金融科技独角兽，业务涵盖托管（Cactus Custody）、交易、支付与 RWA。2026 年 2 月，平台正式支持稳定币（USDT/USDC）入金投资美股，把加密世界的资金效率带进美国股市。</p>
+    <div class="stat-grid">
+      <div class="stat"><div class="sv">$60亿+</div><div class="sl">管理资产规模（美元）</div></div>
+      <div class="stat"><div class="sv">$70亿+</div><div class="sl">月交易量（美元）</div></div>
+      <div class="stat"><div class="sv">$1.38亿</div><div class="sl">五轮融资累计（美元）</div></div>
+      <div class="stat"><div class="sv">$10亿+</div><div class="sl">独角兽估值（美元）</div></div>
+    </div>
+    <div class="cs-tags" style="justify-content:center;margin-top:34px">
+      <span class="cs-tag"><span class="ck">✓</span>2019 年成立 · 7 年机构服务经验</span>
+      <span class="cs-tag"><span class="ck">✓</span>CB Insights 全球 50 家最具前景区块链公司</span>
+      <span class="cs-tag"><span class="ck">✓</span>入选 2024 胡润全球独角兽榜 · 2025 新加坡金融科技独角兽榜</span>
+      <span class="cs-tag"><span class="ck">✓</span>总部新加坡 · 全球 7 个国家和地区设有办公室</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="logo flogo"><span class="bar"></span><span class="name">BIT</span></div>
+    <p class="rk"><b>推广说明：</b>本页为独立邀请，开户链接包含邀请码；账户服务、活动资格与最终条款以 <a data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="使用邀请码 STOCK 打开 BIT 注册页面，将在新窗口打开">www.bit.com</a> 为准。</p>
+    <p class="rk"><b>⚠ 风险提示：</b>美股投资存在高风险，可能导致本金损失。受市场波动、经济环境、公司业绩等因素影响，股价可能大幅波动。用户应根据自身的财务状况、投资目标和风险承受能力，判断是否适合投资美股。</p>
+    <p class="rk"><b>⚠ 免责声明：</b>本页面内容不构成对香港特别行政区、美国、新加坡以及法律可能禁止此类要约或要约邀请的其他国家或地区居民的投资建议、销售要约或购买要约邀请。资产交易可能具有极大的风险和不稳定性。投资决策应在仔细考虑个人情况并咨询独立专业人士后做出。本站运营方不对基于本页面信息作出的投资决策负责。</p>
+    <p class="copy">© 2026 BIT 美股信息指南 · <a href="/disclosure">完整披露</a></p>
+  </div>
+</footer>
+
+<!-- ============ 移动端底部常驻 CTA ============ -->
+<div class="mcta">
+  <div class="mt">开户即享 $310 新人大礼包<small>最高 $200 入金礼 + $10 交易礼</small></div>
+  <a class="btn btn-primary btn-sm" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT 注册页面，将在新窗口打开">领 $310 礼包</a>
+</div>
+
+<!-- ============ 页面快速导航 ============ -->
+<div class="quick-nav" data-quick-nav>
+  <nav class="quick-nav-menu" id="quick-nav-menu" aria-label="页面快速导航" aria-hidden="true">
+    <div class="quick-nav-head">
+      <strong>快速导航</strong>
+      <button class="quick-nav-close" type="button" aria-label="关闭快速导航">×</button>
+    </div>
+    <div class="quick-nav-links">
+      <a class="quick-nav-link" href="#top">页面顶部</a>
+      <a class="quick-nav-link" href="#rewards">奖励总览</a>
+      <a class="quick-nav-link" href="#task1">开户奖励</a>
+      <a class="quick-nav-link" href="#task2">入金奖励</a>
+      <a class="quick-nav-link" href="#task3">交易奖励</a>
+      <a class="quick-nav-link" href="#steps">开户步骤</a>
+      <a class="quick-nav-link" href="#why-bit">产品优势</a>
+      <a class="quick-nav-link" href="#fees">交易费率</a>
+      <a class="quick-nav-link" href="#compliance">合规信息</a>
+      <a class="quick-nav-link" href="#contact">联系方式</a>
+      <a class="quick-nav-link" href="#brand">品牌实力</a>
+    </div>
+  </nav>
+  <button class="quick-nav-toggle" type="button" aria-controls="quick-nav-menu" aria-expanded="false">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M5 6h14M5 12h14M5 18h14"></path>
+    </svg>
+    <span>导航</span>
+  </button>
+</div>
+
+<!-- ============ 页面快速导航交互 ============ -->
+<script>
+(function(){
+  var root=document.querySelector('[data-quick-nav]');
+  if(!root)return;
+  var toggle=root.querySelector('.quick-nav-toggle');
+  var closeButton=root.querySelector('.quick-nav-close');
+  var menu=root.querySelector('.quick-nav-menu');
+  var links=[].slice.call(root.querySelectorAll('.quick-nav-link'));
+  function setOpen(open){
+    root.classList.toggle('is-open',open);
+    toggle.setAttribute('aria-expanded',String(open));
+    menu.setAttribute('aria-hidden',String(!open));
+  }
+  toggle.addEventListener('click',function(){setOpen(!root.classList.contains('is-open'));});
+  closeButton.addEventListener('click',function(){setOpen(false);toggle.focus();});
+  links.forEach(function(link){
+    link.addEventListener('click',function(event){
+      event.preventDefault();
+      var hash=link.getAttribute('href');
+      var target=hash&&hash.charAt(0)==='#'?document.getElementById(hash.slice(1)):null;
+      links.forEach(function(item){item.removeAttribute('aria-current');});
+      link.setAttribute('aria-current','location');
+      setOpen(false);
+      if(!target)return;
+      try{history.pushState(null,'',hash);}catch(_){}
+      target.scrollIntoView({
+        behavior:window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',
+        block:'start'
+      });
+    });
+  });
+  document.addEventListener('click',function(event){
+    if(!root.contains(event.target))setOpen(false);
+  });
+  document.addEventListener('keydown',function(event){
+    if(event.key==='Escape'&&root.classList.contains('is-open')){
+      setOpen(false);toggle.focus();
+    }
+  });
+})();
+</script>
+
+<!-- ============ TASK 2 档位测算 ============ -->
+<script>
+(function(){
+  var root=document.querySelector('[data-task2-calculator]');
+  if(!root)return;
+  var tiers={
+    1000:{deposit:50,total:160},
+    2000:{deposit:100,total:210},
+    10000:{deposit:200,total:310}
+  };
+  var buttons=[].slice.call(root.querySelectorAll('[data-task2-tier]'));
+  var rows=[].slice.call(document.querySelectorAll('[data-task2-row]'));
+  var deposit=root.querySelector('[data-task2-deposit]');
+  var total=root.querySelector('[data-task2-total]');
+  var section=document.getElementById('task2');
+  var reduceMotion=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var totalFrame=0;
+  function money(value){return '$'+Number(value).toLocaleString('en-US');}
+  function countTotal(value){
+    if(totalFrame&&window.cancelAnimationFrame)window.cancelAnimationFrame(totalFrame);
+    total.setAttribute('aria-label',money(value));
+    if(reduceMotion||!window.requestAnimationFrame){
+      total.textContent=money(value);
+      totalFrame=0;
+      return;
+    }
+    var startedAt=null;
+    var duration=800;
+    total.textContent='$0';
+    function step(timestamp){
+      if(startedAt===null)startedAt=timestamp;
+      var progress=Math.min(1,(timestamp-startedAt)/duration);
+      var eased=1-Math.pow(1-progress,3);
+      total.textContent=money(Math.round(value*eased));
+      if(progress<1)totalFrame=window.requestAnimationFrame(step);
+      else totalFrame=0;
+    }
+    totalFrame=window.requestAnimationFrame(step);
+  }
+  function selectTier(value,animate){
+    var tier=tiers[value]||tiers[10000];
+    buttons.forEach(function(button){
+      var active=button.getAttribute('data-task2-tier')===String(value);
+      button.classList.toggle('is-active',active);
+      button.setAttribute('aria-pressed',String(active));
+    });
+    rows.forEach(function(row){
+      row.classList.toggle('is-active',row.getAttribute('data-task2-row')===String(value));
+    });
+    deposit.textContent=money(tier.deposit);
+    if(animate)countTotal(tier.total);
+    else total.textContent=money(tier.total);
+  }
+  buttons.forEach(function(button){
+    button.addEventListener('click',function(){selectTier(button.getAttribute('data-task2-tier'),true);});
+  });
+  selectTier('10000',false);
+  if(reduceMotion||!('IntersectionObserver' in window)){
+    if(!reduceMotion)countTotal(tiers[10000].total);
+    return;
+  }
+  var observer=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting)return;
+      var active=root.querySelector('[data-task2-tier].is-active');
+      var value=active?active.getAttribute('data-task2-tier'):'10000';
+      countTotal((tiers[value]||tiers[10000]).total);
+      observer.unobserve(section);
+    });
+  },{threshold:.35});
+  observer.observe(section);
+})();
+</script>
+
+<!-- ============ LINKI DOWNLOADS ============ -->
+<script>
+(function(){
+  if(location.pathname.replace(/\/+$/,'').toUpperCase()!=='/LINKI')return;
+  document.querySelectorAll('[data-linki-downloads]').forEach(function(downloads){
+    downloads.hidden=false;
+  });
+})();
+</script>
+
+<!-- ============ INVITE-CODE LINK REWRITE ============ -->
+<script>
+(function(){
+  var DEFAULT='STOCK',BASE='https://www.bit.com/zh/register',SPECIAL_URLS={MEIGU88:'https://bit.bshareweb.com/newRegister/cn?invite_code=MEIGU88',W7CF6T:'https://bit.bshareweb.com/newRegister/cn?invite_code=W7CF6T'},params=new URLSearchParams(location.search);
+  function clean(value){value=(value||'').trim();if(!/^[A-Za-z0-9_-]{1,100}$/.test(value))return '';return value.toUpperCase()==='MIA'?DEFAULT:value;}
+  function fromPath(){var match=location.pathname.match(/^\/([A-Za-z0-9_-]{1,100})\/?$/);return match?clean(match[1]):'';}
+  function apply(code){
+    state.code=clean(code)||DEFAULT;
+    var url=SPECIAL_URLS[state.code]||BASE+'?invite_code='+encodeURIComponent(state.code);
+    document.querySelectorAll('[data-signup-link]').forEach(function(a){a.setAttribute('href',url);});
+    return state.code;
+  }
+  var pathOverride=fromPath(),queryOverride=clean(params.get('invite_code')||params.get('invite'));
+  var override=pathOverride||queryOverride;
+  var state={code:override||DEFAULT,source:pathOverride?'path':queryOverride?'url':'fallback',ready:null};
+  window.__bitInvite=state;apply(state.code);
+  state.ready=override?Promise.resolve(state.code):fetch('/api/config',{credentials:'same-origin',cache:'no-store'})
+    .then(function(response){if(!response.ok)throw new Error('config '+response.status);return response.json();})
+    .then(function(config){state.source='admin';return apply(config.invite_code);})
+    .catch(function(){state.source='fallback';return state.code;});
+})();
+</script>
+
+<!-- ============ LINKEDIN / LINKI CLICK CONVERSION ============ -->
+<script>
+(function(){
+  var PARTNER_ID='9736740',CONVERSION_ID=27766628;
+  if(location.pathname.replace(/\/+$/,'').toUpperCase()!=='/LINKI')return;
+
+  window._linkedin_partner_id=PARTNER_ID;
+  window._linkedin_data_partner_ids=window._linkedin_data_partner_ids||[];
+  if(window._linkedin_data_partner_ids.indexOf(PARTNER_ID)===-1){
+    window._linkedin_data_partner_ids.push(PARTNER_ID);
+  }
+  if(!window.lintrk){
+    window.lintrk=function(a,b){window.lintrk.q.push([a,b]);};
+    window.lintrk.q=[];
+  }
+  if(!document.querySelector('script[data-linkedin-insight]')){
+    var insight=document.createElement('script');
+    insight.type='text/javascript';
+    insight.async=true;
+    insight.src='https://snap.licdn.com/li.lms-analytics/insight.min.js';
+    insight.setAttribute('data-linkedin-insight','');
+    document.head.appendChild(insight);
+  }
+
+  var fired=false;
+  function trackSignupClick(){
+    if(fired)return;
+    fired=true;
+    window.lintrk('track',{conversion_id:CONVERSION_ID});
+  }
+  document.querySelectorAll('a.btn[data-signup-link]').forEach(function(link){
+    link.addEventListener('click',trackSignupClick);
+  });
+})();
+</script>
+
+<!-- ============ ANALYTICS / 埋点 ============ -->
+<script>
+(function(){
+  var DEFAULT='STOCK',params=new URLSearchParams(location.search),sid='',invite=window.__bitInvite||{code:DEFAULT,ready:Promise.resolve(DEFAULT)};
+  try{sid=sessionStorage.getItem('_bsid');if(!sid){sid=crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2,10);sessionStorage.setItem('_bsid',sid);}}catch(e){sid=Date.now().toString(36)+Math.random().toString(36).slice(2,10);}
+  var referrer='direct';
+  try{if(document.referrer)referrer=new URL(document.referrer).hostname||'direct';}catch(e){}
+  var landing=location.pathname;
+  try{landing=sessionStorage.getItem('_blanding')||location.pathname;sessionStorage.setItem('_blanding',landing);}catch(e){}
+  var ua=navigator.userAgent||'', uaData=navigator.userAgentData||{};
+  var device=uaData.mobile||/Mobi|Android|iPhone|iPad/i.test(ua)?'mobile':'desktop';
+  var browser=/Edg\//.test(ua)?'Edge':/Firefox\//.test(ua)?'Firefox':/Chrome\//.test(ua)?'Chrome':/Safari\//.test(ua)?'Safari':'Other';
+  var os=/Windows/i.test(ua)?'Windows':/Android/i.test(ua)?'Android':/iPhone|iPad|iPod/i.test(ua)?'iOS':/Mac OS/i.test(ua)?'macOS':/Linux/i.test(ua)?'Linux':'Other';
+  var timezone='';try{timezone=Intl.DateTimeFormat().resolvedOptions().timeZone||'';}catch(e){}
+  function eventId(){return crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2,12);}
+  function t(event,value,label,eventCode){
+    var payload={
+      event_id:eventId(),event:event,value:value==null?'':String(value),label:label||'',
+      session_id:sid,invite_code:eventCode||invite.code||DEFAULT,path:location.pathname,landing_page:landing,
+      page_title:document.title,referrer_host:referrer,
+      utm_source:params.get('utm_source')||'',utm_medium:params.get('utm_medium')||'',
+      utm_campaign:params.get('utm_campaign')||'',utm_content:params.get('utm_content')||'',
+      utm_term:params.get('utm_term')||'',device:device,browser:browser,os:os,
+      language:navigator.language||'',timezone:timezone,
+      screen_width:screen.width||0,screen_height:screen.height||0,client_ts:new Date().toISOString()
+    };
+    var body=JSON.stringify(payload);
+    try{
+      if(navigator.sendBeacon){navigator.sendBeacon('/api/track',new Blob([body],{type:'application/json'}));}
+      else{fetch('/api/track',{method:'POST',headers:{'Content-Type':'application/json'},body:body,keepalive:true,credentials:'same-origin'});}
+    }catch(_){}
+  }
+  Promise.resolve(invite.ready).then(function(){t('view');},function(){t('view');});
+  document.querySelectorAll('[data-signup-link]').forEach(function(a,i){
+    a.addEventListener('click',function(){
+      var code=invite.code||DEFAULT;
+      try{code=new URL(a.href).searchParams.get('invite_code')||code;}catch(_){}
+      t('click','signup',(a.textContent||'').trim().slice(0,40)||('btn'+i),code);
+    });
+  });
+  var marks={25:0,50:0,75:0,100:0};
+  window.addEventListener('scroll',function(){
+    var st=window.scrollY||document.documentElement.scrollTop;
+    var h=document.documentElement.scrollHeight-window.innerHeight;
+    var p=h>0?Math.round(st/h*100):100;
+    [25,50,75,100].forEach(function(m){if(p>=m&&!marks[m]){marks[m]=1;t('scroll',m);}});
+  },{passive:true});
+  var start=Date.now(),sent=false;
+  function dwell(){if(sent)return;sent=true;t('dwell',Math.round((Date.now()-start)/1000));}
+  document.addEventListener('visibilitychange',function(){if(document.visibilityState==='hidden')dwell();});
+  window.addEventListener('pagehide',dwell);
+})();
+</script>
+
+<!-- ============ 滚动浮现 ============ -->
+<script>
+(function(){
+  var els=document.querySelectorAll('.icard,.prob,.comp-card,.stat,.tut,.step,.lic,.info-card,.rn');
+  if(!('IntersectionObserver' in window)){return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+    });
+  },{threshold:.12,rootMargin:'0px 0px -4% 0px'});
+  els.forEach(function(el){el.classList.add('rv');io.observe(el);});
+})();
+</script>
+
+</body>
+</html>

@@ -1,31 +1,15 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "bit-onsites",
+  "name": "bit-onsites-preview",
   "main": "src/worker.js",
   "compatibility_date": "2026-07-18",
+  "workers_dev": true,
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
     "html_handling": "drop-trailing-slash",
     "not_found_handling": "404-page",
     "run_worker_first": true
-  },
-  "routes": [
-    {
-      "pattern": "bit.onsites.me",
-      "custom_domain": true
-    }
-  ],
-  "d1_databases": [
-    {
-      "binding": "DB",
-      "database_name": "bit-onsites-analytics",
-      "database_id": "8773b371-b391-4b9a-94f6-cf38a7bca883",
-      "migrations_dir": "migrations"
-    }
-  ],
-  "triggers": {
-    "crons": ["0 3 * * *"]
   },
   "observability": {
     "enabled": true

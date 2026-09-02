@@ -1,0 +1,9 @@
+# Protected BIT production surfaces require repository-owner review.
+/bit-site/public/linki-page.txt @gexrior
+/bit-site/public/vpnah-page.txt @gexrior
+/bit-site/public/vpnah-tutorial-page.txt @gexrior
+/bit-site/src/worker.js @gexrior
+/bit-site/wrangler.production.jsonc @gexrior
+/bit-site/scripts/check-protected-pages.mjs @gexrior
+/bit-site/scripts/deploy-production.sh @gexrior
+/.github/workflows/bit-site-protected-pages.yml @gexrior

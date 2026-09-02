@@ -1,0 +1,32 @@
+name: BIT protected page checks
+
+on:
+  pull_request:
+    paths:
+      - "bit-site/**"
+      - ".github/CODEOWNERS"
+      - ".github/workflows/bit-site-protected-pages.yml"
+  push:
+    branches: [main]
+    paths:
+      - "bit-site/**"
+      - ".github/CODEOWNERS"
+      - ".github/workflows/bit-site-protected-pages.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bit-onsites-source-check-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  protected-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify protected route isolation
+        run: node bit-site/scripts/check-protected-pages.mjs local

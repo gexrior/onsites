@@ -415,6 +415,7 @@ async function inviteLandingPage(request, env, url) {
   const code = inviteCodeFromPath(url.pathname);
   const specialLandingPages = {
     DPG78V: "/dpg78v-page.txt",
+    LINKI: "/linki-page.txt",
     USMKT: "/usmkt-page.txt",
     VPNAH: "/vpnah-page.txt",
   };
