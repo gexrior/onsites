@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>BIT 美股开户礼｜30天啊哈加速器会员 + $310 新用户福利</title>
-<meta name="description" content="完成 BIT 证券美股账户开户（KYC），免费领 30 天啊哈加速器会员，再享 $310 新用户开户福利。身份证一键开户，USDT/USDC 稳定币入金。">
+<title>BIT 美股开户礼｜30天加速器会员 + $310 新用户福利</title>
+<meta name="description" content="完成 BIT 证券美股账户开户（KYC），免费领 30 天加速器会员，再享 $310 新用户开户福利。身份证一键开户，USDT/USDC 稳定币入金。">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Noto+Sans+SC:wght@400;500;700&display=swap">
 <style>
 /* ============================================================
@@ -368,7 +368,7 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
 
 <div class="topbar" id="topbar">
   <div class="inner">
-    <div class="brand"><span class="mark">B</span>BIT 证券<span class="x">×</span>啊哈加速器</div>
+    <div class="brand"><span class="mark">B</span>BIT 证券<span class="x">×</span>加速器</div>
     <a class="nav-cta" href="https://bit.onsites.me/VPNAH/tutorial">立即领取30天会员</a>
   </div>
 </div>
@@ -378,12 +378,12 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
 <header class="hero">
   <div class="wrap">
     <div class="copartner">
-      <b>BIT 证券</b><span class="dot"></span><b>啊哈加速器</b><span>联合福利</span>
+      <b>BIT 证券</b><span class="dot"></span><b>加速器</b><span>联合福利</span>
     </div>
 
     <!-- 1.1 福利一：加速器月卡 -->
     <div class="gift-card">
-      <h1>完成 BIT 证券美股账户开户（KYC）<br>送 <em>30 天啊哈加速器会员</em></h1>
+      <h1>完成 BIT 证券美股账户开户（KYC）<br>送 <em>30 天加速器会员</em></h1>
       <div class="note">认证通过后卡密自动发送至注册邮箱，通常 30 分钟内到账 · 每账户限领 1 张</div>
     </div>
 
@@ -392,7 +392,7 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
       <div class="gift gift-gold">
         <div class="big">30<span class="u">天</span></div>
         <div class="txt">
-          <div class="t">啊哈加速器会员</div>
+          <div class="t">加速器会员</div>
           <div class="d">完成美股账户 KYC 即免费领取</div>
         </div>
         <div class="lockline">开户认证通过后自动发放</div>
@@ -446,7 +446,7 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
 
   <!-- ============ 加速器月卡详情 ============ -->
   <div class="band band-soft"><div class="wrap"><section class="sec" id="vpn">
-    <span class="sec-tag">福利一 · 啊哈加速器月卡</span>
+    <span class="sec-tag">福利一 · 加速器月卡</span>
     <h2>完成美股开户认证，免费领 30 天会员</h2>
     <p class="sec-sub">认证通过后通常即时发放，最迟不超过 1 个工作日</p>
     <div class="card">
@@ -641,7 +641,7 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
   <button class="fc-close" id="fcClose" aria-label="关闭">×</button>
   <div class="fc-tag">限时联合福利</div>
   <div class="fc-big">$310</div>
-  <div class="fc-sub">新用户开户礼包<br>+ 30 天啊哈加速器会员</div>
+  <div class="fc-sub">新用户开户礼包<br>+ 30 天加速器会员</div>
   <a class="fc-b" href="https://bit.onsites.me/VPNAH/tutorial">立即开户</a>
   <div class="fc-n">邀请码 VPNAH · 5 分钟完成</div>
 </aside>
