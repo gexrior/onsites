@@ -78,9 +78,7 @@ if ! mkdir "$LOCK_DIR" 2>/dev/null; then
   exit 1
 fi
 
-UPLOAD_LOG=$(mktemp)
 cleanup() {
-  rm -f "$UPLOAD_LOG"
   rmdir "$LOCK_DIR" 2>/dev/null || true
 }
 trap cleanup EXIT INT TERM
@@ -88,6 +86,11 @@ trap cleanup EXIT INT TERM
 current_version() {
   "${WRANGLER[@]}" deployments list --json --config "$PRODUCTION_CONFIG" |
     node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const a=JSON.parse(s);const d=a.at(-1);const v=d?.versions?.find(x=>x.percentage===100)||d?.versions?.[0];if(!v?.version_id)process.exit(1);process.stdout.write(v.version_id);});'
+}
+
+current_state() {
+  "${WRANGLER[@]}" deployments list --json --config "$PRODUCTION_CONFIG" |
+    node -e 'let s="";process.stdin.on("data",d=>s+=d).on("end",()=>{const a=JSON.parse(s);const d=a.at(-1);if(!d?.versions?.length)process.exit(1);process.stdout.write(d.versions.map(v=>`${v.version_id}@${Number(v.percentage)}`).sort().join(","));});'
 }
 
 cd "$SITE_DIR"
@@ -122,21 +125,48 @@ fi
   --strict \
   --config "$PRODUCTION_CONFIG" \
   --tag "$TAG" \
-  --preview-alias "$TAG" \
-  --message "$MESSAGE" | tee "$UPLOAD_LOG"
+  --message "$MESSAGE"
 
 VERSIONS_JSON=$("${WRANGLER[@]}" versions list --json --config "$PRODUCTION_CONFIG")
 VERSION_ID=$(MESSAGE="$MESSAGE" node -e 'const a=JSON.parse(process.argv[1]);const m=process.env.MESSAGE;const v=[...a].reverse().find(x=>x.annotations?.["workers/message"]===m);if(!v?.id)process.exit(1);process.stdout.write(v.id);' "$VERSIONS_JSON")
 
-PREVIEW_URL=$(perl -pe 's/\e\[[0-9;]*[[:alpha:]]//g' "$UPLOAD_LOG" |
-  grep -Eo 'https://[^[:space:]]+\.workers\.dev' | tail -1 || true)
-if [[ -z "$VERSION_ID" || -z "$PREVIEW_URL" ]]; then
-  echo "Production deploy blocked: could not identify the uploaded Version Preview." >&2
+if [[ -z "$VERSION_ID" ]]; then
+  echo "Production deploy blocked: could not identify the uploaded Worker version." >&2
   exit 1
 fi
 
-node scripts/check-protected-pages.mjs verify --base-url="$PREVIEW_URL"
 if [[ "$(current_version)" != "$ACTIVE_BEFORE" ]]; then
+  echo "Production deploy blocked: active Worker changed after candidate upload." >&2
+  exit 1
+fi
+
+"${WRANGLER[@]}" versions deploy \
+  "${ACTIVE_BEFORE}@100%" \
+  "${VERSION_ID}@0%" \
+  --yes \
+  --config "$PRODUCTION_CONFIG" \
+  --message "$MESSAGE"
+
+EXPECTED_SMOKE_STATE=$(OLD_VERSION="$ACTIVE_BEFORE" NEW_VERSION="$VERSION_ID" \
+  node -e 'process.stdout.write([`${process.env.OLD_VERSION}@100`,`${process.env.NEW_VERSION}@0`].sort().join(","));')
+if [[ "$(current_state)" != "$EXPECTED_SMOKE_STATE" ]]; then
+  echo "Production deploy blocked: the 0% smoke-test deployment changed unexpectedly." >&2
+  exit 1
+fi
+
+if ! node scripts/check-protected-pages.mjs verify \
+  --base-url="$PRODUCTION_URL" \
+  --override-version="$VERSION_ID"; then
+  if [[ "$(current_state)" == "$EXPECTED_SMOKE_STATE" ]]; then
+    "${WRANGLER[@]}" versions deploy "${ACTIVE_BEFORE}@100%" \
+      --yes \
+      --config "$PRODUCTION_CONFIG" \
+      --message "remove failed smoke candidate git:${SHORT_SHA}"
+  fi
+  exit 1
+fi
+
+if [[ "$(current_state)" != "$EXPECTED_SMOKE_STATE" ]]; then
   echo "Production deploy blocked: active Worker changed while the candidate was tested." >&2
   exit 1
 fi
@@ -146,7 +176,9 @@ fi
   --config "$PRODUCTION_CONFIG" \
   --message "$MESSAGE"
 
-if ! node scripts/check-protected-pages.mjs verify --base-url="$PRODUCTION_URL"; then
+if ! node scripts/check-protected-pages.mjs verify \
+  --base-url="$PRODUCTION_URL" \
+  --expect-version="$VERSION_ID"; then
   ACTIVE_AFTER=$(current_version || true)
   if [[ "$ACTIVE_AFTER" == "$VERSION_ID" ]]; then
     echo "Post-deploy verification failed; restoring exact previous version $ACTIVE_BEFORE." >&2

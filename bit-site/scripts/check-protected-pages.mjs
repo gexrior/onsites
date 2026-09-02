@@ -37,6 +37,8 @@ function parseArguments(argv) {
   const [mode = "local", ...rest] = argv;
   const allowedRoutes = new Set();
   let baseUrl = PRODUCTION_URL;
+  let overrideVersion = "";
+  let expectedVersion = "";
 
   for (const argument of rest) {
     if (argument.startsWith("--allow-route=")) {
@@ -47,6 +49,11 @@ function parseArguments(argv) {
       allowedRoutes.add(route);
     } else if (argument.startsWith("--base-url=")) {
       baseUrl = argument.slice("--base-url=".length).replace(/\/+$/, "");
+    } else if (argument.startsWith("--override-version=")) {
+      overrideVersion = argument.slice("--override-version=".length);
+      expectedVersion = overrideVersion;
+    } else if (argument.startsWith("--expect-version=")) {
+      expectedVersion = argument.slice("--expect-version=".length);
     } else {
       fail(`Unknown argument: ${argument}`);
     }
@@ -56,7 +63,7 @@ function parseArguments(argv) {
     fail(`Unknown mode: ${mode}`);
   }
 
-  return { mode, allowedRoutes, baseUrl };
+  return { mode, allowedRoutes, baseUrl, overrideVersion, expectedVersion };
 }
 
 async function localFile(relativePath) {
@@ -142,17 +149,24 @@ async function candidateAssetPaths(html, pageRoute) {
   return [...paths].sort();
 }
 
-async function fetchWithRetry(baseUrl, route) {
+async function fetchWithRetry(baseUrl, route, overrideVersion, expectedVersion) {
   let lastError;
   for (let attempt = 1; attempt <= 7; attempt += 1) {
     try {
       const url = new URL(route, `${baseUrl}/`);
       url.searchParams.set("__protected_check", `${Date.now()}-${attempt}`);
+      const headers = { "Cache-Control": "no-cache", Pragma: "no-cache" };
+      if (overrideVersion) {
+        headers["Cloudflare-Workers-Version-Overrides"] = `bit-onsites="${overrideVersion}"`;
+      }
       const response = await fetch(url, {
         redirect: "manual",
-        headers: { "Cache-Control": "no-cache", Pragma: "no-cache" },
+        headers,
       });
       if (response.status !== 200) fail(`${route} returned HTTP ${response.status}`);
+      if (expectedVersion && response.headers.get("x-bit-worker-version") !== expectedVersion) {
+        fail(`${route} did not run expected Worker version ${expectedVersion}`);
+      }
       return {
         body: Buffer.from(await response.arrayBuffer()),
         headers: response.headers,
@@ -183,9 +197,9 @@ function assertPageHeaders(route, headers) {
   }
 }
 
-async function compareRouteToLocal(baseUrl, entry) {
+async function compareRouteToLocal(baseUrl, entry, overrideVersion, expectedVersion) {
   const local = await localFile(entry.file);
-  const remote = await fetchWithRetry(baseUrl, entry.route);
+  const remote = await fetchWithRetry(baseUrl, entry.route, overrideVersion, expectedVersion);
   assertPageHeaders(entry.route, remote.headers);
   if (!remote.body.equals(local)) {
     fail(`${entry.route} differs from ${entry.file} (remote ${sha256(remote.body)}, local ${sha256(local)})`);
@@ -194,7 +208,7 @@ async function compareRouteToLocal(baseUrl, entry) {
   const assets = await candidateAssetPaths(local.toString("utf8"), entry.route);
   for (const assetPath of assets) {
     const localAsset = await readFile(path.join(PUBLIC_DIR, `.${assetPath}`));
-    const remoteAsset = await fetchWithRetry(baseUrl, assetPath);
+    const remoteAsset = await fetchWithRetry(baseUrl, assetPath, overrideVersion, expectedVersion);
     if (!remoteAsset.body.equals(localAsset)) {
       fail(`${entry.route} dependency ${assetPath} differs (remote ${sha256(remoteAsset.body)}, local ${sha256(localAsset)})`);
     }
@@ -204,7 +218,7 @@ async function compareRouteToLocal(baseUrl, entry) {
 }
 
 async function main() {
-  const { mode, allowedRoutes, baseUrl } = parseArguments(process.argv.slice(2));
+  const { mode, allowedRoutes, baseUrl, overrideVersion, expectedVersion } = parseArguments(process.argv.slice(2));
   await assertLocalIsolation();
 
   if (mode === "local") {
@@ -217,7 +231,7 @@ async function main() {
     : PROTECTED_ROUTES.filter((entry) => !allowedRoutes.has(entry.group));
 
   for (const entry of entries) {
-    const result = await compareRouteToLocal(baseUrl, entry);
+    const result = await compareRouteToLocal(baseUrl, entry, overrideVersion, expectedVersion);
     console.log(`${result.route}: ${result.hash} (${result.assets} protected assets)`);
   }
 

@@ -535,9 +535,8 @@ async function track(request, env, url) {
   }
 }
 
-export default {
-  async fetch(request, env) {
-    const url = new URL(request.url);
+async function handleRequest(request, env) {
+  const url = new URL(request.url);
 
     if (url.pathname === "/admin" || url.pathname === "/admin.html") {
       if (!["GET", "HEAD"].includes(request.method)) return response(405, "method not allowed");
@@ -623,7 +622,24 @@ export default {
       return inviteLandingPage(request, env, url);
     }
 
-    return publicAsset(request, env);
+  return publicAsset(request, env);
+}
+
+function withVersionMetadata(responseValue, env) {
+  const versionId = env.WORKER_VERSION?.id;
+  if (!versionId) return responseValue;
+  const headers = new Headers(responseValue.headers);
+  headers.set("X-BIT-Worker-Version", versionId);
+  return new Response(responseValue.body, {
+    status: responseValue.status,
+    statusText: responseValue.statusText,
+    headers,
+  });
+}
+
+export default {
+  async fetch(request, env) {
+    return withVersionMetadata(await handleRequest(request, env), env);
   },
 
   async scheduled(_controller, env, ctx) {

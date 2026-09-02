@@ -29,5 +29,8 @@
   },
   "observability": {
     "enabled": true
+  },
+  "version_metadata": {
+    "binding": "WORKER_VERSION"
   }
 }
