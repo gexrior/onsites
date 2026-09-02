@@ -96,7 +96,11 @@ cd "$SITE_DIR"
 node scripts/check-protected-pages.mjs local
 
 ACTIVE_BEFORE=$(current_version)
-node scripts/check-protected-pages.mjs preflight --base-url="$PRODUCTION_URL" "${ALLOW_ARGS[@]}"
+if ((${#ALLOW_ARGS[@]} > 0)); then
+  node scripts/check-protected-pages.mjs preflight --base-url="$PRODUCTION_URL" "${ALLOW_ARGS[@]}"
+else
+  node scripts/check-protected-pages.mjs preflight --base-url="$PRODUCTION_URL"
+fi
 if [[ "$(current_version)" != "$ACTIVE_BEFORE" ]]; then
   echo "Production deploy blocked: active Worker changed during preflight." >&2
   exit 1
