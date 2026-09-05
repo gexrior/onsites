@@ -405,6 +405,22 @@ async function vpnahPageAsset(request, env, url, assetPath, canonicalPath) {
   });
 }
 
+async function linkiTutorialAsset(request, env, url) {
+  const assetUrl = new URL("/linki-tutorial-page.txt", url);
+  const asset = await publicAsset(new Request(assetUrl, request), env);
+  const headers = new Headers(asset.headers);
+  headers.set("Cache-Control", "no-store");
+  headers.set("Content-Type", "text/html; charset=utf-8");
+  headers.set("Content-Security-Policy", "default-src 'self'; connect-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; object-src 'none'; frame-src 'none'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests");
+  headers.set("Link", `<${url.origin}/LINKI/tutorial>; rel="canonical"`);
+  headers.set("X-Robots-Tag", "noindex, follow");
+  return new Response(asset.body, {
+    status: asset.status,
+    statusText: asset.statusText,
+    headers,
+  });
+}
+
 function redirectPath(url, pathname) {
   const target = new URL(url);
   target.pathname = pathname;
@@ -594,6 +610,15 @@ async function handleRequest(request, env) {
 
     if (url.pathname === "/linki-page.txt") {
       return Response.redirect(`${url.origin}/LINKI`, 308);
+    }
+
+    if (["/LINKI/tutorial/", "/LINKI/tutorial.html", "/linki-tutorial-page.txt"].includes(url.pathname)) {
+      return redirectPath(url, "/LINKI/tutorial");
+    }
+
+    if (url.pathname === "/LINKI/tutorial") {
+      if (!["GET", "HEAD"].includes(request.method)) return response(405, "method not allowed");
+      return linkiTutorialAsset(request, env, url);
     }
 
     if (["/VPNAH/tutorial/", "/VPNAH/tutorial.html", "/vpnah-tutorial-page.txt"].includes(url.pathname)) {

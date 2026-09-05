@@ -152,7 +152,10 @@ h1,h2,h3{margin:0;font-weight:900;letter-spacing:-.5px}
 .feat .ft{display:flex;align-items:center;gap:8px;font-size:15.5px;font-weight:700;color:var(--ink)}
 .feat .ck{color:var(--brand);font-weight:900}
 .feat .fd{font-size:13px;color:var(--ink-muted);margin-top:5px;padding-left:22px}
-.hero-cta{margin-top:28px}
+.hero-actions{display:flex;align-items:stretch;gap:12px;margin-top:28px}
+.hero-cta{padding:16px 28px}
+.hero-tutorial{flex-shrink:0;padding:16px 20px;border:1px solid var(--brand);background:#fff;color:var(--brand);font-size:15px}
+.hero-tutorial:hover{background:var(--ice-100)}
 .trust-strip{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px}
 .trust-strip span{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--ink-2)}
 .trust-strip .ck{color:var(--brand);font-weight:900}
@@ -556,7 +559,9 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   .feat{padding:13px 12px}
   .feat .ft{align-items:flex-start;font-size:13px;line-height:1.45}
   .feat .fd{display:none}
-  .hero-cta{display:flex;width:100%;min-height:50px;margin-top:20px;padding:13px 24px}
+  .hero-actions{gap:10px;margin-top:20px}
+  .hero-cta{flex:1;min-width:0;min-height:50px;padding:13px 12px;font-size:14px;white-space:normal;text-align:center}
+  .hero-tutorial{padding:13px 14px;font-size:14px}
   .trust-strip{gap:6px 14px;margin-top:16px}
   .trust-strip span{font-size:12px}
   .hero .disclaimer{margin-top:20px}
@@ -738,7 +743,10 @@ footer a{text-decoration:underline;text-underline-offset:3px}
         <div class="feat"><div class="ft"><span class="ck">✓</span>美股实时行情卡</div><div class="fd">30 天 Nasdaq Basic 实时行情</div></div>
         <div class="feat"><div class="ft"><span class="ck">✓</span>期权实时行情卡</div><div class="fd">30 天 OPRA 期权实时行情</div></div>
       </div>
-      <a class="btn btn-primary btn-lg hero-cta" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT 注册页面，将在新窗口打开">立即开户，领取 $310 大礼包</a>
+      <div class="hero-actions">
+        <a class="btn btn-primary btn-lg hero-cta" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT 注册页面，将在新窗口打开">立即开户，领取 $310 大礼包</a>
+        <a class="btn hero-tutorial" href="/LINKI/tutorial">开户教程</a>
+      </div>
       <div class="trust-strip">
         <span><span class="ck">✓</span>直连美国持牌券商 · SIPC 成员</span>
         <span><span class="ck">✓</span>Matrixport 升级 · $60亿+ 管理资产</span>

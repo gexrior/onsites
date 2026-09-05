@@ -12,6 +12,7 @@ const ASSET_EXTENSION = /\.(?:avif|css|gif|ico|jpe?g|js|png|svg|webp)$/i;
 
 const PROTECTED_ROUTES = [
   { route: "/LINKI", file: "public/linki-page.txt", group: "/LINKI" },
+  { route: "/LINKI/tutorial", file: "public/linki-tutorial-page.txt", group: "/LINKI" },
   { route: "/VPNAH", file: "public/vpnah-page.txt", group: "/VPNAH" },
   {
     route: "/VPNAH/tutorial",
@@ -78,11 +79,12 @@ function signupButtonCount(html) {
 }
 
 async function assertLocalIsolation() {
-  const [worker, linki, vpnah, tutorial] = await Promise.all([
+  const [worker, linki, vpnah, tutorial, linkiTutorial] = await Promise.all([
     localFile("src/worker.js").then(String),
     localFile("public/linki-page.txt").then(String),
     localFile("public/vpnah-page.txt").then(String),
     localFile("public/vpnah-tutorial-page.txt").then(String),
+    localFile("public/linki-tutorial-page.txt").then(String),
   ]);
 
   if (!worker.includes('LINKI: "/linki-page.txt"')) {
@@ -110,6 +112,22 @@ async function assertLocalIsolation() {
   }
   if (/VPNAH|啊哈加速器/i.test(linki)) {
     fail("LINKI must not contain VPNAH-specific content");
+  }
+
+  if (!linki.includes('href="/LINKI/tutorial"')) {
+    fail("LINKI must link to its own tutorial");
+  }
+  const linkiDownloads = [
+    "https://bit.go.link/eeWZn",
+    "https://download.onsites.me/matrixport-official-master-19-25_234bclet.apk",
+  ];
+  for (const [name, html] of [["LINKI", linki], ["LINKI tutorial", linkiTutorial]]) {
+    for (const download of linkiDownloads) {
+      if (!html.includes(download)) fail(`${name} is missing its own download link: ${download}`);
+    }
+    if (/VPNAH|啊哈|fUeJX|23e214yv|eXf2w|24vusxr9/i.test(html)) {
+      fail(`${name} must not contain another channel's downloads or content`);
+    }
   }
 
   const vpnahCombined = `${vpnah}\n${tutorial}`;
@@ -191,6 +209,14 @@ function assertPageHeaders(route, headers) {
   }
   if (route === "/LINKI" && (!csp.includes("snap.licdn.com") || !csp.includes("px.ads.linkedin.com"))) {
     fail("LINKI CSP must allow its LinkedIn Insight Tag endpoints");
+  }
+  if (route === "/LINKI/tutorial") {
+    if (!/img-src[^;]*\bdata:/.test(csp) || !csp.includes("https://fonts.googleapis.com") || !csp.includes("https://fonts.gstatic.com")) {
+      fail("LINKI tutorial CSP must allow its embedded images and fonts");
+    }
+    if (!headers.get("link")?.includes('/LINKI/tutorial>; rel="canonical"') || headers.get("x-robots-tag") !== "noindex, follow") {
+      fail("LINKI tutorial must declare its canonical route and noindex policy");
+    }
   }
   if (route.startsWith("/VPNAH") && /linkedin|licdn/i.test(csp)) {
     fail(`${route} CSP must not contain LINKI/LinkedIn endpoints`);
