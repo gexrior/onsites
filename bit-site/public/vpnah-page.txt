@@ -480,8 +480,7 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
         开户后 14 天内达标，留存满 30 天后激活。
         <table>
           <tr><th>累计净入金</th><th>即时卡</th><th>留存 30 天卡</th><th>累计奖励</th></tr>
-          <tr><td>≥$1,000</td><td>—</td><td>$50</td><td><b>$50</b></td></tr>
-          <tr><td>≥$2,000</td><td>$5</td><td>$95</td><td><b>$100</b></td></tr>
+          <tr><td>≥$1,500</td><td>$5</td><td>$65</td><td><b>$70</b></td></tr>
           <tr><td>≥$10,000</td><td>$5</td><td>$195</td><td><b>$200</b></td></tr>
         </table>
         <ul class="rule">

@@ -270,7 +270,7 @@ h1,h2,h3{margin:0;font-weight:900;letter-spacing:-.5px}
 }
 .task2-tier-side{display:flex;align-items:center;gap:16px;min-width:0}
 .task2-tier-label{color:#77839A;font-size:13px;font-weight:700;white-space:nowrap}
-.task2-tier-group{display:grid;grid-template-columns:repeat(3,minmax(76px,1fr));gap:3px;padding:4px;border-radius:999px;background:#F1F4F9}
+.task2-tier-group{display:grid;grid-template-columns:repeat(2,minmax(76px,1fr));gap:3px;padding:4px;border-radius:999px;background:#F1F4F9}
 .task2-tier{
   min-height:40px;padding:9px 16px;border:0;border-radius:999px;background:transparent;color:#8994A8;
   font:700 13px/1 var(--font);cursor:pointer;white-space:nowrap;touch-action:manipulation;
@@ -585,7 +585,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   .task2-calculator{display:block;margin-top:24px;padding:16px;border-radius:15px}
   .task2-tier-side{display:block}
   .task2-tier-label{display:block;margin-bottom:10px}
-  .task2-tier-group{grid-template-columns:repeat(3,minmax(0,1fr));width:100%}
+  .task2-tier-group{grid-template-columns:repeat(2,minmax(0,1fr));width:100%}
   .task2-tier{min-width:0;min-height:44px;padding:9px 6px;font-size:12.5px}
   .task2-breakdown{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid #E6EAF1}
   .task2-metric{display:block;text-align:center;white-space:normal}
@@ -806,16 +806,15 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       <div class="task2-tier-side">
         <span class="task2-tier-label">按档位测算</span>
         <div class="task2-tier-group" role="group" aria-label="选择累计净入金档位">
-          <button class="task2-tier" type="button" data-task2-tier="1000" aria-pressed="false">$1,000</button>
-          <button class="task2-tier" type="button" data-task2-tier="2000" aria-pressed="false">$2,000</button>
-          <button class="task2-tier is-active" type="button" data-task2-tier="10000" aria-pressed="true">$10,000</button>
+          <button class="task2-tier is-active" type="button" data-task2-tier="1500" aria-pressed="true">$1,500</button>
+          <button class="task2-tier" type="button" data-task2-tier="10000" aria-pressed="false">$10,000</button>
         </div>
       </div>
       <div class="task2-breakdown" aria-live="polite">
-        <div class="task2-metric"><span>入金礼</span><b data-task2-deposit>$200</b></div>
+        <div class="task2-metric"><span>入金礼</span><b data-task2-deposit>$70</b></div>
         <div class="task2-metric"><span>抵扣卡</span><b>$100</b></div>
         <div class="task2-metric"><span>交易礼</span><b>$10</b></div>
-        <div class="task2-total"><span>累计最高可得</span><strong data-task2-total>$310</strong></div>
+        <div class="task2-total"><span>累计最高可得</span><strong data-task2-total>$180</strong></div>
       </div>
     </div>
 
@@ -828,9 +827,8 @@ footer a{text-decoration:underline;text-underline-offset:3px}
         <table class="task2-table">
           <thead><tr><th>累计净入金达标</th><th>即时到账</th><th>留存 30 天再激活</th><th>累计获得股票现金卡</th></tr></thead>
           <tbody>
-            <tr data-task2-row="1000"><td><b>≥ $1,000</b></td><td>—</td><td>$50</td><td>$50</td></tr>
-            <tr data-task2-row="2000"><td><b>≥ $2,000</b></td><td>$5</td><td>$95</td><td>$100</td></tr>
-            <tr class="is-active" data-task2-row="10000"><td><b>≥ $10,000</b></td><td>$5</td><td>$195</td><td>$200</td></tr>
+            <tr class="is-active" data-task2-row="1500"><td><b>≥ $1,500</b></td><td>$5</td><td>$65</td><td>$70</td></tr>
+            <tr data-task2-row="10000"><td><b>≥ $10,000</b></td><td>$5</td><td>$195</td><td>$200</td></tr>
           </tbody>
         </table>
       </div>
@@ -1219,8 +1217,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   var root=document.querySelector('[data-task2-calculator]');
   if(!root)return;
   var tiers={
-    1000:{deposit:50,total:160},
-    2000:{deposit:100,total:210},
+    1500:{deposit:70,total:180},
     10000:{deposit:200,total:310}
   };
   var buttons=[].slice.call(root.querySelectorAll('[data-task2-tier]'));
@@ -1253,7 +1250,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
     totalFrame=window.requestAnimationFrame(step);
   }
   function selectTier(value,animate){
-    var tier=tiers[value]||tiers[10000];
+    var tier=tiers[value]||tiers[1500];
     buttons.forEach(function(button){
       var active=button.getAttribute('data-task2-tier')===String(value);
       button.classList.toggle('is-active',active);
@@ -1269,17 +1266,17 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   buttons.forEach(function(button){
     button.addEventListener('click',function(){selectTier(button.getAttribute('data-task2-tier'),true);});
   });
-  selectTier('10000',false);
+  selectTier('1500',false);
   if(reduceMotion||!('IntersectionObserver' in window)){
-    if(!reduceMotion)countTotal(tiers[10000].total);
+    if(!reduceMotion)countTotal(tiers[1500].total);
     return;
   }
   var observer=new IntersectionObserver(function(entries){
     entries.forEach(function(entry){
       if(!entry.isIntersecting)return;
       var active=root.querySelector('[data-task2-tier].is-active');
-      var value=active?active.getAttribute('data-task2-tier'):'10000';
-      countTotal((tiers[value]||tiers[10000]).total);
+      var value=active?active.getAttribute('data-task2-tier'):'1500';
+      countTotal((tiers[value]||tiers[1500]).total);
       observer.unobserve(section);
     });
   },{threshold:.35});
