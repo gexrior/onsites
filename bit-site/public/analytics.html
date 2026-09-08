@@ -59,7 +59,7 @@ h1{font-size:clamp(36px,5vw,62px);line-height:1.05;letter-spacing:-.045em;margin
 .refresh{background:linear-gradient(135deg,var(--brand-2),var(--brand));color:#fff;padding-inline:18px;box-shadow:0 8px 20px rgba(124,58,237,.22)}
 .refresh:disabled{opacity:.65;cursor:wait}
 .grid{display:grid;gap:18px}
-.kpis{grid-template-columns:repeat(6,minmax(0,1fr));margin-bottom:18px}
+.kpis{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px}
 .card{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
 .kpi{position:relative;overflow:hidden;padding:22px 21px;min-height:146px}
 .kpi:after{content:"";position:absolute;width:92px;height:92px;border-radius:50%;right:-35px;bottom:-45px;background:rgba(139,92,246,.08)}
@@ -170,7 +170,9 @@ tbody tr:hover td{background:rgba(124,58,237,.035)}
     <article class="card kpi accent"><div class="kpi-label">独立 IP</div><div class="kpi-value" id="visitors">0</div><div class="kpi-note">同一 IP 仅计 1 次</div></article>
     <article class="card kpi"><div class="kpi-label">页面加载 PV</div><div class="kpi-value" id="pageviews">0</div><div class="kpi-note">包含刷新与重复访问</div></article>
     <article class="card kpi"><div class="kpi-label">开户点击</div><div class="kpi-value" id="clicks">0</div><div class="kpi-note">所有开户 CTA</div></article>
-    <article class="card kpi"><div class="kpi-label">点击转化率</div><div class="kpi-value" id="rate">0%</div><div class="kpi-note">点击 / 页面访问</div></article>
+    <article class="card kpi"><div class="kpi-label">下载点击</div><div class="kpi-value" id="downloadClicks">0</div><div class="kpi-note">按钮点击，非下载完成或安装量</div></article>
+    <article class="card kpi"><div class="kpi-label">教程点击</div><div class="kpi-value" id="tutorialClicks">0</div><div class="kpi-note">进入教程的按钮点击</div></article>
+    <article class="card kpi"><div class="kpi-label">开户点击率</div><div class="kpi-value" id="rate">0%</div><div class="kpi-note">开户点击 / 页面访问</div></article>
     <article class="card kpi"><div class="kpi-label">平均停留</div><div class="kpi-value" id="dwell">0s</div><div class="kpi-note">离开页面时统计</div></article>
     <article class="card kpi"><div class="kpi-label">深度浏览</div><div class="kpi-value" id="deepScroll">0</div><div class="kpi-note">滚动达到 75%</div></article>
   </section>
@@ -198,6 +200,20 @@ tbody tr:hover td{background:rgba(124,58,237,.035)}
   </section>
 
   <section class="card panel table-card">
+    <div class="panel-head"><div><h2 class="panel-title">页面表现</h2><div class="panel-sub">按页面与邀请码区分访问、开户、教程和下载点击；同一访客在不同页面分别计数</div></div></div>
+    <div class="table-scroll">
+      <table><thead><tr><th>页面</th><th>邀请码</th><th>PV</th><th>访客</th><th>开户点击</th><th>教程点击</th><th>下载点击</th></tr></thead><tbody id="pages"></tbody></table>
+    </div>
+  </section>
+
+  <section class="card panel table-card">
+    <div class="panel-head"><div><h2 class="panel-title">下载点击渠道</h2><div class="panel-sub">记录 App Store、Google Play、APK 等按钮点击，不代表下载完成或安装成功</div></div></div>
+    <div class="table-scroll">
+      <table><thead><tr><th>页面</th><th>邀请码</th><th>下载渠道</th><th>点击次数</th><th>点击访客</th></tr></thead><tbody id="downloads"></tbody></table>
+    </div>
+  </section>
+
+  <section class="card panel table-card">
     <div class="panel-head"><div><h2 class="panel-title">来源与营销活动</h2><div class="panel-sub">Referrer、UTM medium 与 campaign 汇总</div></div></div>
     <div class="table-scroll">
       <table><thead><tr><th>来源</th><th>媒介</th><th>活动</th><th>PV</th><th>访客</th><th>开户点击</th></tr></thead><tbody id="sources"></tbody></table>
@@ -205,9 +221,9 @@ tbody tr:hover td{background:rgba(124,58,237,.035)}
   </section>
 
   <section class="card panel table-card">
-    <div class="panel-head"><div><h2 class="panel-title">邀请码表现</h2><div class="panel-sub">访问与开户点击按实际使用的邀请码汇总</div></div><div class="code-badge" id="currentInvite">当前：读取中</div></div>
+    <div class="panel-head"><div><h2 class="panel-title">邀请码表现</h2><div class="panel-sub">访问与各类点击按实际使用的邀请码汇总</div></div><div class="code-badge" id="currentInvite">当前：读取中</div></div>
     <div class="table-scroll">
-      <table><thead><tr><th>邀请码</th><th>PV</th><th>访客</th><th>开户点击</th><th>点击率</th></tr></thead><tbody id="inviteCodes"></tbody></table>
+      <table><thead><tr><th>邀请码</th><th>PV</th><th>访客</th><th>开户点击</th><th>教程点击</th><th>下载点击</th><th>开户点击率</th></tr></thead><tbody id="inviteCodes"></tbody></table>
     </div>
   </section>
 
@@ -363,10 +379,26 @@ tbody tr:hover td{background:rgba(124,58,237,.035)}
   function render(data){
     var summary=data.summary||{},pageviews=num(summary.pageviews),clicks=num(summary.signup_clicks);
     setText('pageviews',fmt(pageviews));setText('visitors',fmt(summary.visitors));setText('clicks',fmt(clicks));
+    setText('downloadClicks',fmt(summary.download_clicks));setText('tutorialClicks',fmt(summary.tutorial_clicks));
     setText('rate',pageviews?(clicks/pageviews*100).toFixed(1)+'%':'0%');
     setText('dwell',fmt(summary.avg_dwell_seconds)+'s');setText('deepScroll',fmt(summary.deep_scrolls));
     renderTrend(data.daily);renderCountries(data.countries);renderDevices(data.devices);
     setText('currentInvite','当前：'+((data.settings&&data.settings.invite_code)||'STOCK'));
+    renderTable('pages',data.pages,[
+      {value:'path'},{value:'invite_code'},
+      {value:function(r){return fmt(r.pageviews);},number:true},
+      {value:function(r){return fmt(r.visitors);},number:true},
+      {value:function(r){return fmt(r.signup_clicks);},number:true},
+      {value:function(r){return fmt(r.tutorial_clicks);},number:true},
+      {value:function(r){return fmt(r.download_clicks);},number:true}
+    ]);
+    var downloadChannels={'app-store':'App Store','google-play':'Google Play','android-apk':'Android APK','testflight':'TestFlight','unknown':'未标注'};
+    renderTable('downloads',data.downloads,[
+      {value:'path'},{value:'invite_code'},
+      {value:function(r){return downloadChannels[r.channel]||r.channel;}},
+      {value:function(r){return fmt(r.clicks);},number:true},
+      {value:function(r){return fmt(r.clicked_visitors);},number:true}
+    ]);
     renderTable('sources',data.sources,[
       {value:'source'},{value:'medium'},{value:'campaign'},
       {value:function(r){return fmt(r.pageviews);},number:true},{value:function(r){return fmt(r.visitors);},number:true},{value:function(r){return fmt(r.signup_clicks);},number:true}
@@ -376,6 +408,8 @@ tbody tr:hover td{background:rgba(124,58,237,.035)}
       {value:function(r){return fmt(r.pageviews);},number:true},
       {value:function(r){return fmt(r.visitors);},number:true},
       {value:function(r){return fmt(r.signup_clicks);},number:true},
+      {value:function(r){return fmt(r.tutorial_clicks);},number:true},
+      {value:function(r){return fmt(r.download_clicks);},number:true},
       {value:function(r){var views=num(r.pageviews),clicks=num(r.signup_clicks);return views?(clicks/views*100).toFixed(1)+'%':'0%';},number:true}
     ]);
     renderTable('browsers',data.browsers,[

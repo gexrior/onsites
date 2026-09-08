@@ -1429,5 +1429,6 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 })();
 </script>
 
+<script src="/channel-analytics.js" defer></script>
 </body>
 </html>

@@ -399,5 +399,5 @@ function copyCode(btn){
     document.body.removeChild(ta);
   }
 }
-</script></body>
+</script><script src="/channel-analytics.js" defer></script></body>
 </html>

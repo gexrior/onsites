@@ -1,14 +1,17 @@
 #!/usr/bin/env node
 
 import { createHash } from "node:crypto";
+import { execFile } from "node:child_process";
 import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { promisify } from "node:util";
 
 const SITE_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PUBLIC_DIR = path.join(SITE_DIR, "public");
 const PRODUCTION_URL = "https://bit.onsites.me";
 const ASSET_EXTENSION = /\.(?:avif|css|gif|ico|jpe?g|js|png|svg|webp)$/i;
+const runFile = promisify(execFile);
 
 const PROTECTED_ROUTES = [
   { route: "/LINKI", file: "public/linki-page.txt", group: "/LINKI" },
@@ -134,6 +137,26 @@ async function assertLocalIsolation() {
   if (/linkedin|licdn|lintrk|9736740|27766628/i.test(vpnahCombined)) {
     fail("VPNAH pages must not contain LINKI/LinkedIn tracking");
   }
+
+  const tracker = await localFile("public/channel-analytics.js").then(String);
+  for (const [route, html] of [["/LINKI", linki], ["/VPNAH", vpnah], ["/VPNAH/tutorial", tutorial]]) {
+    const loaders = [...html.matchAll(/<script\b[^>]*\bsrc=["']\/channel-analytics\.js["'][^>]*>/gi)];
+    if (loaders.length !== 1) fail(`${route} must load the site analytics collector exactly once`);
+  }
+  if (!tracker.includes("/api/track") || /linkedin|licdn|lintrk|9736740|27766628/i.test(tracker)) {
+    fail("Shared channel analytics must report to this site's API and contain no LinkedIn tracking");
+  }
+  if (!tutorial.includes("https://bit.go.link/fUeJX") || !tutorial.includes("matrixport-official-master-19-25_23e214yv.apk")) {
+    fail("VPNAH tutorial must retain its own download links");
+  }
+  if (/eeWZn|234bclet|eXf2w|24vusxr9/.test(vpnahCombined)) {
+    fail("VPNAH pages must not contain another channel's download links");
+  }
+  try {
+    await runFile(process.execPath, ["scripts/test-channel-analytics.mjs"], { cwd: SITE_DIR });
+  } catch (error) {
+    fail(`Channel analytics regression check failed: ${error.stderr || error.stdout || error.message}`);
+  }
 }
 
 async function candidateAssetPaths(html, pageRoute) {
@@ -220,6 +243,11 @@ function assertPageHeaders(route, headers) {
   }
   if (route.startsWith("/VPNAH") && /linkedin|licdn/i.test(csp)) {
     fail(`${route} CSP must not contain LINKI/LinkedIn endpoints`);
+  }
+  if (["/LINKI", "/VPNAH", "/VPNAH/tutorial"].includes(route)) {
+    if (!/script-src[^;]*'self'/.test(csp) || !/connect-src[^;]*'self'/.test(csp)) {
+      fail(`${route} CSP must allow loading the site collector and reporting to its API`);
+    }
   }
 }
 

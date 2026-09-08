@@ -230,6 +230,8 @@ async function analyticsReport(env, url) {
         SUM(CASE WHEN event_type = 'view' THEN 1 ELSE 0 END) AS pageviews,
         COUNT(DISTINCT CASE WHEN event_type = 'view' THEN visitor_hash END) AS visitors,
         SUM(CASE WHEN event_type = 'click' AND event_value = 'signup' THEN 1 ELSE 0 END) AS signup_clicks,
+        SUM(CASE WHEN event_type = 'click' AND event_value = 'download' THEN 1 ELSE 0 END) AS download_clicks,
+        SUM(CASE WHEN event_type = 'click' AND event_value = 'tutorial' THEN 1 ELSE 0 END) AS tutorial_clicks,
         ROUND(AVG(CASE WHEN event_type = 'dwell' THEN CAST(event_value AS INTEGER) END), 0) AS avg_dwell_seconds,
         SUM(CASE WHEN event_type = 'scroll' AND CAST(event_value AS INTEGER) >= 75 THEN 1 ELSE 0 END) AS deep_scrolls
       FROM analytics_events
@@ -313,12 +315,44 @@ async function analyticsReport(env, url) {
         COALESCE(NULLIF(invite_code, ''), 'UNKNOWN') AS invite_code,
         SUM(CASE WHEN event_type = 'view' THEN 1 ELSE 0 END) AS pageviews,
         COUNT(DISTINCT CASE WHEN event_type = 'view' THEN visitor_hash END) AS visitors,
-        SUM(CASE WHEN event_type = 'click' AND event_value = 'signup' THEN 1 ELSE 0 END) AS signup_clicks
+        SUM(CASE WHEN event_type = 'click' AND event_value = 'signup' THEN 1 ELSE 0 END) AS signup_clicks,
+        SUM(CASE WHEN event_type = 'click' AND event_value = 'download' THEN 1 ELSE 0 END) AS download_clicks,
+        SUM(CASE WHEN event_type = 'click' AND event_value = 'tutorial' THEN 1 ELSE 0 END) AS tutorial_clicks
       FROM analytics_events
       WHERE created_at >= ? AND is_bot = 0
       GROUP BY invite_code
       ORDER BY pageviews DESC, signup_clicks DESC
       LIMIT 30
+    `).bind(cutoff),
+    env.DB.prepare(`
+      SELECT
+        path,
+        COALESCE(NULLIF(invite_code, ''), 'UNKNOWN') AS invite_code,
+        SUM(CASE WHEN event_type = 'view' THEN 1 ELSE 0 END) AS pageviews,
+        COUNT(DISTINCT CASE WHEN event_type = 'view' THEN visitor_hash END) AS visitors,
+        SUM(CASE WHEN event_type = 'click' AND event_value = 'signup' THEN 1 ELSE 0 END) AS signup_clicks,
+        SUM(CASE WHEN event_type = 'click' AND event_value = 'download' THEN 1 ELSE 0 END) AS download_clicks,
+        SUM(CASE WHEN event_type = 'click' AND event_value = 'tutorial' THEN 1 ELSE 0 END) AS tutorial_clicks
+      FROM analytics_events
+      WHERE created_at >= ? AND is_bot = 0
+      GROUP BY path, invite_code
+      ORDER BY CASE WHEN path IN ('/LINKI', '/VPNAH', '/VPNAH/tutorial') THEN 0 ELSE 1 END,
+        pageviews DESC, download_clicks DESC
+      LIMIT 100
+    `).bind(cutoff),
+    env.DB.prepare(`
+      SELECT
+        path,
+        COALESCE(NULLIF(invite_code, ''), 'UNKNOWN') AS invite_code,
+        COALESCE(NULLIF(event_label, ''), 'unknown') AS channel,
+        COUNT(*) AS clicks,
+        COUNT(DISTINCT visitor_hash) AS clicked_visitors
+      FROM analytics_events
+      WHERE created_at >= ? AND is_bot = 0 AND event_type = 'click' AND event_value = 'download'
+      GROUP BY path, invite_code, channel
+      ORDER BY CASE WHEN path IN ('/LINKI', '/VPNAH', '/VPNAH/tutorial') THEN 0 ELSE 1 END,
+        clicks DESC
+      LIMIT 100
     `).bind(cutoff),
     env.DB.prepare(`
       SELECT value AS invite_code, updated_at
@@ -328,7 +362,7 @@ async function analyticsReport(env, url) {
     `),
   ];
 
-  const [summary, daily, sources, countries, devices, browsers, locations, inviteCodes, settings] =
+  const [summary, daily, sources, countries, devices, browsers, locations, inviteCodes, pages, downloads, settings] =
     await env.DB.batch(statements);
 
   return jsonResponse({
@@ -344,6 +378,8 @@ async function analyticsReport(env, url) {
     browsers: rows(browsers),
     locations: rows(locations),
     invite_codes: rows(inviteCodes),
+    pages: rows(pages),
+    downloads: rows(downloads),
     settings: rows(settings)[0] || { invite_code: DEFAULT_INVITE_CODE, updated_at: null },
   });
 }

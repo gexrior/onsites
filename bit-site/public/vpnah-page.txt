@@ -675,5 +675,6 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
 })();
 </script>
 
+<script src="/channel-analytics.js" defer></script>
 </body>
 </html>
