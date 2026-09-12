@@ -223,6 +223,48 @@ for (const beacon of ["reject", "throw", "missing"]) {
   assert.equal(fallback.fetched.length, 1);
 }
 
+// The refreshed VPNAH desktop CTAs register on the web; mobile CTAs still open the guide.
+const signupSource = /<script data-vpnah-signup-analytics>([\s\S]*?)<\/script>/.exec(vpnah)?.[1];
+assert.ok(signupSource, 'VPNAH must preserve tracking for its desktop signup buttons');
+function desktopSignupLinks(page) {
+  return page.anchors.filter((anchor) => {
+    const url = new URL(anchor.href);
+    return url.origin === 'https://invest.bit.com' && url.pathname === '/newRegister/cn' && url.searchParams.get('invite_code') === 'VPNAH';
+  });
+}
+const desktop = browser('/VPNAH?utm_source=partner&utm_campaign=desktop', vpnah, { referrer: 'https://example.org/offer' });
+desktop.run();
+desktop.run(signupSource);
+desktop.run(signupSource);
+assert.equal(desktopSignupLinks(desktop).length, 3);
+assert.equal(desktop.anchors.filter((a) => new URL(a.href).pathname === '/VPNAH/tutorial').length, 3);
+for (const anchor of desktopSignupLinks(desktop)) desktop.click(anchor);
+assert.equal(events(desktop, 'view').length, 1);
+assert.equal(events(desktop, 'click', 'signup').length, 3, 'One signup event per desktop CTA click');
+assert.equal(events(desktop, 'click', 'tutorial').length, 0);
+for (const event of events(desktop, 'click', 'signup')) {
+  assert.equal(event.invite_code, 'VPNAH');
+  assert.equal(event.path, '/VPNAH');
+  assert.equal(event.session_id, desktop.sent[0].session_id);
+  assert.equal(event.utm_source, 'partner');
+  assert.equal(event.utm_campaign, 'desktop');
+  assert.equal(event.referrer_host, 'example.org');
+}
+desktop.click(desktop.anchors.find((a) => new URL(a.href).pathname === '/VPNAH/tutorial'));
+assert.equal(events(desktop, 'click', 'tutorial').length, 1);
+assert.equal(events(desktop, 'click', 'signup').length, 3);
+for (const beacon of ['reject', 'throw', 'missing']) {
+  const fallback = browser('/VPNAH', vpnah, { beacon });
+  fallback.run(); fallback.run(signupSource);
+  fallback.click(desktopSignupLinks(fallback)[0]);
+  assert.equal(events(fallback, 'click', 'signup').length, 1);
+  assert.equal(fallback.fetched.length, 2, 'View and signup each fall back once');
+}
+const isolatedSignup = browser('/LINKI', vpnah);
+isolatedSignup.run(signupSource);
+isolatedSignup.click(desktopSignupLinks(isolatedSignup)[0]);
+assert.equal(isolatedSignup.sent.length, 0, 'The additional signup handler is VPNAH-only');
+
 const database = new DatabaseSync(":memory:");
 database.exec(await read("migrations/0001_analytics.sql"));
 database.exec(await read("migrations/0002_site_settings.sql"));
