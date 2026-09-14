@@ -8,6 +8,20 @@ import { fileURLToPath } from "node:url";
 const repo = fileURLToPath(new URL("../../", import.meta.url));
 const production = "https://bit.onsites.me";
 
+export async function fetchVpnahCheck(route, headers, expectedVersion) {
+  for (let attempt = 1; attempt <= 7; attempt += 1) {
+    const url = new URL(route, production);
+    assert.equal(url.origin, production, "Never send the production password to another origin");
+    url.searchParams.set("__vpnah_access_check", `${Date.now()}-${attempt}`);
+    const result = await fetch(url, { headers, redirect: "manual", signal: AbortSignal.timeout(20000) });
+    const actualVersion = result.headers.get("x-bit-worker-version");
+    if (!expectedVersion || actualVersion === expectedVersion) return result;
+    await result.body?.cancel();
+    if (attempt === 7) throw new Error(`${route}: received Worker ${actualVersion || "unknown"}; expected ${expectedVersion}`);
+    await new Promise((resolve) => setTimeout(resolve, attempt * 500));
+  }
+}
+
 export async function readVpnahPassword(filename) {
   const resolved = await realpath(filename);
   assert.ok(!resolved.startsWith(repo), "Password file must be outside the repository");
@@ -27,8 +41,7 @@ export async function checkVpnahAccess({ vpnahPasswordFile, baseUrl = production
   async function get(route, username = "vpnah") {
     const headers = { Authorization: "Basic " + Buffer.from(`${username}:${password}`).toString("base64"), "Cache-Control": "no-store" };
     if (overrideVersion) headers["Cloudflare-Workers-Version-Overrides"] = `bit-onsites="${overrideVersion}"`;
-    const result = await fetch(baseUrl + route, { headers, redirect: "manual", signal: AbortSignal.timeout(20000) });
-    if (expectedVersion) assert.equal(result.headers.get("x-bit-worker-version"), expectedVersion, `${route}: unexpected version`);
+    const result = await fetchVpnahCheck(route, headers, expectedVersion);
     assert.equal(result.headers.get("cache-control"), "no-store", `${route}: must not cache private responses`);
     return result;
   }

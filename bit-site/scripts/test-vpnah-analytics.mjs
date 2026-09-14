@@ -8,7 +8,7 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import vm from "node:vm";
 import worker from "../src/worker.js";
-import { readVpnahPassword } from "./check-vpnah-access.mjs";
+import { fetchVpnahCheck, readVpnahPassword } from "./check-vpnah-access.mjs";
 
 const site = new URL("../", import.meta.url);
 const read = (name) => readFile(new URL(name, site), "utf8");
@@ -18,6 +18,64 @@ assert.equal(scripts.length, 1);
 new vm.Script(scripts[0], { filename: "vpnah-dashboard-inline.js" });
 assert.ok(!html.includes("/api/track"), "The private dashboard must not pollute public analytics");
 assert.doesNotMatch(html, /(?:href|action)\s*=\s*["']\/(?:analytics|admin)(?:[/?#"']|\.html)/i, "The standalone dashboard must not expose global navigation");
+
+// Mock every network call and retry delay; no production request or secret is used.
+const originalFetch = globalThis.fetch;
+const originalSetTimeout = globalThis.setTimeout;
+const retryRequests = [];
+const retryDelays = [];
+let retryResponses = [];
+const retryResponse = (version, status = 401, realm = "VPNAH Analytics") => new Response("offline response only", {
+  status, headers: { "x-bit-worker-version": version, "WWW-Authenticate": `Basic realm="${realm}"` },
+});
+try {
+  globalThis.fetch = async (url, options) => {
+    retryRequests.push(new URL(url));
+    assert.equal(options.redirect, "manual");
+    assert.ok(options.signal instanceof AbortSignal);
+    assert.ok(retryResponses.length > 0, "Unexpected fetch must never reach the network");
+    return retryResponses.shift();
+  };
+  globalThis.setTimeout = (callback, delay) => { retryDelays.push(delay); callback(); return 0; };
+  const resetRetry = (responses) => { retryRequests.length = 0; retryDelays.length = 0; retryResponses = responses; };
+
+  const oldResponse = retryResponse("offline-old-version", 401, "BIT Control");
+  const targetResponse = retryResponse("offline-target-version");
+  resetRetry([oldResponse, targetResponse]);
+  assert.equal(await fetchVpnahCheck("/VPNAH/analytics?days=1", {}, "offline-target-version"), targetResponse);
+  assert.equal(retryRequests.length, 2);
+  assert.deepEqual(retryDelays, [500]);
+  assert.ok(oldResponse.bodyUsed, "Wrong-version response body must be released before retrying");
+  const nonces = retryRequests.map((url) => url.searchParams.get("__vpnah_access_check"));
+  assert.notEqual(nonces[0], nonces[1]);
+  assert.deepEqual(nonces.map((nonce) => Number(nonce.split("-").at(-1))), [1, 2], "Retry nonce must include the increasing attempt");
+  assert.ok(retryRequests.every((url) => url.origin === "https://bit.onsites.me" && url.searchParams.get("days") === "1"));
+
+  const incorrectStatus = retryResponse("offline-target-version", 200);
+  resetRetry([incorrectStatus]);
+  assert.equal(await fetchVpnahCheck("/VPNAH/analytics", {}, "offline-target-version"), incorrectStatus, "Target-version status must reach the caller's strict assertion unchanged");
+  assert.equal(retryRequests.length, 1);
+  assert.deepEqual(retryDelays, []);
+
+  resetRetry(Array.from({ length: 7 }, () => retryResponse("offline-old-version")));
+  await assert.rejects(fetchVpnahCheck("/VPNAH/analytics", {}, "offline-target-version"), /received Worker offline-old-version; expected offline-target-version/);
+  assert.equal(retryRequests.length, 7, "Version propagation retries must remain bounded");
+  assert.deepEqual(retryDelays, [500, 1000, 1500, 2000, 2500, 3000]);
+
+  resetRetry([]);
+  await assert.rejects(fetchVpnahCheck("https://example.invalid/VPNAH/analytics", {}, "offline-target-version"), /Never send the production password to another origin/);
+  assert.equal(retryRequests.length, 0, "Foreign origins must be rejected before fetch");
+  assert.deepEqual(retryDelays, []);
+
+  const incorrectRealm = retryResponse("offline-target-version", 401, "BIT Control");
+  resetRetry([incorrectRealm]);
+  assert.equal(await fetchVpnahCheck("/VPNAH/analytics", {}, "offline-target-version"), incorrectRealm, "Target-version realm must reach the caller's strict assertion unchanged");
+  assert.equal(retryRequests.length, 1);
+  assert.deepEqual(retryDelays, []);
+} finally {
+  globalThis.fetch = originalFetch;
+  globalThis.setTimeout = originalSetTimeout;
+}
 
 // Validate only synthetic password fixtures; never load an actual deployment secret.
 const passwordFixtureDirectory = await mkdtemp(join(tmpdir(), "vpnah-password-test-"));

@@ -195,7 +195,7 @@ async function candidateAssetPaths(html, pageRoute) {
   return [...paths].sort();
 }
 
-async function fetchWithRetry(baseUrl, route, overrideVersion, expectedVersion) {
+async function fetchWithRetry(baseUrl, route, overrideVersion, expectedVersion, expectedStatus = 200) {
   let lastError;
   for (let attempt = 1; attempt <= 7; attempt += 1) {
     try {
@@ -208,12 +208,18 @@ async function fetchWithRetry(baseUrl, route, overrideVersion, expectedVersion) 
       const response = await fetch(url, {
         redirect: "manual",
         headers,
+        signal: AbortSignal.timeout(20000),
       });
-      if (response.status !== 200) fail(`${route} returned HTTP ${response.status}`);
       if (expectedVersion && response.headers.get("x-bit-worker-version") !== expectedVersion) {
-        fail(`${route} did not run expected Worker version ${expectedVersion}`);
+        await response.body?.cancel();
+        fail(`${route} returned Worker ${response.headers.get("x-bit-worker-version") || "unknown"}; expected ${expectedVersion}`);
+      }
+      if (expectedStatus !== null && response.status !== expectedStatus) {
+        await response.body?.cancel();
+        fail(`${route} returned HTTP ${response.status}; expected ${expectedStatus}`);
       }
       return {
+        status: response.status,
         body: Buffer.from(await response.arrayBuffer()),
         headers: response.headers,
       };
@@ -295,15 +301,10 @@ async function main() {
   }
 
   if (mode === "verify") {
-    const headers = { "Cache-Control": "no-cache" };
-    if (overrideVersion) headers["Cloudflare-Workers-Version-Overrides"] = `bit-onsites="${overrideVersion}"`;
     for (const route of ["/VPNAH/analytics", "/vpnah-analytics-page.txt", "/VPNAH/analytics/data", "/api/analytics/vpnah"]) {
-      const result = await fetch(`${baseUrl}${route}`, { headers, redirect: "manual" });
+      const result = await fetchWithRetry(baseUrl, route, overrideVersion, expectedVersion, null);
       if (result.status !== 401 || !result.headers.get("www-authenticate")?.includes("VPNAH Analytics")) {
-        fail(`${route} must require the independent VPNAH login`);
-      }
-      if (expectedVersion && result.headers.get("x-bit-worker-version") !== expectedVersion) {
-        fail(`${route} did not run expected Worker version ${expectedVersion}`);
+        fail(`${route} failed login protection: HTTP ${result.status}, Worker ${result.headers.get("x-bit-worker-version") || "unknown"}, realm ${result.headers.get("www-authenticate") || "missing"}`);
       }
     }
     console.log("VPNAH dashboard and API require authentication");
