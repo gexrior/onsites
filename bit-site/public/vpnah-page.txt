@@ -618,7 +618,7 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
 <div class="topbar" id="topbar">
   <div class="inner">
     <div class="brand"><span class="mark">B</span>BIT 证券<span class="x">×</span>加速器</div>
-    <a class="nav-cta nav-m" href="https://bit.onsites.me/VPNAH/tutorial">立即领取30天会员</a><a class="nav-cta nav-d" href="https://invest.bit.com/newRegister/cn?invite_code=VPNAH">立即领取30天会员</a>
+    <a class="nav-cta nav-m" href="https://bit.onsites.me/VPNAH/tutorial">立即领取30天会员</a><a class="nav-cta nav-d" href="https://bit.onsites.me/VPNAH/tutorial">立即领取30天会员</a>
   </div>
 </div>
 
@@ -630,7 +630,7 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
       <h1><em>5 分钟</em>极速开户<br>一键买入真实美股</h1>
       <div class="cta-one">
         <a class="cta-btn cta-mobile cta-m" href="https://bit.onsites.me/VPNAH/tutorial">5 分钟极速开户<span class="arw">›</span></a>
-        <a class="cta-btn cta-mobile cta-d" href="https://invest.bit.com/newRegister/cn?invite_code=VPNAH">5 分钟极速开户<span class="arw">›</span></a>
+        <a class="cta-btn cta-mobile cta-d" href="https://bit.onsites.me/VPNAH/tutorial">5 分钟极速开户<span class="arw">›</span></a>
       </div>
     </div>
 
@@ -892,7 +892,7 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
   <div class="fc-tag">限时联合福利</div>
   <div class="fc-big">$310</div>
   <div class="fc-sub">新用户开户礼包<br>+ 30 天加速器会员</div>
-  <a class="fc-b" href="https://invest.bit.com/newRegister/cn?invite_code=VPNAH">立即开户</a>
+  <a class="fc-b" href="https://bit.onsites.me/VPNAH/tutorial">立即开户</a>
   <div class="fc-n">邀请码 VPNAH · 5 分钟完成</div>
 </aside>
 
@@ -992,55 +992,5 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
 })();
 </script>
 <script src="/channel-analytics.js" defer></script>
-<script data-vpnah-signup-analytics>
-(function () {
-  'use strict';
-  if (location.pathname.replace(/\/+$/, '').toUpperCase() !== '/VPNAH' || window.__bitVpnahSignupLoaded) return;
-  window.__bitVpnahSignupLoaded = true;
-
-  function eventId() {
-    return window.crypto && typeof window.crypto.randomUUID === 'function'
-      ? window.crypto.randomUUID()
-      : Date.now().toString(36) + Math.random().toString(36).slice(2, 12);
-  }
-  document.addEventListener('click', function (event) {
-    var anchor = event.target;
-    while (anchor && anchor !== document && !(anchor.tagName === 'A' && anchor.hasAttribute('href'))) anchor = anchor.parentNode;
-    if (!anchor || anchor === document) return;
-    var url;
-    try { url = new URL(anchor.href, location.href); } catch (_) { return; }
-    if (url.origin !== 'https://invest.bit.com' || url.pathname !== '/newRegister/cn' || url.searchParams.get('invite_code') !== 'VPNAH') return;
-
-    // Reuse this channel's existing session and campaign without changing the shared collector.
-    var sid = '', attribution = null, referrerHost = 'direct';
-    try { sid = sessionStorage.getItem('_bsid') || ''; attribution = JSON.parse(sessionStorage.getItem('_bchannel:VPNAH') || 'null'); } catch (_) {}
-    try { if (document.referrer) referrerHost = new URL(document.referrer).hostname; } catch (_) {}
-    var params = new URLSearchParams(location.search);
-    var ua = navigator.userAgent || '', uaData = navigator.userAgentData || {};
-    var timezone = '';
-    try { timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (_) {}
-    var payload = {
-      event_id: eventId(), event: 'click', value: 'signup',
-      label: (anchor.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 40) || 'signup',
-      session_id: sid || eventId(), invite_code: 'VPNAH', path: '/VPNAH',
-      landing_page: attribution && attribution.landing_page || '/VPNAH',
-      page_title: document.title, referrer_host: attribution && attribution.referrer_host || referrerHost,
-      device: uaData.mobile || /Mobi|Android|iPhone|iPad/i.test(ua) ? 'mobile' : 'desktop',
-      browser: /Edg\//.test(ua) ? 'Edge' : /Firefox\//.test(ua) ? 'Firefox' : /Chrome\//.test(ua) ? 'Chrome' : /Safari\//.test(ua) ? 'Safari' : 'Other',
-      os: /Windows/i.test(ua) ? 'Windows' : /Android/i.test(ua) ? 'Android' : /iPhone|iPad|iPod/i.test(ua) ? 'iOS' : /Mac OS/i.test(ua) ? 'macOS' : /Linux/i.test(ua) ? 'Linux' : 'Other',
-      language: navigator.language || '', timezone: timezone,
-      screen_width: window.screen ? window.screen.width || 0 : 0,
-      screen_height: window.screen ? window.screen.height || 0 : 0,
-      client_ts: new Date().toISOString()
-    };
-    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(function (key) {
-      payload[key] = attribution && typeof attribution[key] === 'string' ? attribution[key] : params.get(key) || '';
-    });
-    var body = JSON.stringify(payload);
-    try { if (navigator.sendBeacon && navigator.sendBeacon('/api/track', new Blob([body], { type: 'application/json' }))) return; } catch (_) {}
-    try { fetch('/api/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body, keepalive: true, credentials: 'same-origin' }).catch(function () {}); } catch (_) {}
-  }, true);
-})();
-</script>
 </body>
 </html>

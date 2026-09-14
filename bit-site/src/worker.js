@@ -384,8 +384,44 @@ async function analyticsReport(env, url) {
   });
 }
 
-async function dashboardPage(request, env, url) {
-  const assetUrl = new URL("/analytics", url);
+async function vpnahAnalyticsReport(env, url) {
+  const requestedDays = integer(url.searchParams.get("days"), 90);
+  const days = DASHBOARD_RANGES.has(requestedDays) ? requestedDays : 7;
+  const cutoff = new Date(Date.now() - days * 86400000).toISOString();
+  const scope = "created_at >= ? AND is_bot = 0 AND invite_code = 'VPNAH' AND path IN ('/VPNAH', '/VPNAH/tutorial')";
+  const device = "CASE WHEN device IN ('mobile', 'desktop') THEN device ELSE 'unknown' END";
+  const metrics = `
+    SUM(CASE WHEN event_type = 'view' THEN 1 ELSE 0 END) AS pageviews,
+    COUNT(DISTINCT CASE WHEN event_type = 'view' THEN visitor_hash END) AS visitors,
+    SUM(CASE WHEN event_type = 'click' AND event_value = 'tutorial' THEN 1 ELSE 0 END) AS tutorial_clicks,
+    SUM(CASE WHEN event_type = 'click' AND event_value = 'signup' THEN 1 ELSE 0 END) AS signup_clicks,
+    SUM(CASE WHEN event_type = 'click' AND event_value = 'download' THEN 1 ELSE 0 END) AS download_clicks`;
+  const [pages, devices, downloads] = await env.DB.batch([
+    env.DB.prepare(`SELECT path, ${metrics} FROM analytics_events WHERE ${scope} GROUP BY path`).bind(cutoff),
+    env.DB.prepare(`SELECT path, ${device} AS device, ${metrics} FROM analytics_events WHERE ${scope} GROUP BY path, ${device}`).bind(cutoff),
+    env.DB.prepare(`
+      SELECT path, ${device} AS device, COALESCE(NULLIF(event_label, ''), 'unknown') AS channel,
+        COUNT(*) AS clicks, COUNT(DISTINCT visitor_hash) AS clicked_visitors
+      FROM analytics_events
+      WHERE ${scope} AND event_type = 'click' AND event_value = 'download'
+      GROUP BY path, ${device}, COALESCE(NULLIF(event_label, ''), 'unknown')
+      ORDER BY path, channel, device
+    `).bind(cutoff),
+  ]);
+  const zero = { pageviews: 0, visitors: 0, tutorial_clicks: 0, signup_clicks: 0, download_clicks: 0 };
+  const paths = ["/VPNAH", "/VPNAH/tutorial"];
+  return jsonResponse({
+    scope: "VPNAH", days, cutoff, generated_at: new Date().toISOString(),
+    pages: paths.map((path) => ({ path, ...zero, ...rows(pages).find((row) => row.path === path) })),
+    devices: paths.flatMap((path) => ["mobile", "desktop", "unknown"].map((device) => ({
+      path, device, ...zero, ...rows(devices).find((row) => row.path === path && row.device === device),
+    }))),
+    downloads: rows(downloads),
+  });
+}
+
+async function dashboardPage(request, env, url, assetPath = "/analytics") {
+  const assetUrl = new URL(assetPath, url);
   const asset = await env.ASSETS.fetch(new Request(assetUrl, request));
   const headers = new Headers(asset.headers);
   headers.set("Cache-Control", "no-store");
@@ -393,6 +429,10 @@ async function dashboardPage(request, env, url) {
   headers.set("Referrer-Policy", "no-referrer");
   headers.set("X-Content-Type-Options", "nosniff");
   headers.set("X-Frame-Options", "DENY");
+  if (assetPath === "/vpnah-analytics-page.txt") {
+    headers.set("Content-Type", "text/html; charset=utf-8");
+    headers.set("X-Robots-Tag", "noindex, nofollow");
+  }
   return new Response(asset.body, { status: asset.status, headers });
 }
 
@@ -589,6 +629,28 @@ async function track(request, env, url) {
 
 async function handleRequest(request, env) {
   const url = new URL(request.url);
+  let decodedPath = url.pathname;
+  try { decodedPath = decodeURIComponent(url.pathname); } catch (_) {}
+
+    if (["/VPNAH/analytics", "/VPNAH/analytics/", "/VPNAH/analytics.html", "/vpnah-analytics-page.txt"].includes(decodedPath)) {
+      if (!["GET", "HEAD"].includes(request.method)) return response(405, "method not allowed");
+      if (!env.DASHBOARD_PASSWORD) return response(503, "dashboard unavailable");
+      if (!(await dashboardAuthorized(request, env))) return unauthorized();
+      if (url.pathname !== "/VPNAH/analytics") return redirectPath(url, "/VPNAH/analytics");
+      return dashboardPage(request, env, url, "/vpnah-analytics-page.txt");
+    }
+
+    if (url.pathname === "/api/analytics/vpnah") {
+      if (request.method !== "GET") return response(405, "method not allowed");
+      if (!env.DASHBOARD_PASSWORD) return response(503, "dashboard unavailable");
+      if (!(await dashboardAuthorized(request, env))) return unauthorized();
+      try {
+        return await vpnahAnalyticsReport(env, url);
+      } catch (error) {
+        console.error("VPNAH analytics report failed", error);
+        return jsonResponse({ error: "report unavailable" }, 500);
+      }
+    }
 
     if (url.pathname === "/admin" || url.pathname === "/admin.html") {
       if (!["GET", "HEAD"].includes(request.method)) return response(405, "method not allowed");

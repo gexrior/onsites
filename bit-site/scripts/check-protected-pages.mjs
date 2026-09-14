@@ -154,6 +154,7 @@ async function assertLocalIsolation() {
   }
   try {
     await runFile(process.execPath, ["scripts/test-channel-analytics.mjs"], { cwd: SITE_DIR });
+    await runFile(process.execPath, ["scripts/test-vpnah-analytics.mjs"], { cwd: SITE_DIR });
   } catch (error) {
     fail(`Channel analytics regression check failed: ${error.stderr || error.stdout || error.message}`);
   }
@@ -287,6 +288,21 @@ async function main() {
   for (const entry of entries) {
     const result = await compareRouteToLocal(baseUrl, entry, overrideVersion, expectedVersion);
     console.log(`${result.route}: ${result.hash} (${result.assets} protected assets)`);
+  }
+
+  if (mode === "verify") {
+    const headers = { "Cache-Control": "no-cache" };
+    if (overrideVersion) headers["Cloudflare-Workers-Version-Overrides"] = `bit-onsites="${overrideVersion}"`;
+    for (const route of ["/VPNAH/analytics", "/vpnah-analytics-page.txt", "/api/analytics/vpnah"]) {
+      const result = await fetch(`${baseUrl}${route}`, { headers, redirect: "manual" });
+      if (result.status !== 401 || !result.headers.get("www-authenticate")?.includes("BIT Control")) {
+        fail(`${route} must require the existing dashboard login`);
+      }
+      if (expectedVersion && result.headers.get("x-bit-worker-version") !== expectedVersion) {
+        fail(`${route} did not run expected Worker version ${expectedVersion}`);
+      }
+    }
+    console.log("VPNAH dashboard and API require authentication");
   }
 
   if (mode === "preflight" && allowedRoutes.size > 0) {
