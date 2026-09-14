@@ -1,10 +1,14 @@
 #!/usr/bin/env node
 // Offline tests only: real Worker + in-memory SQLite, never send analytics to production.
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { chmod, mkdtemp, readFile, rmdir, unlink, writeFile } from "node:fs/promises";
 import { DatabaseSync } from "node:sqlite";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import vm from "node:vm";
 import worker from "../src/worker.js";
+import { readVpnahPassword } from "./check-vpnah-access.mjs";
 
 const site = new URL("../", import.meta.url);
 const read = (name) => readFile(new URL(name, site), "utf8");
@@ -13,6 +17,36 @@ const scripts = [...html.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)].map((
 assert.equal(scripts.length, 1);
 new vm.Script(scripts[0], { filename: "vpnah-dashboard-inline.js" });
 assert.ok(!html.includes("/api/track"), "The private dashboard must not pollute public analytics");
+assert.doesNotMatch(html, /(?:href|action)\s*=\s*["']\/(?:analytics|admin)(?:[/?#"']|\.html)/i, "The standalone dashboard must not expose global navigation");
+
+// Validate only synthetic password fixtures; never load an actual deployment secret.
+const passwordFixtureDirectory = await mkdtemp(join(tmpdir(), "vpnah-password-test-"));
+const passwordFixturePath = join(passwordFixtureDirectory, "offline-password.json");
+const fixturePassword = "offline-password-fixture-only";
+try {
+  await writeFile(passwordFixturePath, JSON.stringify({ VPNAH_ANALYTICS_PASSWORD: fixturePassword }), { mode: 0o600 });
+  assert.equal(await readVpnahPassword(passwordFixturePath), fixturePassword);
+  await chmod(passwordFixturePath, 0o644);
+  await assert.rejects(readVpnahPassword(passwordFixturePath), /small private file/);
+  await chmod(passwordFixturePath, 0o600);
+  const invalidJson = '{"VPNAH_ANALYTICS_PASSWORD":"synthetic-body-must-not-leak"';
+  await writeFile(passwordFixturePath, invalidJson);
+  await assert.rejects(readVpnahPassword(passwordFixturePath), (error) => {
+    assert.equal(error.message, "Password file must contain valid JSON");
+    assert.ok(!error.message.includes("synthetic-body-must-not-leak"), "Invalid JSON errors must not expose file contents");
+    return true;
+  });
+  await writeFile(passwordFixturePath, JSON.stringify({ VPNAH_ANALYTICS_PASSWORD: fixturePassword, DASHBOARD_PASSWORD: "offline-global-fixture-only" }));
+  await assert.rejects(readVpnahPassword(passwordFixturePath), /Only VPNAH_ANALYTICS_PASSWORD may be provided/);
+  for (const password of ["short-offline", "offline-password-\u4e2d\u6587"]) {
+    await writeFile(passwordFixturePath, JSON.stringify({ VPNAH_ANALYTICS_PASSWORD: password }));
+    await assert.rejects(readVpnahPassword(passwordFixturePath), /16–128 character printable ASCII/);
+  }
+  await assert.rejects(readVpnahPassword(fileURLToPath(import.meta.url)), /outside the repository/, "Repository files must be rejected before reading them");
+} finally {
+  await unlink(passwordFixturePath).catch((error) => { if (error.code !== "ENOENT") throw error; });
+  await rmdir(passwordFixtureDirectory);
+}
 
 const database = new DatabaseSync(":memory:");
 database.exec(await read("migrations/0001_analytics.sql"));
@@ -30,25 +64,55 @@ const DB = {
   batch(statements) { return Promise.all(statements.map((statement) => statement.all())); },
 };
 const env = {
-  DB, DASHBOARD_PASSWORD: "offline-test-only", WORKER_VERSION: { id: "offline-version" },
+  DB, DASHBOARD_PASSWORD: "offline-test-only", VPNAH_ANALYTICS_PASSWORD: "offline-vpnah-test-only", WORKER_VERSION: { id: "offline-version" },
   ASSETS: { async fetch(request) {
     assert.equal(new URL(request.url).pathname, "/vpnah-analytics-page.txt");
     return new Response(html, { headers: { "Content-Type": "text/plain" } });
   } },
 };
 const origin = "https://bit.onsites.me";
-const auth = "Basic " + Buffer.from("admin:offline-test-only").toString("base64");
+const basic = (username, password) => "Basic " + Buffer.from(username + ":" + password).toString("base64");
+const auth = basic("admin", "offline-test-only");
+const scopedAuth = basic("vpnah", "offline-vpnah-test-only");
 const call = (route, { authorized = true, password = auth, method = "GET", environment = env } = {}) => worker.fetch(new Request(origin + route, {
   method, headers: authorized ? { Authorization: password } : {},
 }), environment);
-const api = "/api/analytics/vpnah";
-for (const route of ["/VPNAH/analytics", "/VPNAH/analytics/", "/VPNAH/analytics.html", "/vpnah-analytics-page.txt", "/vpnah-analytics-page%2etxt", api]) {
-  assert.equal((await call(route, { authorized: false })).status, 401);
-  assert.equal((await call(route, { password: "Basic " + Buffer.from("admin:wrong").toString("base64") })).status, 401);
-  assert.equal((await call(route, { environment: { ...env, DASHBOARD_PASSWORD: "" } })).status, 503);
+const api = "/VPNAH/analytics/data";
+const legacyApi = "/api/analytics/vpnah";
+const scopedPages = ["/VPNAH/analytics", "/VPNAH/analytics/", "/VPNAH/analytics.html", "/VPNAH/anal%79tics", "/VPNAH%2fanalytics", "/vpnah-analytics-page.txt", "/vpnah-analytics-page%2etxt", "/vpnah-analytics-page.txt/"];
+const scopedApis = [api, api + "/", "/VPNAH/analytics/d%61ta", legacyApi, legacyApi + "/", "/api/analytics/vpn%61h"];
+for (const route of [...scopedPages, ...scopedApis]) {
+  const anonymous = await call(route, { authorized: false });
+  assert.equal(anonymous.status, 401);
+  assert.match(anonymous.headers.get("WWW-Authenticate"), /Basic realm="VPNAH Analytics"/);
+  assert.equal(anonymous.headers.get("Cache-Control"), "no-store");
+  for (const password of [basic("admin", "wrong"), basic("vpnah", "wrong"), basic("admin", "offline-vpnah-test-only"), basic("vpnah", "offline-test-only"), basic("VPNAH", "offline-vpnah-test-only"), "Basic %%%", "Bearer offline-vpnah-test-only"]) {
+    assert.equal((await call(route, { password })).status, 401, route + " must reject invalid or crossed credentials");
+  }
+  assert.ok((await call(route, { password: scopedAuth })).status < 400, route + " accepts scoped credentials");
+  assert.ok((await call(route)).status < 400, route + " retains owner access");
+  const adminOnlyEnv = { ...env, VPNAH_ANALYTICS_PASSWORD: "" };
+  assert.equal((await call(route, { password: scopedAuth, environment: adminOnlyEnv })).status, 401);
+  assert.ok((await call(route, { environment: adminOnlyEnv })).status < 400, "Missing scoped secret must not lock out the owner");
+  const scopedOnlyEnv = { ...env, DASHBOARD_PASSWORD: "" };
+  assert.ok((await call(route, { password: scopedAuth, environment: scopedOnlyEnv })).status < 400, "Scoped access must not depend on a global secret");
+  assert.equal((await call(route, { environment: scopedOnlyEnv })).status, 401);
+  assert.equal((await call(route, { environment: { ...env, DASHBOARD_PASSWORD: "", VPNAH_ANALYTICS_PASSWORD: "" } })).status, 503);
+  const collidingEnv = { ...env, VPNAH_ANALYTICS_PASSWORD: env.DASHBOARD_PASSWORD };
+  assert.equal((await call(route, { password: basic("vpnah", env.DASHBOARD_PASSWORD), environment: collidingEnv })).status, 401, "A shared admin password must never activate scoped access");
+  assert.ok((await call(route, { environment: collidingEnv })).status < 400, "Password collision must preserve owner access");
   assert.equal((await call(route, { method: "POST" })).status, 405);
 }
-const page = await call("/VPNAH/analytics");
+for (const route of ["/analytics", "/analytics/", "/analytics.html", "/anal%79tics", "/analytics%2ehtml", "/admin", "/admin/", "/admin.html", "/ad%6din", "/admin%2ehtml", "/api/analytics", "/api/analytics/", "/api/anal%79tics", "/api/analytics?invite_code=VPNAH", "/api/admin/settings", "/api/admin/settings/", "/api/admin/sett%69ngs"]) {
+  for (const password of [scopedAuth, basic("admin", env.VPNAH_ANALYTICS_PASSWORD)]) {
+    const denied = await call(route, { password });
+    assert.equal(denied.status, 401, route + " must not allow scoped credentials into the global backend");
+    assert.match(denied.headers.get("WWW-Authenticate"), /Basic realm="BIT Control"/);
+  }
+  assert.equal((await call(route, { authorized: false })).status, 401, route + " must not expose an unauthenticated static shell");
+}
+assert.equal((await call("/api/admin/settings", { password: scopedAuth, method: "PUT" })).status, 401, "Scoped credentials cannot change global settings");
+const page = await call("/VPNAH/analytics", { password: scopedAuth });
 assert.equal(page.status, 200);
 assert.equal(await page.text(), html);
 assert.match(page.headers.get("Content-Type"), /^text\/html/);
@@ -56,13 +120,14 @@ assert.match(page.headers.get("Cache-Control"), /no-store/);
 assert.equal(page.headers.get("X-Robots-Tag"), "noindex, nofollow");
 assert.equal(page.headers.get("X-Frame-Options"), "DENY");
 assert.match(page.headers.get("Content-Security-Policy"), /connect-src 'self'/);
-assert.equal((await call("/VPNAH/analytics", { method: "HEAD" })).status, 200);
-for (const alias of ["/VPNAH/analytics/", "/VPNAH/analytics.html", "/vpnah-analytics-page.txt"]) {
-  const result = await call(alias);
+assert.equal((await call("/VPNAH/analytics", { password: scopedAuth, method: "HEAD" })).status, 200);
+for (const alias of scopedPages.filter((route) => route !== "/VPNAH/analytics")) {
+  const result = await call(alias, { password: scopedAuth });
   assert.equal(result.status, 308);
   assert.equal(result.headers.get("Location"), origin + "/VPNAH/analytics");
 }
 assert.equal((await call(api, { method: "HEAD" })).status, 405);
+assert.equal((await call(legacyApi, { method: "HEAD" })).status, 405);
 const originalDashboard = await call("/analytics", { environment: { ...env, ASSETS: { async fetch(request) {
   assert.equal(new URL(request.url).pathname, "/analytics");
   return new Response("original analytics", { headers: { "Content-Type": "text/html" } });
@@ -78,7 +143,7 @@ try {
 } finally { console.error = oldError; }
 
 async function report(query = "?days=7") {
-  const result = await call(api + query);
+  const result = await call(api + query, { password: scopedAuth });
   assert.equal(result.status, 200);
   assert.equal(result.headers.get("Cache-Control"), "no-store");
   return result.json();
@@ -116,6 +181,7 @@ event({ code: "LINKI", type: "click", value: "tutorial" });
 event({ bot: 1, type: "click", value: "tutorial" });
 
 const seven = await report();
+assert.deepEqual((await (await call(legacyApi + "?days=7", { password: scopedAuth })).json()).pages, seven.pages, "The legacy scoped API remains equally restricted");
 const getPage = (data, path) => data.pages.find((row) => row.path === path);
 const landing = getPage(seven, landingPath);
 assert.deepEqual(landing, { path: landingPath, pageviews: 5, visitors: 3, tutorial_clicks: 3, signup_clicks: 1, download_clicks: 0 });
@@ -149,7 +215,7 @@ const context = vm.createContext({
   location: new URL(origin + "/VPNAH/analytics"), history: { replaceState() {} },
   URL, URLSearchParams, AbortController,
   fetch: async (url, options) => {
-    assert.match(url, /^\/api\/analytics\/vpnah\?days=(1|7|30)$/);
+    assert.match(url, /^\/VPNAH\/analytics\/data\?days=(1|7|30)$/);
     assert.equal(options.credentials, "same-origin");
     return { ok: responseStatus === 200, status: responseStatus, json: async () => currentData };
   },
@@ -173,4 +239,4 @@ assert.equal(ids.get("report").hidden, false);
 assert.equal(ids.get("landingVisitors").textContent, "0");
 
 database.close();
-console.log("PASS VPNAH dashboard: scoped device metrics, historical clicks, unknown channels, auth, empty/error UI, and no production writes");
+console.log("PASS VPNAH dashboard: isolated viewer credentials, global endpoint denial, scoped device metrics, historical clicks, unknown channels, empty/error UI, and no production writes");

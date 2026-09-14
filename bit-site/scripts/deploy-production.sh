@@ -9,6 +9,9 @@ WRANGLER_VERSION="4.114.0"
 WRANGLER=(npx --offline --yes "wrangler@$WRANGLER_VERSION")
 LOCK_DIR="${TMPDIR:-/tmp}/bit-onsites-production-deploy.lock"
 ALLOW_ARGS=()
+VPNAH_SECRET_ARGS=()
+VPNAH_CHECK_ARGS=()
+VPNAH_PASSWORD_FILE=""
 REASON="protected production deploy"
 
 usage() {
@@ -20,6 +23,7 @@ Options:
   --allow-route=/VPNAH
   --allow-route=/VPNAH/tutorial
   --reason="why this production deployment is needed"
+  --vpnah-password-file=/absolute/private/path.json
 
 Protected-route approvals are independent. There is intentionally no --force or --allow-all option.
 EOF
@@ -32,6 +36,15 @@ for argument in "$@"; do
       ;;
     --reason=*)
       REASON=${argument#--reason=}
+      ;;
+    --vpnah-password-file=*)
+      VPNAH_PASSWORD_FILE=${argument#--vpnah-password-file=}
+      if [[ "$VPNAH_PASSWORD_FILE" != /* ]]; then
+        echo "The VPNAH password file must use an absolute path outside the repository." >&2
+        exit 2
+      fi
+      VPNAH_SECRET_ARGS=(--secrets-file "$VPNAH_PASSWORD_FILE")
+      VPNAH_CHECK_ARGS=("--vpnah-password-file=$VPNAH_PASSWORD_FILE")
       ;;
     -h|--help)
       usage
@@ -95,6 +108,10 @@ current_state() {
 
 cd "$SITE_DIR"
 
+if [[ -n "$VPNAH_PASSWORD_FILE" ]]; then
+  node scripts/check-vpnah-access.mjs --validate-only "${VPNAH_CHECK_ARGS[@]}"
+fi
+
 "${WRANGLER[@]}" whoami >/dev/null
 node scripts/check-protected-pages.mjs local
 
@@ -125,7 +142,8 @@ fi
   --strict \
   --config "$PRODUCTION_CONFIG" \
   --tag "$TAG" \
-  --message "$MESSAGE"
+  --message "$MESSAGE" \
+  ${VPNAH_SECRET_ARGS[@]+"${VPNAH_SECRET_ARGS[@]}"}
 
 VERSIONS_JSON=$("${WRANGLER[@]}" versions list --json --config "$PRODUCTION_CONFIG")
 VERSION_ID=$(MESSAGE="$MESSAGE" node -e 'const a=JSON.parse(process.argv[1]);const m=process.env.MESSAGE;const v=[...a].reverse().find(x=>x.annotations?.["workers/message"]===m);if(!v?.id)process.exit(1);process.stdout.write(v.id);' "$VERSIONS_JSON")
@@ -156,7 +174,7 @@ fi
 
 if ! node scripts/check-protected-pages.mjs verify \
   --base-url="$PRODUCTION_URL" \
-  --override-version="$VERSION_ID"; then
+  --override-version="$VERSION_ID" ${VPNAH_CHECK_ARGS[@]+"${VPNAH_CHECK_ARGS[@]}"}; then
   if [[ "$(current_state)" == "$EXPECTED_SMOKE_STATE" ]]; then
     "${WRANGLER[@]}" versions deploy "${ACTIVE_BEFORE}@100%" \
       --yes \
@@ -178,7 +196,7 @@ fi
 
 if ! node scripts/check-protected-pages.mjs verify \
   --base-url="$PRODUCTION_URL" \
-  --expect-version="$VERSION_ID"; then
+  --expect-version="$VERSION_ID" ${VPNAH_CHECK_ARGS[@]+"${VPNAH_CHECK_ARGS[@]}"}; then
   ACTIVE_AFTER=$(current_version || true)
   if [[ "$ACTIVE_AFTER" == "$VERSION_ID" ]]; then
     echo "Post-deploy verification failed; restoring exact previous version $ACTIVE_BEFORE." >&2

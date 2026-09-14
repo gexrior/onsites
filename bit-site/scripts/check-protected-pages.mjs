@@ -6,6 +6,7 @@ import { access, readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
+import { checkVpnahAccess } from "./check-vpnah-access.mjs";
 
 const SITE_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PUBLIC_DIR = path.join(SITE_DIR, "public");
@@ -43,6 +44,7 @@ function parseArguments(argv) {
   let baseUrl = PRODUCTION_URL;
   let overrideVersion = "";
   let expectedVersion = "";
+  let vpnahPasswordFile = "";
 
   for (const argument of rest) {
     if (argument.startsWith("--allow-route=")) {
@@ -58,6 +60,8 @@ function parseArguments(argv) {
       expectedVersion = overrideVersion;
     } else if (argument.startsWith("--expect-version=")) {
       expectedVersion = argument.slice("--expect-version=".length);
+    } else if (argument.startsWith("--vpnah-password-file=")) {
+      vpnahPasswordFile = argument.slice("--vpnah-password-file=".length);
     } else {
       fail(`Unknown argument: ${argument}`);
     }
@@ -67,7 +71,7 @@ function parseArguments(argv) {
     fail(`Unknown mode: ${mode}`);
   }
 
-  return { mode, allowedRoutes, baseUrl, overrideVersion, expectedVersion };
+  return { mode, allowedRoutes, baseUrl, overrideVersion, expectedVersion, vpnahPasswordFile };
 }
 
 async function localFile(relativePath) {
@@ -273,7 +277,7 @@ async function compareRouteToLocal(baseUrl, entry, overrideVersion, expectedVers
 }
 
 async function main() {
-  const { mode, allowedRoutes, baseUrl, overrideVersion, expectedVersion } = parseArguments(process.argv.slice(2));
+  const { mode, allowedRoutes, baseUrl, overrideVersion, expectedVersion, vpnahPasswordFile } = parseArguments(process.argv.slice(2));
   await assertLocalIsolation();
 
   if (mode === "local") {
@@ -293,16 +297,17 @@ async function main() {
   if (mode === "verify") {
     const headers = { "Cache-Control": "no-cache" };
     if (overrideVersion) headers["Cloudflare-Workers-Version-Overrides"] = `bit-onsites="${overrideVersion}"`;
-    for (const route of ["/VPNAH/analytics", "/vpnah-analytics-page.txt", "/api/analytics/vpnah"]) {
+    for (const route of ["/VPNAH/analytics", "/vpnah-analytics-page.txt", "/VPNAH/analytics/data", "/api/analytics/vpnah"]) {
       const result = await fetch(`${baseUrl}${route}`, { headers, redirect: "manual" });
-      if (result.status !== 401 || !result.headers.get("www-authenticate")?.includes("BIT Control")) {
-        fail(`${route} must require the existing dashboard login`);
+      if (result.status !== 401 || !result.headers.get("www-authenticate")?.includes("VPNAH Analytics")) {
+        fail(`${route} must require the independent VPNAH login`);
       }
       if (expectedVersion && result.headers.get("x-bit-worker-version") !== expectedVersion) {
         fail(`${route} did not run expected Worker version ${expectedVersion}`);
       }
     }
     console.log("VPNAH dashboard and API require authentication");
+    if (vpnahPasswordFile) await checkVpnahAccess({ vpnahPasswordFile, baseUrl, overrideVersion, expectedVersion });
   }
 
   if (mode === "preflight" && allowedRoutes.size > 0) {

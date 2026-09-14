@@ -19,7 +19,7 @@ main{max-width:1200px;margin:auto;padding:30px 24px 48px}.toolbar{display:flex;a
 </style>
 </head>
 <body>
-<header><div class="head"><div class="brand">BIT <span>／ VPNAH</span></div><nav aria-label="后台导航"><a href="/analytics">全站统计</a><a href="/VPNAH">活动页</a></nav></div></header>
+<header><div class="head"><div class="brand">BIT <span>／ VPNAH</span></div><span class="muted">独立只读统计</span></div></header>
 <main>
   <div class="toolbar"><div><h1>VPNAH 数据</h1><p class="muted">活动页和教程页分开统计，手机与 PC 分开查看。</p></div>
     <div class="controls"><div class="range" role="group" aria-label="统计周期"><button data-days="1" aria-pressed="false">24 小时</button><button data-days="7" aria-pressed="true">7 天</button><button data-days="30" aria-pressed="false">30 天</button></div><button class="refresh" id="refresh">刷新数据</button></div>
@@ -45,7 +45,7 @@ main{max-width:1200px;margin:auto;padding:30px 24px 48px}.toolbar{display:flex;a
     </section>
     <div class="notes"><p><b>统计口径：</b>设备来自浏览器上报的设备信息，不按窗口宽度划分。平板通常归入手机组，桌面模式可能被识别为 PC；未识别数据单列。</p><p>访客是所选周期内的匿名 IP 去重数，不等同于人数；同一 IP 在不同页面或设备组会分别出现，不能直接相加。重复点击会重复计数，点击率可能超过 100%。</p><p>只显示 VPNAH 渠道在上述两页的记录，排除已识别的机器人。下载点击不代表下载完成，历史直达官网点击也不代表开户成功；不会改写历史数据。</p></div>
   </div>
-  <p class="foot">沿用现有后台登录保护。本页不采集访问或点击。</p>
+  <p class="foot">独立账号仅可查看 VPNAH 数据，无全站统计或管理权限。本页不采集访问或点击。</p>
 </main>
 <script>
 (function () {
@@ -114,7 +114,7 @@ main{max-width:1200px;margin:auto;padding:30px 24px 48px}.toolbar{display:flex;a
     element('status').textContent = '正在读取数据…';
     document.querySelectorAll('[data-days]').forEach(function (button) { button.setAttribute('aria-pressed', String(Number(button.dataset.days) === days)); });
     try {
-      var response = await fetch('/api/analytics/vpnah?days=' + days, { credentials: 'same-origin', cache: 'no-store', signal: controller.signal });
+      var response = await fetch('/VPNAH/analytics/data?days=' + days, { credentials: 'same-origin', cache: 'no-store', signal: controller.signal });
       if (!response.ok) throw new Error(response.status === 401 ? '登录已失效，请刷新页面重新登录' : '数据暂时无法读取，请稍后点击刷新数据');
       var data = await response.json();
       if (current !== requestNumber) return;

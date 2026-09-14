@@ -109,13 +109,13 @@ function jsonResponse(data, status = 200) {
   });
 }
 
-function unauthorized() {
+function unauthorized(realm = "BIT Control") {
   return new Response("Authentication required", {
     status: 401,
     headers: {
       "Cache-Control": "no-store",
       "Content-Type": "text/plain; charset=utf-8",
-      "WWW-Authenticate": 'Basic realm="BIT Control", charset="UTF-8"',
+      "WWW-Authenticate": `Basic realm="${realm}", charset="UTF-8"`,
     },
   });
 }
@@ -133,19 +133,31 @@ async function secureEqual(left, right) {
   return mismatch === 0;
 }
 
-async function dashboardAuthorized(request, env) {
-  if (!env.DASHBOARD_PASSWORD) return false;
+async function basicAuthorized(request, username, password) {
+  if (!password) return false;
   const authorization = request.headers.get("Authorization") || "";
   if (!authorization.startsWith("Basic ")) return false;
 
   try {
     const decoded = atob(authorization.slice(6));
     const separator = decoded.indexOf(":");
-    if (separator < 0 || decoded.slice(0, separator) !== "admin") return false;
-    return secureEqual(decoded.slice(separator + 1), env.DASHBOARD_PASSWORD);
+    if (separator < 0 || decoded.slice(0, separator) !== username) return false;
+    return secureEqual(decoded.slice(separator + 1), password);
   } catch {
     return false;
   }
+}
+
+async function dashboardAuthorized(request, env) {
+  return basicAuthorized(request, "admin", env.DASHBOARD_PASSWORD);
+}
+
+async function vpnahDashboardAuthorized(request, env) {
+  if (await dashboardAuthorized(request, env)) return true;
+  if (!env.VPNAH_ANALYTICS_PASSWORD) return false;
+  // Never enable a shareable account whose password also grants global admin access.
+  if (env.DASHBOARD_PASSWORD && await secureEqual(env.VPNAH_ANALYTICS_PASSWORD, env.DASHBOARD_PASSWORD)) return false;
+  return basicAuthorized(request, "vpnah", env.VPNAH_ANALYTICS_PASSWORD);
 }
 
 function rows(result) {
@@ -631,19 +643,20 @@ async function handleRequest(request, env) {
   const url = new URL(request.url);
   let decodedPath = url.pathname;
   try { decodedPath = decodeURIComponent(url.pathname); } catch (_) {}
+  const dashboardPath = decodedPath.replace(/\/+$/, "");
 
-    if (["/VPNAH/analytics", "/VPNAH/analytics/", "/VPNAH/analytics.html", "/vpnah-analytics-page.txt"].includes(decodedPath)) {
+    if (["/VPNAH/analytics", "/VPNAH/analytics.html", "/vpnah-analytics-page.txt"].includes(dashboardPath)) {
       if (!["GET", "HEAD"].includes(request.method)) return response(405, "method not allowed");
-      if (!env.DASHBOARD_PASSWORD) return response(503, "dashboard unavailable");
-      if (!(await dashboardAuthorized(request, env))) return unauthorized();
+      if (!env.DASHBOARD_PASSWORD && !env.VPNAH_ANALYTICS_PASSWORD) return response(503, "dashboard unavailable");
+      if (!(await vpnahDashboardAuthorized(request, env))) return unauthorized("VPNAH Analytics");
       if (url.pathname !== "/VPNAH/analytics") return redirectPath(url, "/VPNAH/analytics");
       return dashboardPage(request, env, url, "/vpnah-analytics-page.txt");
     }
 
-    if (url.pathname === "/api/analytics/vpnah") {
+    if (["/VPNAH/analytics/data", "/api/analytics/vpnah"].includes(dashboardPath)) {
       if (request.method !== "GET") return response(405, "method not allowed");
-      if (!env.DASHBOARD_PASSWORD) return response(503, "dashboard unavailable");
-      if (!(await dashboardAuthorized(request, env))) return unauthorized();
+      if (!env.DASHBOARD_PASSWORD && !env.VPNAH_ANALYTICS_PASSWORD) return response(503, "dashboard unavailable");
+      if (!(await vpnahDashboardAuthorized(request, env))) return unauthorized("VPNAH Analytics");
       try {
         return await vpnahAnalyticsReport(env, url);
       } catch (error) {
@@ -652,14 +665,14 @@ async function handleRequest(request, env) {
       }
     }
 
-    if (url.pathname === "/admin" || url.pathname === "/admin.html") {
+    if (dashboardPath === "/admin" || dashboardPath === "/admin.html") {
       if (!["GET", "HEAD"].includes(request.method)) return response(405, "method not allowed");
       if (!env.DASHBOARD_PASSWORD) return response(503, "dashboard unavailable");
       if (!(await dashboardAuthorized(request, env))) return unauthorized();
       return adminPage(request, env, url);
     }
 
-    if (url.pathname === "/analytics" || url.pathname === "/analytics.html") {
+    if (dashboardPath === "/analytics" || dashboardPath === "/analytics.html") {
       if (!["GET", "HEAD"].includes(request.method)) return response(405, "method not allowed");
       if (!env.DASHBOARD_PASSWORD) return response(503, "dashboard unavailable");
       if (!(await dashboardAuthorized(request, env))) return unauthorized();
@@ -671,7 +684,7 @@ async function handleRequest(request, env) {
       return publicConfig(env);
     }
 
-    if (url.pathname === "/api/admin/settings") {
+    if (dashboardPath === "/api/admin/settings") {
       if (!["GET", "PUT"].includes(request.method)) return response(405, "method not allowed");
       if (!env.DASHBOARD_PASSWORD) return response(503, "dashboard unavailable");
       if (!(await dashboardAuthorized(request, env))) return unauthorized();
@@ -685,7 +698,7 @@ async function handleRequest(request, env) {
       }
     }
 
-    if (url.pathname === "/api/analytics") {
+    if (dashboardPath === "/api/analytics") {
       if (request.method !== "GET") return response(405, "method not allowed");
       if (!env.DASHBOARD_PASSWORD) return response(503, "dashboard unavailable");
       if (!(await dashboardAuthorized(request, env))) return unauthorized();
