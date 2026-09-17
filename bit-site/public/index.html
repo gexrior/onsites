@@ -1297,7 +1297,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 <!-- ============ INVITE-CODE LINK REWRITE ============ -->
 <script>
 (function(){
-  var DEFAULT='STOCK',BASE='https://www.bit.com/zh/register',SPECIAL_URLS={MEIGU88:'https://bit.bshareweb.com/newRegister/cn?invite_code=MEIGU88',W7CF6T:'https://bit.bshareweb.com/newRegister/cn?invite_code=W7CF6T'},params=new URLSearchParams(location.search);
+  var DEFAULT='STOCK',BASE='https://www.bit.com/zh/register',SPECIAL_URLS={'9JCQY5':'https://bit.bshareweb.com/newRegister/cn?invite_code=9JCQY5',MEIGU88:'https://bit.bshareweb.com/newRegister/cn?invite_code=MEIGU88',W7CF6T:'https://bit.bshareweb.com/newRegister/cn?invite_code=W7CF6T'},params=new URLSearchParams(location.search);
   function clean(value){value=(value||'').trim();if(!/^[A-Za-z0-9_-]{1,100}$/.test(value))return '';return value.toUpperCase()==='MIA'?DEFAULT:value;}
   function fromPath(){var match=location.pathname.match(/^\/([A-Za-z0-9_-]{1,100})\/?$/);return match?clean(match[1]):'';}
   function apply(code){

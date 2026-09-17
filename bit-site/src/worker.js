@@ -4,6 +4,7 @@ const DASHBOARD_RANGES = new Set([1, 7, 30]);
 const DEFAULT_INVITE_CODE = "STOCK";
 const SIGNUP_BASE_URL = "https://www.bit.com/zh/register";
 const SPECIAL_SIGNUP_URLS = new Map([
+  ["9JCQY5", "https://bit.bshareweb.com/newRegister/cn?invite_code=9JCQY5"],
   ["MEIGU88", "https://bit.bshareweb.com/newRegister/cn?invite_code=MEIGU88"],
   ["W7CF6T", "https://bit.bshareweb.com/newRegister/cn?invite_code=W7CF6T"],
 ]);
