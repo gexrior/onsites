@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>BIT 10月美股新人礼｜开户享 $310 大礼包</title>
-<meta name="description" content="BIT 10月美股新人礼：开户享美股免佣交易、$100 平台费抵扣卡及双行情卡；入金与交易达标最高可获 $210 股票现金卡。">
+<title>BIT证券 10月美股新人礼｜开户享 $310 大礼包</title>
+<meta name="description" content="BIT证券 10月美股新人礼：开户享美股免佣交易、$100 平台费抵扣卡及双行情卡；入金与交易达标最高可获 $210 股票现金卡。">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="author" content="onsites.me 独立内容发布者">
 <link rel="canonical" href="https://bit.onsites.me/">
@@ -717,9 +717,9 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 <!-- ============ HEADER ============ -->
 <header>
   <div class="wrap hd">
-    <div class="logo"><span class="bar"></span><span class="name">BIT</span></div>
+    <div class="logo"><span class="bar"></span><span class="name">BIT证券</span></div>
     <div class="hd-promo">开户即享 <span class="blue">$310 新人大礼包</span>｜美股免佣交易</div>
-    <a class="btn btn-primary btn-sm" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT 注册页面，将在新窗口打开">立即开户</a>
+    <a class="btn btn-primary btn-sm" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT证券 注册页面，将在新窗口打开">立即开户</a>
   </div>
 </header>
 
@@ -744,7 +744,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
         <div class="feat"><div class="ft"><span class="ck">✓</span>期权实时行情卡</div><div class="fd">30 天 OPRA 期权实时行情</div></div>
       </div>
       <div class="hero-actions">
-        <a class="btn btn-primary btn-lg hero-cta" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT 注册页面，将在新窗口打开">立即开户，领取 $310 大礼包</a>
+        <a class="btn btn-primary btn-lg hero-cta" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT证券 注册页面，将在新窗口打开">立即开户，领取 $310 大礼包</a>
         <a class="btn hero-tutorial" href="/LINKI/tutorial">开户教程</a>
       </div>
       <div class="trust-strip">
@@ -754,9 +754,9 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       </div>
     </div>
     <div class="hero-art">
-      <img src="/bit-global-assets.png" alt="BIT 一个账户投资美股与加密资产" width="1188" height="1164" fetchpriority="high" decoding="async">
+      <img src="/bit-global-assets.png" alt="BIT证券 一个账户投资美股与加密资产" width="1188" height="1164" fetchpriority="high" decoding="async">
       <div class="hero-downloads" data-linki-downloads hidden aria-label="客户端下载快捷入口">
-        <span class="hero-download-heading"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2v10m0 0 4-4m-4 4L6 8M3 15v2h14v-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>BIT APP 下载</span>
+        <span class="hero-download-heading"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2v10m0 0 4-4m-4 4L6 8M3 15v2h14v-2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>BIT证券 APP 下载</span>
         <a class="btn hero-download-btn" data-download-link="app-store" href="https://bit.go.link/eeWZn" target="_blank" rel="nofollow noopener noreferrer">
           <span class="hero-download-icon" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="currentColor" stroke-width="2" opacity=".75"/><path d="m10 24 9.5-17M12 7l10 17M7.5 20.5h17" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
           <span class="hero-download-copy"><strong>App Store</strong><small>iOS 官方下载</small></span>
@@ -846,7 +846,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
     </div>
 
     <div class="task2-action-row">
-      <a class="btn btn-primary btn-lg task2-cta" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT 注册页面，将在新窗口打开">立即开户领 $310 大礼包</a>
+      <a class="btn btn-primary btn-lg task2-cta" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT证券 注册页面，将在新窗口打开">立即开户领 $310 大礼包</a>
     </div>
   </div>
 </section>
@@ -894,23 +894,23 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 <section class="sec-a" id="steps">
   <div class="wrap center">
     <h2 class="h-sec">简单 3 步，轻松领赏</h2>
-    <p class="sub">BIT 美股功能现已在 App 全面上线（网页版即将推出），开户全程仅需 3 分钟</p>
+    <p class="sub">BIT证券 美股功能现已在 App 全面上线（网页版即将推出），开户全程仅需 3 分钟</p>
     <div class="download-module" data-linki-downloads hidden>
       <span class="eyebrow pill-ice">客户端下载</span>
-      <h3 class="download-module-title">下载 BIT，开始美股交易</h3>
+      <h3 class="download-module-title">下载 BIT证券，开始美股交易</h3>
       <p class="download-module-sub">选择适合你的设备，安装后即可进入开户流程</p>
       <div class="download-card">
         <div class="download-preview">
           <div class="download-copy">
-            <div class="download-app-icon" aria-label="BIT App">BIT</div>
-            <div class="download-benefits" aria-label="BIT App 特点">
+            <div class="download-app-icon" aria-label="BIT证券 App">BIT</div>
+            <div class="download-benefits" aria-label="BIT证券 App 特点">
               <span><b>✓</b>美股交易，极速体验</span>
               <span><b>✓</b>实时行情，深度数据</span>
               <span><b>✓</b>安全合规，资金保障</span>
             </div>
           </div>
           <div class="download-phone">
-            <img src="/bit-step-market.webp" alt="BIT App 美股入口界面" width="544" height="1042" loading="lazy" decoding="async">
+            <img src="/bit-step-market.webp" alt="BIT证券 App 美股入口界面" width="544" height="1042" loading="lazy" decoding="async">
           </div>
         </div>
         <div class="download-options" aria-label="客户端下载方式">
@@ -945,8 +945,8 @@ footer a{text-decoration:underline;text-underline-offset:3px}
     <div class="steps">
       <div class="step">
         <div class="stag">Step 1</div>
-        <div class="stitle">在 BIT APP 首页，点击“美股”按钮</div>
-        <div class="phone"><img src="/bit-step-market.webp" alt="在 BIT APP 首页，点击美股按钮" width="544" height="1042" loading="lazy" decoding="async"></div>
+        <div class="stitle">在 BIT证券 APP 首页，点击“美股”按钮</div>
+        <div class="phone"><img src="/bit-step-market.webp" alt="在 BIT证券 APP 首页，点击美股按钮" width="544" height="1042" loading="lazy" decoding="async"></div>
       </div>
       <div class="step">
         <div class="stag">Step 2</div>
@@ -961,7 +961,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
     </div>
     <div class="note-bar">📌 通过本页按钮注册将自动携带邀请码，否则可能无法获得上述活动奖励。</div>
     <br>
-    <a class="btn btn-primary btn-lg" style="margin-top:36px" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT 注册页面，将在新窗口打开">3 分钟开户 · 立即领取</a>
+    <a class="btn btn-primary btn-lg" style="margin-top:36px" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT证券 注册页面，将在新窗口打开">3 分钟开户 · 立即领取</a>
   </div>
 </section>
 
@@ -969,8 +969,8 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 <section class="sec-b" id="contact">
   <div class="wrap center">
     <span class="eyebrow pill-ice">联系方式</span>
-    <h2 style="font-size:clamp(22px,3vw,30px);margin-top:4px">添加 BIT 官方客服经理</h2>
-    <p class="sub" style="font-size:15.5px;margin-top:10px">完成注册后，扫码添加 BIT 专属客服经理，享受一对一服务，协助你快速完成开户、了解产品及最新活动。</p>
+    <h2 style="font-size:clamp(22px,3vw,30px);margin-top:4px">添加 BIT证券 官方客服经理</h2>
+    <p class="sub" style="font-size:15.5px;margin-top:10px">完成注册后，扫码添加 BIT证券 专属客服经理，享受一对一服务，协助你快速完成开户、了解产品及最新活动。</p>
     <div class="cs-tags" style="justify-content:center;margin-top:22px" aria-label="客服经理服务范围">
       <span class="cs-tag"><span class="ck">✓</span>开户流程答疑</span>
       <span class="cs-tag"><span class="ck">✓</span>产品信息咨询</span>
@@ -993,7 +993,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 <!-- ============ 为什么选 BIT ============ -->
 <section class="sec-a" id="why-bit">
   <div class="wrap center">
-    <span class="eyebrow pill-ice">为什么选 BIT</span>
+    <span class="eyebrow pill-ice">为什么选 BIT证券</span>
     <h2 class="h-sec">不是美股代币，是真实美股</h2>
     <p class="sub">直连美国持牌券商，用 USDT/USDC 即刻配置全球核心资产</p>
     <div class="comp-grid">
@@ -1063,13 +1063,13 @@ footer a{text-decoration:underline;text-underline-offset:3px}
         <div class="wrap-scroll"><table class="ttable left">
           <tbody>
             <tr><td>稳定币入金</td><td>快速通道即刻入金（活动期间 0 服务费）；最小入金 100 USDC/USDT</td></tr>
-            <tr><td>银行电汇</td><td>入金约 2–5 个工作日（BIT 不收手续费）；出金约 1–5 个工作日（60 USD/笔，最低 1,000 USD）</td></tr>
+            <tr><td>银行电汇</td><td>入金约 2–5 个工作日（BIT证券 不收手续费）；出金约 1–5 个工作日（60 USD/笔，最低 1,000 USD）</td></tr>
             <tr><td>股票转仓</td><td>转入约 3–5 个工作日到账（以双方券商确认为准）</td></tr>
           </tbody>
         </table></div>
       </div>
     </div>
-    <p class="disclaimer center">*OTC 费率会随市场情况实时调整，全部费率以 <a data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="使用邀请码 STOCK 打开 BIT 注册页面，将在新窗口打开">www.bit.com</a> 实时公布为准。</p>
+    <p class="disclaimer center">*OTC 费率会随市场情况实时调整，全部费率以 <a data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="使用邀请码 STOCK 打开 BIT证券 注册页面，将在新窗口打开">www.bit.com</a> 实时公布为准。</p>
   </div>
 </section>
 
@@ -1082,7 +1082,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       <div class="comp-card">
         <div class="ce">美股监管</div>
         <h3>SEC 与 FINRA 监管，SIPC 成员</h3>
-        <p>BIT 通过直连美国持牌券商，为客户构建通往美国证券市场的合规通道。所有合作券商均受美国 SEC 及 FINRA 监管，并为 SIPC 成员——用户的交易与资产依托成熟且受监管的美国金融市场基础设施。</p>
+        <p>BIT证券 通过直连美国持牌券商，为客户构建通往美国证券市场的合规通道。所有合作券商均受美国 SEC 及 FINRA 监管，并为 SIPC 成员——用户的交易与资产依托成熟且受监管的美国金融市场基础设施。</p>
       </div>
       <div class="comp-card">
         <div class="ce">资金去向</div>
@@ -1095,7 +1095,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       <div class="comp-card">
         <div class="ce">资金隔离</div>
         <h3>客户资产与公司自有资产隔离</h3>
-        <p>在相关规则和服务安排下，客户资产与公司自有资产保持隔离；BIT 在自身系统中维护用户层面的资金和持仓记录，用户可随时通过 BIT App 查看账户信息。</p>
+        <p>在相关规则和服务安排下，客户资产与公司自有资产保持隔离；BIT证券 在自身系统中维护用户层面的资金和持仓记录，用户可随时通过 BIT证券 App 查看账户信息。</p>
       </div>
     </div>
 
@@ -1107,7 +1107,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       <div class="lic"><div class="lr">不丹</div><div class="ld">金融服务牌照（FSL）</div></div>
       <div class="lic"><div class="lr">英属维尔京群岛</div><div class="ld">SIBA 投资业务牌照（第2类）+ VASP 注册</div></div>
     </div>
-    <p class="lic-note">相关牌照、注册及监管批准由 BIT/Matrixport 集团旗下不同实体分别持有，且仅适用于各实体在其获批范围内所开展的业务活动。BIT 美股服务由 BIT 全资子公司 Matrix Gelephu Pte. Ltd. 设立并承载，该实体持有不丹 Gelephu Mindfulness City 金融服务局（GFSO）颁发的金融服务牌照（FSL），获准以代理方式进行投资交易并提供托管服务。</p>
+    <p class="lic-note">相关牌照、注册及监管批准由 BIT/Matrixport 集团旗下不同实体分别持有，且仅适用于各实体在其获批范围内所开展的业务活动。BIT证券 美股服务由 BIT 全资子公司 Matrix Gelephu Pte. Ltd. 设立并承载，该实体持有不丹 Gelephu Mindfulness City 金融服务局（GFSO）颁发的金融服务牌照（FSL），获准以代理方式进行投资交易并提供托管服务。</p>
   </div>
 </section>
 
@@ -1116,7 +1116,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   <div class="wrap center">
     <span class="eyebrow pill-ice">品牌实力</span>
     <h2 class="h-sec">不是新面孔，是 Matrixport 的下一步</h2>
-    <p class="sub" style="max-width:820px">BIT（Bridge Into Tomorrow）由亚洲领先加密金融机构 Matrixport 品牌升级而来——成立 7 年的金融科技独角兽，业务涵盖托管（Cactus Custody）、交易、支付与 RWA。2026 年 2 月，平台正式支持稳定币（USDT/USDC）入金投资美股，把加密世界的资金效率带进美国股市。</p>
+    <p class="sub" style="max-width:820px">BIT证券（Bridge Into Tomorrow）由亚洲领先加密金融机构 Matrixport 品牌升级而来——成立 7 年的金融科技独角兽，业务涵盖托管（Cactus Custody）、交易、支付与 RWA。2026 年 2 月，平台正式支持稳定币（USDT/USDC）入金投资美股，把加密世界的资金效率带进美国股市。</p>
     <div class="stat-grid">
       <div class="stat"><div class="sv">$60亿+</div><div class="sl">管理资产规模（美元）</div></div>
       <div class="stat"><div class="sv">$70亿+</div><div class="sl">月交易量（美元）</div></div>
@@ -1135,18 +1135,18 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
-    <div class="logo flogo"><span class="bar"></span><span class="name">BIT</span></div>
-    <p class="rk"><b>推广说明：</b>本页为独立邀请，开户链接包含邀请码；账户服务、活动资格与最终条款以 <a data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="使用邀请码 STOCK 打开 BIT 注册页面，将在新窗口打开">www.bit.com</a> 为准。</p>
+    <div class="logo flogo"><span class="bar"></span><span class="name">BIT证券</span></div>
+    <p class="rk"><b>推广说明：</b>本页为独立邀请，开户链接包含邀请码；账户服务、活动资格与最终条款以 <a data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="使用邀请码 STOCK 打开 BIT证券 注册页面，将在新窗口打开">www.bit.com</a> 为准。</p>
     <p class="rk"><b>⚠ 风险提示：</b>美股投资存在高风险，可能导致本金损失。受市场波动、经济环境、公司业绩等因素影响，股价可能大幅波动。用户应根据自身的财务状况、投资目标和风险承受能力，判断是否适合投资美股。</p>
     <p class="rk"><b>⚠ 免责声明：</b>本页面内容不构成对香港特别行政区、美国、新加坡以及法律可能禁止此类要约或要约邀请的其他国家或地区居民的投资建议、销售要约或购买要约邀请。资产交易可能具有极大的风险和不稳定性。投资决策应在仔细考虑个人情况并咨询独立专业人士后做出。本站运营方不对基于本页面信息作出的投资决策负责。</p>
-    <p class="copy">© 2026 BIT 美股信息指南 · <a href="/disclosure">完整披露</a></p>
+    <p class="copy">© 2026 BIT证券 美股信息指南 · <a href="/disclosure">完整披露</a></p>
   </div>
 </footer>
 
 <!-- ============ 移动端底部常驻 CTA ============ -->
 <div class="mcta">
   <div class="mt">开户即享 $310 新人大礼包<small>最高 $200 入金礼 + $10 交易礼</small></div>
-  <a class="btn btn-primary btn-sm" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT 注册页面，将在新窗口打开">领 $310 礼包</a>
+  <a class="btn btn-primary btn-sm" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT证券 注册页面，将在新窗口打开">领 $310 礼包</a>
 </div>
 
 <!-- ============ 页面快速导航 ============ -->

@@ -4,8 +4,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>BIT 8月美股新人禮｜開戶享 $310 大禮包</title>
-<meta name="description" content="BIT 8月美股新人禮：開戶享美股免傭交易、$100 平台費抵扣卡及雙行情卡；入金與交易達標最高可獲 $210 股票現金卡。">
+<title>BIT證券 8月美股新人禮｜開戶享 $310 大禮包</title>
+<meta name="description" content="BIT證券 8月美股新人禮：開戶享美股免傭交易、$100 平台費抵扣卡及雙行情卡；入金與交易達標最高可獲 $210 股票現金卡。">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="author" content="onsites.me 獨立內容發佈者">
 <link rel="canonical" href="https://bit.onsites.me/USMKT">
@@ -616,9 +616,9 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 <!-- ============ HEADER ============ -->
 <header>
   <div class="wrap hd">
-    <div class="logo"><span class="bar"></span><span class="name">BIT</span></div>
+    <div class="logo"><span class="bar"></span><span class="name">BIT證券</span></div>
     <div class="hd-promo">開戶即享 <span class="blue">$310 新人大禮包</span>｜美股免傭交易</div>
-    <a class="btn btn-primary btn-sm" data-signup-link href="https://www.bit.com/zh-tw/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打開 BIT 註冊頁面，將在新窗口打開">立即開戶</a>
+    <a class="btn btn-primary btn-sm" data-signup-link href="https://www.bit.com/zh-tw/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打開 BIT證券 註冊頁面，將在新窗口打開">立即開戶</a>
   </div>
 </header>
 
@@ -642,7 +642,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
         <div class="feat"><div class="ft"><span class="ck">✓</span>美股實時行情卡</div><div class="fd">30 天 Nasdaq Basic 實時行情</div></div>
         <div class="feat"><div class="ft"><span class="ck">✓</span>期權實時行情卡</div><div class="fd">30 天 OPRA 期權實時行情</div></div>
       </div>
-      <a class="btn btn-primary btn-lg hero-cta" data-signup-link href="https://www.bit.com/zh-tw/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打開 BIT 註冊頁面，將在新窗口打開">立即開戶，領取 $310 大禮包</a>
+      <a class="btn btn-primary btn-lg hero-cta" data-signup-link href="https://www.bit.com/zh-tw/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打開 BIT證券 註冊頁面，將在新窗口打開">立即開戶，領取 $310 大禮包</a>
       <div class="trust-strip">
         <span><span class="ck">✓</span>直連美國持牌券商 · SIPC 成員</span>
         <span><span class="ck">✓</span>Matrixport 升級 · $60億+ 管理資產</span>
@@ -650,7 +650,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       </div>
     </div>
     <div class="hero-art">
-      <img src="/bit-global-assets.png" alt="BIT 一個賬戶投資美股與加密資產" width="1188" height="1164" fetchpriority="high" decoding="async">
+      <img src="/bit-global-assets.png" alt="BIT證券 一個賬戶投資美股與加密資產" width="1188" height="1164" fetchpriority="high" decoding="async">
     </div>
   </div>
 </section>
@@ -727,7 +727,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
     </div>
 
     <div class="task2-action-row">
-      <a class="btn btn-primary btn-lg task2-cta" data-signup-link href="https://www.bit.com/zh-tw/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打開 BIT 註冊頁面，將在新窗口打開">立即開戶領 $310 大禮包</a>
+      <a class="btn btn-primary btn-lg task2-cta" data-signup-link href="https://www.bit.com/zh-tw/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打開 BIT證券 註冊頁面，將在新窗口打開">立即開戶領 $310 大禮包</a>
     </div>
   </div>
 </section>
@@ -775,12 +775,12 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 <section class="sec-a" id="steps">
   <div class="wrap center">
     <h2 class="h-sec">簡單 3 步，輕鬆領賞</h2>
-    <p class="sub">BIT 美股功能現已在 App 全面上線（網頁版即將推出），開戶全程僅需 3 分鐘</p>
+    <p class="sub">BIT證券 美股功能現已在 App 全面上線（網頁版即將推出），開戶全程僅需 3 分鐘</p>
     <div class="steps">
       <div class="step">
         <div class="stag">Step 1</div>
-        <div class="stitle">在 BIT APP 首頁，點擊“美股”按鈕</div>
-        <div class="phone"><img src="/bit-step-market.webp" alt="在 BIT APP 首頁，點擊美股按鈕" width="544" height="1042" loading="lazy" decoding="async"></div>
+        <div class="stitle">在 BIT證券 APP 首頁，點擊“美股”按鈕</div>
+        <div class="phone"><img src="/bit-step-market.webp" alt="在 BIT證券 APP 首頁，點擊美股按鈕" width="544" height="1042" loading="lazy" decoding="async"></div>
       </div>
       <div class="step">
         <div class="stag">Step 2</div>
@@ -795,7 +795,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
     </div>
     <div class="note-bar">📌 通過本頁按鈕註冊將自動攜帶邀請碼，否則可能無法獲得上述活動獎勵。</div>
     <br>
-    <a class="btn btn-primary btn-lg" style="margin-top:36px" data-signup-link href="https://www.bit.com/zh-tw/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打開 BIT 註冊頁面，將在新窗口打開">3 分鐘開戶 · 立即領取</a>
+    <a class="btn btn-primary btn-lg" style="margin-top:36px" data-signup-link href="https://www.bit.com/zh-tw/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打開 BIT證券 註冊頁面，將在新窗口打開">3 分鐘開戶 · 立即領取</a>
   </div>
 </section>
 
@@ -803,8 +803,8 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 <section class="sec-b" id="contact">
   <div class="wrap center">
     <span class="eyebrow pill-ice">聯繫方式</span>
-    <h2 style="font-size:clamp(22px,3vw,30px);margin-top:4px">添加 BIT 官方客服經理</h2>
-    <p class="sub" style="font-size:15.5px;margin-top:10px">完成註冊後，掃碼添加 BIT 專屬客服經理，享受一對一服務，協助你快速完成開戶、瞭解產品及最新活動。</p>
+    <h2 style="font-size:clamp(22px,3vw,30px);margin-top:4px">添加 BIT證券 官方客服經理</h2>
+    <p class="sub" style="font-size:15.5px;margin-top:10px">完成註冊後，掃碼添加 BIT證券 專屬客服經理，享受一對一服務，協助你快速完成開戶、瞭解產品及最新活動。</p>
     <div class="cs-tags" style="justify-content:center;margin-top:22px" aria-label="客服經理服務範圍">
       <span class="cs-tag"><span class="ck">✓</span>開戶流程答疑</span>
       <span class="cs-tag"><span class="ck">✓</span>產品信息咨詢</span>
@@ -827,7 +827,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 <!-- ============ 為什麼選 BIT ============ -->
 <section class="sec-a" id="why-bit">
   <div class="wrap center">
-    <span class="eyebrow pill-ice">為什麼選 BIT</span>
+    <span class="eyebrow pill-ice">為什麼選 BIT證券</span>
     <h2 class="h-sec">不是美股代幣，是真實美股</h2>
     <p class="sub">直連美國持牌券商，用 USDT/USDC 即刻配置全球核心資產</p>
     <div class="comp-grid">
@@ -897,13 +897,13 @@ footer a{text-decoration:underline;text-underline-offset:3px}
         <div class="wrap-scroll"><table class="ttable left">
           <tbody>
             <tr><td>穩定幣入金</td><td>快速通道即刻入金（活動期間 0 服務費）；最小入金 100 USDC/USDT</td></tr>
-            <tr><td>銀行電匯</td><td>入金約 2–5 個工作日（BIT 不收手續費）；出金約 1–5 個工作日（60 USD/筆，最低 1,000 USD）</td></tr>
+            <tr><td>銀行電匯</td><td>入金約 2–5 個工作日（BIT證券 不收手續費）；出金約 1–5 個工作日（60 USD/筆，最低 1,000 USD）</td></tr>
             <tr><td>股票轉倉</td><td>轉入約 3–5 個工作日到賬（以雙方券商確認為準）</td></tr>
           </tbody>
         </table></div>
       </div>
     </div>
-    <p class="disclaimer center">*OTC 費率會隨市場情況實時調整，全部費率以 <a data-signup-link href="https://www.bit.com/zh-tw/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="使用邀請碼 STOCK 打開 BIT 註冊頁面，將在新窗口打開">www.bit.com</a> 實時公佈為準。</p>
+    <p class="disclaimer center">*OTC 費率會隨市場情況實時調整，全部費率以 <a data-signup-link href="https://www.bit.com/zh-tw/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="使用邀請碼 STOCK 打開 BIT證券 註冊頁面，將在新窗口打開">www.bit.com</a> 實時公佈為準。</p>
   </div>
 </section>
 
@@ -916,7 +916,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       <div class="comp-card">
         <div class="ce">美股監管</div>
         <h3>SEC 與 FINRA 監管，SIPC 成員</h3>
-        <p>BIT 通過直連美國持牌券商，為客戶構建通往美國證券市場的合規通道。所有合作券商均受美國 SEC 及 FINRA 監管，並為 SIPC 成員——用戶的交易與資產依託成熟且受監管的美國金融市場基礎設施。</p>
+        <p>BIT證券 通過直連美國持牌券商，為客戶構建通往美國證券市場的合規通道。所有合作券商均受美國 SEC 及 FINRA 監管，並為 SIPC 成員——用戶的交易與資產依託成熟且受監管的美國金融市場基礎設施。</p>
       </div>
       <div class="comp-card">
         <div class="ce">資金去向</div>
@@ -929,7 +929,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       <div class="comp-card">
         <div class="ce">資金隔離</div>
         <h3>客戶資產與公司自有資產隔離</h3>
-        <p>在相關規則和服務安排下，客戶資產與公司自有資產保持隔離；BIT 在自身系統中維護用戶層面的資金和持倉記錄，用戶可隨時通過 BIT App 查看賬戶信息。</p>
+        <p>在相關規則和服務安排下，客戶資產與公司自有資產保持隔離；BIT證券 在自身系統中維護用戶層面的資金和持倉記錄，用戶可隨時通過 BIT證券 App 查看賬戶信息。</p>
       </div>
     </div>
 
@@ -941,7 +941,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       <div class="lic"><div class="lr">不丹</div><div class="ld">金融服務牌照（FSL）</div></div>
       <div class="lic"><div class="lr">英屬維爾京群島</div><div class="ld">SIBA 投資業務牌照（第2類）+ VASP 註冊</div></div>
     </div>
-    <p class="lic-note">相關牌照、註冊及監管批准由 BIT/Matrixport 集團旗下不同實體分別持有，且僅適用於各實體在其獲批範圍內所開展的業務活動。BIT 美股服務由 BIT 全資子公司 Matrix Gelephu Pte. Ltd. 設立並承載，該實體持有不丹 Gelephu Mindfulness City 金融服務局（GFSO）頒發的金融服務牌照（FSL），獲准以代理方式進行投資交易並提供托管服務。</p>
+    <p class="lic-note">相關牌照、註冊及監管批准由 BIT/Matrixport 集團旗下不同實體分別持有，且僅適用於各實體在其獲批範圍內所開展的業務活動。BIT證券 美股服務由 BIT 全資子公司 Matrix Gelephu Pte. Ltd. 設立並承載，該實體持有不丹 Gelephu Mindfulness City 金融服務局（GFSO）頒發的金融服務牌照（FSL），獲准以代理方式進行投資交易並提供托管服務。</p>
   </div>
 </section>
 
@@ -950,7 +950,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   <div class="wrap center">
     <span class="eyebrow pill-ice">品牌實力</span>
     <h2 class="h-sec">不是新面孔，是 Matrixport 的下一步</h2>
-    <p class="sub" style="max-width:820px">BIT（Bridge Into Tomorrow）由亞洲領先加密金融機構 Matrixport 品牌升級而來——成立 7 年的金融科技獨角獸，業務涵蓋托管（Cactus Custody）、交易、支付與 RWA。2026 年 2 月，平台正式支持穩定幣（USDT/USDC）入金投資美股，把加密世界的資金效率帶進美國股市。</p>
+    <p class="sub" style="max-width:820px">BIT證券（Bridge Into Tomorrow）由亞洲領先加密金融機構 Matrixport 品牌升級而來——成立 7 年的金融科技獨角獸，業務涵蓋托管（Cactus Custody）、交易、支付與 RWA。2026 年 2 月，平台正式支持穩定幣（USDT/USDC）入金投資美股，把加密世界的資金效率帶進美國股市。</p>
     <div class="stat-grid">
       <div class="stat"><div class="sv">$60億+</div><div class="sl">管理資產規模（美元）</div></div>
       <div class="stat"><div class="sv">$70億+</div><div class="sl">月交易量（美元）</div></div>
@@ -969,18 +969,18 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
-    <div class="logo flogo"><span class="bar"></span><span class="name">BIT</span></div>
-    <p class="rk"><b>推廣說明：</b>本頁為獨立邀請，開戶鏈接包含邀請碼；賬戶服務、活動資格與最終條款以 <a data-signup-link href="https://www.bit.com/zh-tw/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="使用邀請碼 STOCK 打開 BIT 註冊頁面，將在新窗口打開">www.bit.com</a> 為準。</p>
+    <div class="logo flogo"><span class="bar"></span><span class="name">BIT證券</span></div>
+    <p class="rk"><b>推廣說明：</b>本頁為獨立邀請，開戶鏈接包含邀請碼；賬戶服務、活動資格與最終條款以 <a data-signup-link href="https://www.bit.com/zh-tw/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="使用邀請碼 STOCK 打開 BIT證券 註冊頁面，將在新窗口打開">www.bit.com</a> 為準。</p>
     <p class="rk"><b>⚠ 風險提示：</b>美股投資存在高風險，可能導致本金損失。受市場波動、經濟環境、公司業績等因素影響，股價可能大幅波動。用戶應根據自身的財務狀況、投資目標和風險承受能力，判斷是否適合投資美股。</p>
     <p class="rk"><b>⚠ 免責聲明：</b>本頁面內容不構成對香港特別行政區、美國、新加坡以及法律可能禁止此類要約或要約邀請的其他國家或地區居民的投資建議、銷售要約或購買要約邀請。資產交易可能具有極大的風險和不穩定性。投資決策應在仔細考慮個人情況並咨詢獨立專業人士後做出。本站運營方不對基於本頁面信息作出的投資決策負責。</p>
-    <p class="copy">© 2026 BIT 美股信息指南 · <a href="/disclosure">完整披露</a></p>
+    <p class="copy">© 2026 BIT證券 美股信息指南 · <a href="/disclosure">完整披露</a></p>
   </div>
 </footer>
 
 <!-- ============ 移動端底部常駐 CTA ============ -->
 <div class="mcta">
   <div class="mt">開戶即享 $310 新人大禮包<small>最高 $200 入金禮 + $10 交易禮</small></div>
-  <a class="btn btn-primary btn-sm" data-signup-link href="https://www.bit.com/zh-tw/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打開 BIT 註冊頁面，將在新窗口打開">領 $310 禮包</a>
+  <a class="btn btn-primary btn-sm" data-signup-link href="https://www.bit.com/zh-tw/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打開 BIT證券 註冊頁面，將在新窗口打開">領 $310 禮包</a>
 </div>
 
 <!-- ============ 頁面快速導航 ============ -->

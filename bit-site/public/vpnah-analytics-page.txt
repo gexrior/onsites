@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>VPNAH 数据 · BIT</title>
+<title>VPNAH 数据 · BIT证券</title>
 <style>
 :root{color-scheme:light;--ink:#18223b;--muted:#64718b;--line:#e4e8f2;--blue:#2456e8;--soft:#f5f7fc}
 *{box-sizing:border-box}body{margin:0;background:var(--soft);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
@@ -19,7 +19,7 @@ main{max-width:1200px;margin:auto;padding:30px 24px 48px}.toolbar{display:flex;a
 </style>
 </head>
 <body>
-<header><div class="head"><div class="brand">BIT <span>／ VPNAH</span></div><span class="muted">独立只读统计</span></div></header>
+<header><div class="head"><div class="brand">BIT证券 <span>／ VPNAH</span></div><span class="muted">独立只读统计</span></div></header>
 <main>
   <div class="toolbar"><div><h1>VPNAH 数据</h1><p class="muted">活动页和教程页分开统计，手机与 PC 分开查看。</p></div>
     <div class="controls"><div class="range" role="group" aria-label="统计周期"><button data-days="1" aria-pressed="false">24 小时</button><button data-days="7" aria-pressed="true">7 天</button><button data-days="30" aria-pressed="false">30 天</button></div><button class="refresh" id="refresh">刷新数据</button></div>
@@ -40,7 +40,7 @@ main{max-width:1200px;margin:auto;padding:30px 24px 48px}.toolbar{display:flex;a
     <section class="panel" aria-labelledby="guide-title"><div class="panel-head"><div><h2 id="guide-title">教程页 · 手机 / PC</h2><p class="muted">页面打开次数和下载按钮点击是两个指标。</p></div><span class="route">/VPNAH/tutorial</span></div>
       <div class="table-wrap" tabindex="0" role="region" aria-label="教程页设备统计，可横向滚动"><table><thead><tr><th scope="col">设备</th><th scope="col">PV</th><th scope="col">访客</th><th scope="col">下载点击</th></tr></thead><tbody id="guideRows"></tbody></table></div>
     </section>
-    <section class="panel" aria-labelledby="downloads-title"><div class="panel-head"><div><h2 id="downloads-title">教程页 · 下载渠道</h2><p class="muted">第 1 步「下载 BIT App」中的按钮点击次数。</p></div></div>
+    <section class="panel" aria-labelledby="downloads-title"><div class="panel-head"><div><h2 id="downloads-title">教程页 · 下载渠道</h2><p class="muted">第 1 步「下载 BIT证券 App」中的按钮点击次数。</p></div></div>
       <div class="table-wrap" tabindex="0" role="region" aria-label="下载渠道设备统计，可横向滚动"><table><thead><tr><th scope="col">下载渠道</th><th scope="col">手机 / 平板</th><th scope="col">PC</th><th scope="col">未识别设备</th><th scope="col">合计</th></tr></thead><tbody id="downloadRows"></tbody></table></div>
     </section>
     <div class="notes"><p><b>统计口径：</b>设备来自浏览器上报的设备信息，不按窗口宽度划分。平板通常归入手机组，桌面模式可能被识别为 PC；未识别数据单列。</p><p>访客是所选周期内的匿名 IP 去重数，不等同于人数；同一 IP 在不同页面或设备组会分别出现，不能直接相加。重复点击会重复计数，点击率可能超过 100%。</p><p>只显示 VPNAH 渠道在上述两页的记录，排除已识别的机器人。下载点击不代表下载完成，历史直达官网点击也不代表开户成功；不会改写历史数据。</p></div>

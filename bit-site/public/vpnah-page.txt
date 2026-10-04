@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>BIT 美股开户礼｜30天加速器会员 + $310 新用户福利</title>
-<meta name="description" content="完成 BIT 证券美股账户开户（KYC），免费领 30 天加速器会员，再享 $310 新用户开户福利。身份证一键开户，USDT/USDC 稳定币入金。">
+<title>BIT证券 美股开户礼｜30天加速器会员 + $310 新用户福利</title>
+<meta name="description" content="完成 BIT证券美股账户开户（KYC），免费领 30 天加速器会员，再享 $310 新用户开户福利。身份证一键开户，USDT/USDC 稳定币入金。">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Noto+Sans+SC:wght@400;500;700&display=swap">
 <style>
 /* ============================================================
@@ -617,7 +617,7 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
 
 <div class="topbar" id="topbar">
   <div class="inner">
-    <div class="brand"><span class="mark">B</span>BIT 证券<span class="x">×</span>加速器</div>
+    <div class="brand"><span class="mark">B</span>BIT证券<span class="x">×</span>加速器</div>
     <a class="nav-cta nav-m" href="https://bit.onsites.me/VPNAH/tutorial">立即领取30天会员</a><a class="nav-cta nav-d" href="https://bit.onsites.me/VPNAH/tutorial">立即领取30天会员</a>
   </div>
 </div>
@@ -666,7 +666,7 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
 <div class="wrap intro" id="advantages">
     <!-- 1.3 BIT 是什么 + 优势 -->
     <div class="whatis">
-      <h2>BIT 证券</h2>
+      <h2>BIT证券</h2>
     </div>
     <ul class="adv">
       <li><span class="ic">✓</span><div><b>身份证一键开户</b> ｜ <span>无需海外身份</span></div></li>
@@ -701,7 +701,7 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
     <p class="sec-sub">认证通过后通常即时发放，最迟不超过 1 个工作日</p>
     <div class="card">
       <ol class="steps">
-        <li>注册 BIT 账号，手动填写邀请码 VPNAH</li>
+        <li>注册 BIT证券 账号，手动填写邀请码 VPNAH</li>
         <li>填写常用邮箱（确保真实、有效可收信）</li>
         <li>完成美股账户 KYC</li>
         <li>查收卡密邮件（发件人：gift.distribution@cycbit.net）</li>
@@ -819,7 +819,7 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
   <div class="band band-soft"><div class="wrap"><section class="sec" id="compliance">
     <span class="sec-tag">合规持牌 · 独立托管</span>
     <h2>资金安全，值得托付</h2>
-    <p class="sec-sub">客户资产与公司自有资产隔离，可随时通过 BIT App 查看账户信息</p>
+    <p class="sec-sub">客户资产与公司自有资产隔离，可随时通过 BIT证券 App 查看账户信息</p>
     <details>
       <summary>美股监管与资金去向</summary>
       <div class="d-body">
@@ -838,13 +838,13 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
         <b>瑞士：</b>FINMA 监管下的集合资产管理人<br>
         <b>不丹：</b>金融服务牌照（FSL）<br>
         <b>英属维尔京群岛：</b>SIBA 投资业务牌照（第 2 类）+ VASP 注册<br><br>
-        BIT 美股服务由 BIT 全资子公司 Matrix Gelephu Pte. Ltd. 设立，持有不丹 GFSO 颁发的 FSL。
+        BIT证券 美股服务由 BIT 全资子公司 Matrix Gelephu Pte. Ltd. 设立，持有不丹 GFSO 颁发的 FSL。
       </div>
     </details>
     <details>
       <summary>品牌实力 · Matrixport 的下一步</summary>
       <div class="d-body">
-        BIT 由亚洲领先加密金融机构 Matrixport 品牌升级而来。2019 年成立，7 年机构服务经验；总部新加坡，全球 7 个国家和地区设有办公室。<br><br>
+        BIT证券 由亚洲领先加密金融机构 Matrixport 品牌升级而来。2019 年成立，7 年机构服务经验；总部新加坡，全球 7 个国家和地区设有办公室。<br><br>
         $60 亿+ 管理资产规模 · $70 亿+ 月交易量 · 五轮融资累计 $1.38 亿 · $10 亿+ 独角兽估值<br><br>
         CB Insights 全球 50 家最具前景区块链公司；入选 2024 胡润全球独角兽榜、2025 新加坡金融科技独角兽榜。
       </div>
@@ -873,7 +873,7 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
     <p>推广说明：本页为独立邀请，开户链接包含邀请码；账户服务、活动资格与最终条款以 www.bit.com 为准。</p>
     <p>风险提示：美股投资存在高风险，可能导致本金损失；受市场波动、经济环境、公司业绩影响。</p>
     <p>免责声明：本页面内容不构成对香港、美国、新加坡及其他禁止国家居民的投资建议。</p>
-    <p>© 2026 BIT 美股信息指南 · <a href="https://bit.onsites.me/disclosure">完整披露</a></p>
+    <p>© 2026 BIT证券 美股信息指南 · <a href="https://bit.onsites.me/disclosure">完整披露</a></p>
   </footer>
 </main>
 
