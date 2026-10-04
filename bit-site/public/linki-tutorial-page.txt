@@ -202,6 +202,7 @@ h1{font-family:'Inter Tight','Noto Sans SC',sans-serif;font-size:29px;line-heigh
   <a class="back" href="https://bit.onsites.me/LINKI">‹ 返回活动页</a>
   <h1><em>5 分钟</em>极速开户教程</h1>
   <p class="lede">下载 → 注册 → 开户认证，约 5 分钟了解完整流程。审核进度与开户结果以 App 通知为准；审核通过后可按平台要求入金交易。如需人工咨询，请加入 TG 群联系我们（文末扫码）。</p>
+  <p class="lede">BIT证券现已支持港股交易及港股新股认购（打新）。本文展示美股开户流程，港股开通及新股认购请以 App 实际操作指引为准。</p>
 
 </div></header>
 <main>
@@ -357,8 +358,8 @@ h1{font-family:'Inter Tight','Noto Sans SC',sans-serif;font-size:29px;line-heigh
 <div class="wrap">
 <footer class="foot">
     <p>推广说明：本页为独立邀请；账户服务、活动资格与最终条款以 www.bit.com 为准。</p>
-    <p>⚠️ 风险提示：美股投资存在高风险，可能导致本金损失；受市场波动、经济环境、公司业绩影响。</p>
-    <p>© 2026 BIT证券 美股信息指南 · <a href="https://bit.onsites.me/disclosure">完整披露</a></p>
+    <p>⚠️ 风险提示：港美股投资及港股新股认购均存在本金损失风险。新股认购不保证获配或盈利，上市后可能跌破发行价；融资认购可能放大亏损，融资款项仍须按约定偿还。请根据自身财务状况、投资目标和风险承受能力审慎参与。</p>
+    <p>© 2026 BIT证券 港美股交易与打新信息指南 · <a href="https://bit.onsites.me/disclosure">完整披露</a></p>
   </footer>
 </div>
 </main>

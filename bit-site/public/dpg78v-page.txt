@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>BIT證券 8月美股新人禮｜開戶享 $310 大禮包</title>
-<meta name="description" content="BIT證券 8月美股新人禮：開戶享美股免傭交易、$100 平台費抵扣卡及雙行情卡；入金與交易達標最高可獲 $210 股票現金卡。">
+<meta name="description" content="BIT證券 8月美股新人禮：開戶享美股免傭交易、$100 平台費抵扣卡及雙行情卡；入金與交易達標最高可獲 $210 股票現金卡。平台現已支持港股交易及港股新股認購（打新）。">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="author" content="onsites.me 獨立內容發佈者">
 <link rel="canonical" href="https://bit.onsites.me/DPG78V">
@@ -628,7 +628,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
     <div>
       <span class="eyebrow pill-ice"><span class="dot"></span>8月美股新人禮 · 8月1日 — 8月31日 限時開放（UTC+8）</span>
       <h1>一個賬戶，<br>投資全球資產</h1>
-      <p class="lead">交易加密貨幣、投資美股、配置代幣化現實世界資產，一切盡在一個受監管的賬戶。<br><b>不是美股代幣——直連美國持牌券商，真實持股、權益完整。</b></p>
+      <p class="lead">交易加密貨幣、投資港美股、參與港股新股認購（打新）、配置代幣化現實世界資產，一切盡在一個賬戶。<br><b>不是美股代幣——美股直連美國持牌券商，真實持股、權益完整。港股交易與港股新股認購已支持。</b></p>
       <div class="gift-banner">
         <div class="gi">🎁</div>
         <div>
@@ -644,13 +644,13 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       </div>
       <a class="btn btn-primary btn-lg hero-cta" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打開 BIT證券 註冊頁面，將在新窗口打開">立即開戶，領取 $310 大禮包</a>
       <div class="trust-strip">
-        <span><span class="ck">✓</span>直連美國持牌券商 · SIPC 成員</span>
+        <span><span class="ck">✓</span>美股業務直連美國持牌券商 · SIPC 成員</span>
         <span><span class="ck">✓</span>Matrixport 升級 · $60億+ 管理資產</span>
         <span><span class="ck">✓</span>穩定幣入金 · 7×24 秒級出入</span>
       </div>
     </div>
     <div class="hero-art">
-      <img src="/bit-global-assets.png" alt="BIT證券 一個賬戶投資美股與加密資產" width="1188" height="1164" fetchpriority="high" decoding="async">
+      <img src="/bit-global-assets.png" alt="BIT證券 一個賬戶投資港美股與加密資產" width="1188" height="1164" fetchpriority="high" decoding="async">
     </div>
   </div>
 </section>
@@ -775,7 +775,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 <section class="sec-a" id="steps">
   <div class="wrap center">
     <h2 class="h-sec">簡單 3 步，輕鬆領賞</h2>
-    <p class="sub">BIT證券 美股功能現已在 App 全面上線（網頁版即將推出），開戶全程僅需 3 分鐘</p>
+    <p class="sub">BIT證券 App 已支持美股、港股交易及港股新股認購（打新）。下方展示美股開戶流程，港股開通及認購操作以 App 實際頁面為準。</p>
     <div class="steps">
       <div class="step">
         <div class="stag">Step 1</div>
@@ -839,23 +839,25 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       <div class="comp-card">
         <div class="ce">絲滑出入</div>
         <h3>穩定幣直投，T+0 高效流轉</h3>
-        <p>USDT/USDC 直接入金，7×24 小時秒級出入金，無 T+N 等待；加密市場與美股市場無縫切換，無需多賬戶跳轉，不錯過行情的「黃金入場點」。</p>
+        <p>USDT/USDC 直接入金，7×24 小時秒級出入金，無 T+N 等待；加密資產與港美股在同一賬戶內配置，無需多賬戶跳轉，不錯過行情的「黃金入場點」。</p>
       </div>
       <div class="comp-card">
         <div class="ce">越交易越省</div>
-        <h3>0 傭金 + 低固定費</h3>
-        <p>交易傭金 0，平台費固定 0.005 USD/股；對比美股代幣化平台約 0.1%–0.3% 的比例型收費，中大額與高頻交易場景成本優勢顯著。</p>
+        <h3>美股 0 傭金 + 低固定費</h3>
+        <p>美股交易傭金 0，平台費固定 0.005 USD/股；對比美股代幣化平台約 0.1%–0.3% 的比例型收費，中大額與高頻交易場景成本優勢顯著。港股交易及港股打新費用以平台現行收費標準為準，優惠按當期活動規則執行。</p>
       </div>
     </div>
     <div class="chip-row">
       <span class="chip">美股主板股票</span>
+      <span class="chip">港股交易</span>
+      <span class="chip">港股新股認購（打新）</span>
       <span class="chip">主流 ETF（指數 / 行業）</span>
-      <span class="chip">碎股交易 · $1 起投</span>
+      <span class="chip">美股碎股交易 · $1 起投</span>
       <span class="chip">融資融券 · 已上線</span>
       <span class="chip">期權實時行情 · OPRA</span>
       <span class="chip">夜間模式 · 盯盤更輕鬆</span>
     </div>
-    <p class="pull-quote">「對 Crypto 用戶來說，這是進入美股最順的一條路。」<span>一個賬戶，完成加密貨幣、美股、ETF、固收、結構化理財及 RWA 黃金的跨市場資產配置，靈活切換、組合管理。</span></p>
+    <p class="pull-quote">「一個賬戶，連接港美股與加密資產。」<span>一個賬戶，完成加密貨幣、美股、港股、ETF、固收、結構化理財及 RWA 黃金的跨市場資產配置，亦支持港股新股認購（打新）。</span></p>
   </div>
 </section>
 
@@ -920,7 +922,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
       </div>
       <div class="comp-card">
         <div class="ce">資金去向</div>
-        <h3>存放於美國持牌清算機構</h3>
+        <h3>美股資產由美國持牌清算機構托管</h3>
         <p style="margin-bottom:8px">客戶資金與股票由美國 SEC 註冊、受 FINRA 監管的持牌清算機構托管清算，各合作券商均可通過 FINRA BrokerCheck 一鍵核驗：</p>
         <a class="broker" href="https://brokercheck.finra.org/firm/summary/288933" target="_blank" rel="nofollow noopener noreferrer" aria-label="在 FINRA BrokerCheck 查看 Clear Street"><span class="bn">Clear Street LLC<em class="role">清算 · 托管</em></span><span class="crd">CRD <b>288933</b> ↗</span></a>
         <a class="broker" href="https://brokercheck.finra.org/firm/summary/134284" target="_blank" rel="nofollow noopener noreferrer" aria-label="在 FINRA BrokerCheck 查看 RQD Clearing"><span class="bn">RQD* Clearing, LLC<em class="role">清算 · 托管</em></span><span class="crd">CRD <b>134284</b> ↗</span></a>
@@ -950,7 +952,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   <div class="wrap center">
     <span class="eyebrow pill-ice">品牌實力</span>
     <h2 class="h-sec">不是新面孔，是 Matrixport 的下一步</h2>
-    <p class="sub" style="max-width:820px">BIT證券（Bridge Into Tomorrow）由亞洲領先加密金融機構 Matrixport 品牌升級而來——成立 7 年的金融科技獨角獸，業務涵蓋托管（Cactus Custody）、交易、支付與 RWA。2026 年 2 月，平台正式支持穩定幣（USDT/USDC）入金投資美股，把加密世界的資金效率帶進美國股市。</p>
+    <p class="sub" style="max-width:820px">BIT證券（Bridge Into Tomorrow）由亞洲領先加密金融機構 Matrixport 品牌升級而來——成立 7 年的金融科技獨角獸，業務涵蓋托管（Cactus Custody）、交易、支付與 RWA。2026 年 2 月，平台正式支持穩定幣（USDT/USDC）入金投資美股，把加密世界的資金效率帶進美國股市。目前已支持港股交易及港股新股認購（打新）。</p>
     <div class="stat-grid">
       <div class="stat"><div class="sv">$60億+</div><div class="sl">管理資產規模（美元）</div></div>
       <div class="stat"><div class="sv">$70億+</div><div class="sl">月交易量（美元）</div></div>
@@ -971,9 +973,9 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   <div class="wrap">
     <div class="logo flogo"><span class="bar"></span><span class="name">BIT證券</span></div>
     <p class="rk"><b>推廣說明：</b>本頁為獨立邀請，開戶鏈接包含邀請碼；賬戶服務、活動資格與最終條款以 <a data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="使用邀請碼 STOCK 打開 BIT證券 註冊頁面，將在新窗口打開">www.bit.com</a> 為準。</p>
-    <p class="rk"><b>⚠ 風險提示：</b>美股投資存在高風險，可能導致本金損失。受市場波動、經濟環境、公司業績等因素影響，股價可能大幅波動。用戶應根據自身的財務狀況、投資目標和風險承受能力，判斷是否適合投資美股。</p>
+    <p class="rk"><b>⚠ 風險提示：</b>港美股投資及港股新股認購均存在本金損失風險。新股認購不保證獲配或盈利，上市後可能跌破發行價；融資認購可能放大虧損，融資款項仍須按約定償還。請根據自身財務狀況、投資目標和風險承受能力審慎參與。</p>
     <p class="rk"><b>⚠ 免責聲明：</b>本頁面內容不構成對香港特別行政區、美國、新加坡以及法律可能禁止此類要約或要約邀請的其他國家或地區居民的投資建議、銷售要約或購買要約邀請。資產交易可能具有極大的風險和不穩定性。投資決策應在仔細考慮個人情況並咨詢獨立專業人士後做出。本站運營方不對基於本頁面信息作出的投資決策負責。</p>
-    <p class="copy">© 2026 BIT證券 美股信息指南 · <a href="/disclosure">完整披露</a></p>
+    <p class="copy">© 2026 BIT證券 港美股交易與打新資訊指南 · <a href="/disclosure">完整披露</a></p>
   </div>
 </footer>
 
