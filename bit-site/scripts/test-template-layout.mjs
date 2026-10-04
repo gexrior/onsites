@@ -11,6 +11,11 @@ const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.BIT_LAYOUT_PLAYWRIGHT_PATH || "playwright");
 const publicDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../public");
 const html = await readFile(path.join(publicDir, "index.html"), "utf8");
+const footer = html.match(/<footer\b[^>]*>([\s\S]*?)<\/footer>/i)?.[1];
+assert.ok(footer, "Template footer must remain present");
+assert.doesNotMatch(footer, /推广说明：|风险提示：/, "Remove only the requested footer notices");
+assert.match(footer, /免责声明：/, "Preserve the footer disclaimer");
+assert.match(footer, /class="copy"[\s\S]*?href="\/disclosure"/, "Preserve copyright and full disclosure link");
 const origin = "https://bit-layout.test";
 const screenshotDir = process.env.BIT_LAYOUT_SCREENSHOT_DIR
   ? path.resolve(process.env.BIT_LAYOUT_SCREENSHOT_DIR) : "";
@@ -194,8 +199,8 @@ async function checkInteractions(page, events, width, mobile) {
       }
     }
   });
-  assert.equal(expectedLabels.length, 7, `${width}: preserve seven signup anchors`);
-  for (let attempt = 0; attempt < 40 && events.filter((event) => event.event === "click" && event.value === "signup").length < 7; attempt++) {
+  assert.equal(expectedLabels.length, 6, `${width}: preserve six remaining signup anchors`);
+  for (let attempt = 0; attempt < 40 && events.filter((event) => event.event === "click" && event.value === "signup").length < 6; attempt++) {
     await new Promise((resolve) => setTimeout(resolve, 25));
   }
   const signupEvents = events.filter((event) => event.event === "click" && event.value === "signup");
