@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>BIT证券 10月证券新人礼｜开户享 $310 大礼包</title>
-<meta name="description" content="BIT证券 10月证券新人礼：开户享美股免佣交易、$100 平台费抵扣卡及双行情卡；入金与交易达标最高可获 $210 股票现金卡。平台现已支持港股交易及港股新股认购（打新）。">
+<meta name="description" content="BIT证券 10月证券新人礼：开户享美股 / 港股免佣金交易、$100 平台费抵扣卡及双行情卡；入金与交易达标最高可获 $210 股票现金卡。平台现已支持港股交易及港股新股认购（打新）。">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="author" content="onsites.me 独立内容发布者">
 <link rel="canonical" href="https://bit.onsites.me/">
@@ -718,7 +718,7 @@ footer a{text-decoration:underline;text-underline-offset:3px}
 <header>
   <div class="wrap hd">
     <div class="logo"><span class="bar"></span><span class="name">BIT证券</span></div>
-    <div class="hd-promo">开户即享 <span class="blue">$310 新人大礼包</span>｜美股免佣交易</div>
+    <div class="hd-promo">开户即享 <span class="blue">$310 新人大礼包</span>｜美股 / 港股免佣金交易</div>
     <a class="btn btn-primary btn-sm" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT证券 注册页面，将在新窗口打开">立即开户</a>
   </div>
 </header>
@@ -738,10 +738,10 @@ footer a{text-decoration:underline;text-underline-offset:3px}
         </div>
       </div>
       <div class="feat-grid">
-        <div class="feat"><div class="ft"><span class="ck">✓</span>美股免佣交易</div><div class="fd">开户即可享受美股免佣交易权益</div></div>
+        <div class="feat"><div class="ft"><span class="ck">✓</span>美股 / 港股免佣金交易</div><div class="fd">开户即可享受美股 / 港股免佣金交易权益</div></div>
         <div class="feat"><div class="ft"><span class="ck">✓</span>$100 平台费抵扣卡</div><div class="fd">满足证券开户活动条件后，进入证券页面自动发放，有效期 30 天</div></div>
-        <div class="feat"><div class="ft"><span class="ck">✓</span>美股实时行情卡</div><div class="fd">30 天 Nasdaq Basic 实时行情</div></div>
-        <div class="feat"><div class="ft"><span class="ck">✓</span>期权实时行情卡</div><div class="fd">30 天 OPRA 期权实时行情</div></div>
+        <div class="feat"><div class="ft"><span class="ck">✓</span>美股 L1 实时行情卡</div><div class="fd">30 天 Nasdaq Basic 美股 L1 实时行情</div></div>
+        <div class="feat"><div class="ft"><span class="ck">✓</span>美股期权实时行情卡</div><div class="fd">30 天 OPRA 美股期权实时行情</div></div>
       </div>
       <div class="hero-actions">
         <a class="btn btn-primary btn-lg hero-cta" data-signup-link href="https://www.bit.com/zh/register?invite_code=STOCK" target="_blank" rel="nofollow sponsored noopener noreferrer" aria-label="打开 BIT证券 注册页面，将在新窗口打开">立即开户，领取 $310 大礼包</a>
@@ -790,13 +790,14 @@ footer a{text-decoration:underline;text-underline-offset:3px}
   <div class="wrap center">
     <span class="eyebrow pill-blue">任务一 · 开户奖励</span>
     <h2 class="h-sec"><span class="task1-title-line">首次完成证券开户，</span><span class="task1-title-line">一键获赠 <span class="blue">$100 抵扣卡</span>，</span><span class="task1-title-line">解锁四重福利</span></h2>
-    <p class="sub">开户即得，无需入金门槛</p>
+    <p class="sub">无需入金、无需交易，注册并进入「证券」页面即可领取，四项独立生效。</p>
     <div class="card-grid-4">
-      <div class="icard"><div class="ico">$0</div><h3>美股免佣交易</h3><p>活动期间首次完成证券开户，即可享受美股免佣交易权益。</p></div>
+      <div class="icard"><div class="ico">$0</div><h3>美股 / 港股免佣金交易</h3><p>活动期间首次完成证券开户，即可享受美股 / 港股免佣金交易权益。</p></div>
       <div class="icard"><div class="ico">🎟️</div><h3>$100 平台费抵扣卡</h3><p>满足证券开户活动条件后，进入证券页面自动发放，有效期 30 天。</p></div>
-      <div class="icard"><div class="ico">📈</div><h3>美股实时行情卡</h3><p>自动发放 30 天 Nasdaq Basic 美股实时行情卡，手动激活后使用。</p></div>
-      <div class="icard"><div class="ico">📊</div><h3>期权实时行情卡</h3><p>自动发放 30 天 OPRA 期权实时行情卡，手动激活后使用。</p></div>
+      <div class="icard"><div class="ico">📈</div><h3>美股 L1 实时行情卡</h3><p>自动发放 30 天 Nasdaq Basic 美股 L1 实时行情卡，手动激活后使用。</p></div>
+      <div class="icard"><div class="ico">📊</div><h3>美股期权实时行情卡</h3><p>自动发放 30 天 OPRA 美股期权实时行情卡，手动激活后使用。</p></div>
     </div>
+    <p class="disclaimer">平台费抵扣卡有效期 30 天，用于抵扣交易时产生的平台费，不可提现或转让。美股余额大于 0 时，美股 L1 行情卡自动续发；美股期权行情卡满足净资产 ≥ $2,000、近 3 个月有期权交易或持有期权仓位任一条件时续发。港股交易及港股新股认购（打新）现已支持。</p>
     <p class="disclaimer">*投资涉及风险，优惠设有期限并受活动条款及细则约束。活动不构成投资建议。</p>
   </div>
 </section>

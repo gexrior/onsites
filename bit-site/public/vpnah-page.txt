@@ -717,13 +717,14 @@ td b{color:var(--ink);font-family:'JetBrains Mono',monospace;font-weight:500}
   <div class="band band-white"><div class="wrap"><section class="sec" id="bonus310">
     <span class="sec-tag">福利二 · $310 新用户礼包</span>
     <h2>首次完成证券开户，一键获赠 $100 抵扣卡，解锁四重福利</h2>
-    <p class="sec-sub">开户奖励无需入金门槛</p>
+    <p class="sec-sub">无需入金、无需交易，注册并进入「证券」页面即可领取，四项独立生效。</p>
 
     <div class="benefit4">
-      <div class="b-item"><div class="b-t">美股免佣交易</div><div class="b-d">活动期间首次开户即享</div></div>
+      <div class="b-item"><div class="b-t">美股 / 港股免佣金交易</div><div class="b-d">活动期间首次开户即享</div></div>
       <div class="b-item"><div class="b-t">$100 平台费抵扣卡</div><div class="b-d">满足证券开户活动条件后，进入证券页面自动发放，有效期 30 天</div></div>
-      <div class="b-item"><div class="b-t">美股实时行情卡</div><div class="b-d">30 天 Nasdaq Basic，自动发放</div></div>
-      <div class="b-item"><div class="b-t">期权实时行情卡</div><div class="b-d">30 天 OPRA，自动发放</div></div>
+      <div class="b-item"><div class="b-t">美股 L1 实时行情卡</div><div class="b-d">30 天 Nasdaq Basic，自动发放</div></div>
+      <div class="b-item"><div class="b-t">美股期权实时行情卡</div><div class="b-d">30 天 OPRA，自动发放</div></div>
+      <p class="rule">平台费抵扣卡有效期 30 天，用于抵扣交易时产生的平台费，不可提现或转让。美股余额大于 0 时，美股 L1 行情卡自动续发；美股期权行情卡满足净资产 ≥ $2,000、近 3 个月有期权交易或持有期权仓位任一条件时续发。港股交易及港股新股认购（打新）现已支持。</p>
     <details>
       <summary>入金奖励 · 最高 $200 股票现金卡</summary>
       <div class="d-body">
