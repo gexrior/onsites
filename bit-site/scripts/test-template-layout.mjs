@@ -17,6 +17,7 @@ assert.doesNotMatch(footer, /推广说明：|风险提示：/, "Remove only the 
 assert.match(footer, /免责声明：/, "Preserve the footer disclaimer");
 assert.match(footer, /class="copy"[\s\S]*?href="\/disclosure"/, "Preserve copyright and full disclosure link");
 const origin = "https://bit-layout.test";
+const campaignTiers = [["10000", "$320", "$200", 20], ["3000", "$220", "$100", 10], ["1500", "$170", "$50", 5]];
 const screenshotDir = process.env.BIT_LAYOUT_SCREENSHOT_DIR
   ? path.resolve(process.env.BIT_LAYOUT_SCREENSHOT_DIR) : "";
 const widths = [320, 360, 375, 390, 430, 480, 560, 561, 599, 600, 700, 701, 768, 820,
@@ -100,16 +101,20 @@ async function checkLayout(page, width, height) {
     if (document.documentElement.scrollWidth > viewport + tolerance || document.body.scrollWidth > viewport + tolerance) {
       errors.push(`body: horizontal overflow (${document.documentElement.scrollWidth}/${document.body.scrollWidth} > ${viewport})`);
     }
-    const grid = document.querySelector("#task1 .card-grid-4");
+    const grid = document.querySelector("#task1 .benefits-grid");
     const cards = [...grid.children];
-    const expectedColumns = innerWidth < 600 ? 1 : innerWidth <= 1100 ? 2 : 4;
-    const columns = getComputedStyle(grid).gridTemplateColumns.split(/\s+/).length;
-    if (columns !== expectedColumns) errors.push(`#task1 .card-grid-4: ${columns} columns, expected ${expectedColumns}`);
-    if (cards.length !== 4 || grid.scrollWidth > grid.clientWidth + tolerance) {
-      errors.push("#task1 .card-grid-4: all four benefits must be available without horizontal scrolling");
+    const expectedColumns = innerWidth < 600 ? 1 : innerWidth <= 1100 ? 2 : 3;
+    const cardBoxes = cards.map(box);
+    const columns = cardBoxes.filter(({ top }) => Math.abs(top - cardBoxes[0].top) <= tolerance).length;
+    if (columns !== expectedColumns) errors.push(`#task1 .benefits-grid: ${columns} cards in first row, expected ${expectedColumns}`);
+    if (cards.length !== 5 || grid.scrollWidth > grid.clientWidth + tolerance) {
+      errors.push("#task1 .benefits-grid: all five benefits must be available without horizontal scrolling");
     }
     for (const [index, card] of cards.entries()) {
-      if (!visible(card) || !inside(box(card), box(grid))) errors.push(`#task1 .icard[${index}]: outside grid`);
+      if (!visible(card) || !inside(cardBoxes[index], box(grid))) errors.push(`#task1 .icard[${index}]: outside grid`);
+      if (cardBoxes.slice(index + 1).some((other) => overlaps(cardBoxes[index], other))) {
+        errors.push(`#task1 .icard[${index}]: overlaps another benefit`);
+      }
       textInside(card.querySelector("h3"), card, `#task1 .icard[${index}] h3`);
       textInside(card.querySelector("p"), card, `#task1 .icard[${index}] p`);
     }
@@ -160,12 +165,32 @@ async function checkLayout(page, width, height) {
 }
 
 async function checkInteractions(page, events, width, mobile) {
-  for (const [tier, total, deposit] of [["10000", "$310", "$200"], ["3000", "$210", "$100"]]) {
+  assert.equal(await page.locator("[data-task2-total]").textContent(), "$170", `${width}: default calculator total`);
+  assert.doesNotMatch(await page.locator(".task2-table thead").innerText(), /即时|立即/, `${width}: no upfront deposit reward`);
+  for (const [tier, total, deposit, cards] of campaignTiers) {
     await page.locator(`[data-task2-tier="${tier}"]`).click();
     assert.equal(await page.locator("[data-task2-total]").textContent(), total, `${width}: calculator total`);
     assert.equal(await page.locator("[data-task2-deposit]").textContent(), deposit, `${width}: calculator deposit`);
     assert.equal(await page.locator(`[data-task2-tier="${tier}"]`).getAttribute("aria-pressed"), "true");
+    const row = page.locator(`[data-task2-row="${tier}"]`);
+    const cells = await row.locator("td").allTextContents();
+    assert.equal(cells.length, 3, `${width}: deposit tier ${tier} has no upfront reward column`);
+    assert.match(cells[1], new RegExp(`\\b${cards}\\s*张\\s*[×x]\\s*(?:US\\s*)?\\$10\\b`), `${width}: $10 cards for tier ${tier}`);
+    assert.equal(cells[2].trim().replace(/^US\s*/, ""), deposit, `${width}: reward for deposit tier ${tier}`);
+    assert.ok(await row.evaluate((element) => element.classList.contains("is-active")), `${width}: selected reward row`);
   }
+  const tradeRows = page.locator("#task3 .rtable tbody tr");
+  assert.equal(await tradeRows.count(), 2, `${width}: two trade reward tiers`);
+  for (const [index, trades, reward, cumulative] of [[0, 10, /抵扣卡/, 10], [1, 31, /股票现金卡/, 20]]) {
+    const cells = await tradeRows.nth(index).locator("td").allTextContents();
+    assert.match(cells[0], new RegExp(`\\b${trades}\\s*笔`), `${width}: ${trades}-order threshold`);
+    assert.match(cells[1], /\$500\b/, `${width}: $500 minimum per order`);
+    assert.match(cells[2], /\$10\b/, `${width}: $10 tier reward`);
+    assert.match(cells[2], reward, `${width}: correct reward type for ${trades} orders`);
+    assert.match(cells[3], new RegExp(`\\$${cumulative}\\b`), `${width}: cumulative trade reward`);
+  }
+  const officialRules = page.locator('#task3 a[href="https://www.bit.com/zh/helpcenter/articles/17731247"]');
+  assert.equal(await officialRules.count(), 1, `${width}: official November campaign rules link`);
   const toggle = page.locator(".quick-nav-toggle");
   await toggle.click();
   assert.equal(await toggle.getAttribute("aria-expanded"), "true", `${width}: open navigation`);
